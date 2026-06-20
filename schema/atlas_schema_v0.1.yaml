@@ -1,0 +1,318 @@
+# =====================================================================
+# Brand Spectrometer Schema v0.1
+# =====================================================================
+#
+# Purpose: declarative schema for a cohort-indexed atlas of implicit
+# Tier-4 brand specifications, inferred by structural decomposition of
+# publicly observable artifacts across multiple observer cohorts.
+#
+# Theoretical anchors:
+#   - 2026ah Brand-as-Tier-4 (DOI 10.5281/zenodo.19930157):
+#       brand IS at Tier 4 (Product specification surface).
+#       NEVER Tier 3 (Business Entity).
+#   - 2026ag Six-Tier Ontology (DOI 10.5281/zenodo.19895813):
+#       tier sequence Owner Intent / Business Model / Business Entity /
+#       Product / Process / Organization.
+#   - 2026v R15 Dimensional Collapse (DOI 10.5281/zenodo.19422427):
+#       cohort-variant metameric observation is the measurement,
+#       not noise around a true value.
+#   - 2026ao Paper A operator-substrate (DOI 10.5281/zenodo.20409683):
+#       operator role above human-vs-AI instance.
+#   - 2026ap Paper B rendering-equivalence (DOI 10.5281/zenodo.20409701):
+#       cross-operator extraction discipline (renderer model B
+#       differs from extractor model C; extractor never sees source spine).
+#
+# Licenses:
+#   - Code: MIT (see ../LICENSE once mirror scaffolds)
+#   - Data: CC BY 4.0 (see ../LICENSE-data once mirror scaffolds)
+#
+# Schema version: 0.1
+# =====================================================================
+
+schema_version: "0.1"
+
+# ---------------------------------------------------------------------
+# Atlas-level metadata
+# ---------------------------------------------------------------------
+
+# Human-readable brand name as used by the brand itself in public copy.
+# Trademark assets (logos, fonts, proprietary brand-asset usage) are
+# NEVER reproduced in any atlas artifact; the brand-name string is
+# nominative only, for structural reference.
+brand_name: "<string>"
+
+# Semver of THIS atlas instance for a given brand.
+# Increment major when the cohort set or methodology changes
+# substantively; minor when artifacts are added; patch for fixes.
+atlas_version: "<semver e.g. 0.1.0>"
+
+# Date range that the atlas claims to cover. ISO 8601 dates required.
+# A point-in-time atlas uses identical start and end values.
+# Temporal drift is a primary finding, not a defect: any atlas covering
+# more than ~6 months must report drift in the `variance` block below.
+sample_date:
+  start: "<YYYY-MM-DD>"
+  end: "<YYYY-MM-DD>"
+
+# Semver of the methodology document (METHODOLOGY.md) under which the
+# atlas was constructed. Reproducibility requires pinning.
+methodology_version: "<semver e.g. 0.1.0>"
+
+# ---------------------------------------------------------------------
+# Cohort-indexed inferred specifications
+# ---------------------------------------------------------------------
+#
+# `cohorts` is a MAP keyed by cohort_id (a short slug, e.g.
+# `brand-debaters`). Each value is the inferred-spec record produced
+# from that cohort's observable artifact subset.
+#
+# Validation rule (enforced by validate_atlas.py):
+#   - At least 5 cohorts MUST be present. A single-cohort atlas is
+#     disallowed: it would collapse cohort-variant metameric observation
+#     into a false-precision single spec, contradicting 2026v R15.
+#
+# The 8 SBT dimensions appear under inferred_spec in this EXACT order
+# (HARD-LOCKED per the brand-profile canonical):
+#     semiotic, narrative, ideological, experiential,
+#     social, economic, cultural, temporal
+#
+
+cohorts:
+
+  <cohort_id>:
+
+    # Human-readable label for the cohort. Plain English; what a
+    # practitioner reader will recognise.
+    cohort_label: "<string>"
+
+    # Numeric estimate of the cohort population, plus source for the
+    # estimate (URL, methodology note, or sampling-frame reference).
+    cohort_size_estimate:
+      value: <integer>
+      source: "<string>"
+
+    # List of artifact_id strings referencing entries in
+    # provenance.artifact_inventory below. Each cohort MUST reference
+    # at least 3 artifacts (enforced by validate_atlas.py).
+    artifact_subset_observed:
+      - "<artifact_id>"
+      - "<artifact_id>"
+      - "<artifact_id>"
+
+    # OPTIONAL per-cohort coverage metric (Phase 0.3; added after the
+    # collection-adapter refactor). Reports how much of the DECLARED
+    # collection frame entered the spec, beside the two noise floors in
+    # the variance block. coverage_fraction is NOT census coverage of the
+    # true (unknowable) observable universe (Weakness 2 residual); it is
+    # sampled_n / declared_size for the named collection_method.
+    # Additive + optional: the validator does not require it, so atlases
+    # produced before 0.3 remain valid without it.
+    sampling_frame:
+      collection_method: "<e.g. ai_search_discovery | supplied_corpus>"
+      declared_size: <integer>      # enumerated frame for this cohort+method
+      sampled_n: <integer>          # artifacts that entered the spec
+      coverage_fraction: <float in [0, 1] or null>
+      frame_basis: "<string: what declared_size counts; W2 caveat>"
+
+    # Inferred Tier-4 product-spec block on 8 SBT dimensions.
+    # Scores are floats in [0, 10] with two-sided 95% confidence
+    # intervals. All 8 dimensions MUST be present.
+    inferred_spec:
+      semiotic:
+        score: <float 0-10>
+        ci_95_lower: <float 0-10>
+        ci_95_upper: <float 0-10>
+      narrative:
+        score: <float 0-10>
+        ci_95_lower: <float 0-10>
+        ci_95_upper: <float 0-10>
+      ideological:
+        score: <float 0-10>
+        ci_95_lower: <float 0-10>
+        ci_95_upper: <float 0-10>
+      experiential:
+        score: <float 0-10>
+        ci_95_lower: <float 0-10>
+        ci_95_upper: <float 0-10>
+      social:
+        score: <float 0-10>
+        ci_95_lower: <float 0-10>
+        ci_95_upper: <float 0-10>
+      economic:
+        score: <float 0-10>
+        ci_95_lower: <float 0-10>
+        ci_95_upper: <float 0-10>
+      cultural:
+        score: <float 0-10>
+        ci_95_lower: <float 0-10>
+        ci_95_upper: <float 0-10>
+      temporal:
+        score: <float 0-10>
+        ci_95_lower: <float 0-10>
+        ci_95_upper: <float 0-10>
+
+    # Observable Tier-3 (Business Entity) signals surfaced by this
+    # cohort's artifacts. Tier 3 is the legal-entity / IP / trademark
+    # / saleability layer per 2026ag; it is NOT brand. This field
+    # records what the cohort can SEE of Tier 3 from their artifact
+    # subset (e.g., trademark visibility, IP disclosures, parent-entity
+    # mentions). Empty list permitted; null is not.
+    inferred_tier_3_signals:
+      - "<string>"
+
+    # Observable Tier-5 (Process) couplings surfaced by this cohort
+    # (e.g., production process, supplier mentions, manufacturing
+    # location, fulfilment cadence). Tier 5 is process per 2026ag.
+    inferred_tier_5_process_couplings:
+      - "<string>"
+
+    # Cross-operator extraction discipline per 2026ap Paper B:
+    # the model that RENDERS prose from artifacts (operator B) MUST
+    # differ from the model that EXTRACTS structured spec from that
+    # prose (operator C). Validator enforces inequality per cohort.
+    # Within-operator extraction is permitted only as a robustness
+    # check, never as the primary evidence.
+    renderer_operator_id: "<string e.g. claude-opus-4-7>"
+    extractor_operator_id: "<string e.g. gpt-4o-2024-11-20>"
+
+    # Free-text caveats: cohort-specific selection-bias notes,
+    # language coverage limits, temporal-window irregularities,
+    # operator-failure incidents, etc. Use freely; the validator
+    # does not parse content.
+    notes: "<string>"
+
+# ---------------------------------------------------------------------
+# Variance — primary output per R15 metameric framing
+# ---------------------------------------------------------------------
+#
+# Cross-cohort variance IS the measurement; report it as such.
+
+variance:
+
+  # Per-dimension sigma across cohort spec vectors. Compute as the
+  # sample standard deviation of the cohort score-vector for each
+  # of the 8 dimensions. All 8 keys MUST be present.
+  cross_cohort_sigma:
+    semiotic: <float ≥ 0>
+    narrative: <float ≥ 0>
+    ideological: <float ≥ 0>
+    experiential: <float ≥ 0>
+    social: <float ≥ 0>
+    economic: <float ≥ 0>
+    cultural: <float ≥ 0>
+    temporal: <float ≥ 0>
+
+  # Composite metameric_degree in [0, 1].
+  #
+  # CHOSEN FORMULA (v0.1):
+  #     metameric_degree = 1 - mean_pairwise_cosine_similarity
+  #
+  # where mean_pairwise_cosine_similarity is the arithmetic mean of
+  # cosine similarities computed over all C(N, 2) unordered pairs of
+  # cohort 8-dim spec vectors. Cosine on non-negative score vectors
+  # in [0, 10]^8 is bounded in [0, 1]; subtracting from 1 yields a
+  # dissimilarity index also bounded in [0, 1]. Higher values =
+  # more metameric variance across cohorts.
+  #
+  # Rationale (full discussion in SCHEMA_DESIGN_NOTES.md §4):
+  # cosine is scale-invariant on the dimensional pattern (a cohort
+  # that scores everything uniformly low has the same shape as a
+  # cohort that scores everything uniformly high; both report the
+  # same dimensional emphasis). Euclidean would conflate magnitude
+  # with shape and inflate variance when cohorts differ in artifact
+  # availability rather than in spec interpretation.
+  metameric_degree: <float in [0, 1]>
+
+  # Time window the variance figures characterise. May equal the
+  # atlas-level sample_date or may be narrower if intra-window
+  # snapshots are reported separately. Drift across multiple windows
+  # is a primary finding and must be reported when the atlas spans
+  # more than ~6 months.
+  temporal_drift_window:
+    start: "<YYYY-MM-DD>"
+    end: "<YYYY-MM-DD>"
+
+# ---------------------------------------------------------------------
+# Provenance — artifact inventory + LLM-call manifest
+# ---------------------------------------------------------------------
+#
+# Reproducibility substrate per PUBLIC_MIRROR_STANDARD.
+
+provenance:
+
+  # Flat list of artifacts. Each artifact has a unique artifact_id
+  # referenced by cohort.artifact_subset_observed entries above.
+  # Validation rule: every artifact_id referenced under cohorts MUST
+  # exist here (no dangling refs).
+  artifact_inventory:
+
+    - artifact_id: "<string e.g. art_001>"
+
+      # Public URL where the artifact was retrieved.
+      url: "<URL>"
+
+      # ISO 8601 date when the artifact was retrieved.
+      retrieval_date: "<YYYY-MM-DD>"
+
+      # Controlled vocabulary; extend the validator's allowed list
+      # when adding a new source_type.
+      # Allowed values:
+      #   forum_post / press_article / social_post /
+      #   auction_record / video_review / official_press_release
+      source_type: "<one of the allowed values>"
+
+      # Which cohort_id this artifact is associated with. An artifact
+      # MAY appear in multiple cohorts only when the same public
+      # surface is read by multiple cohorts (rare; document why).
+      observer_cohort_association: "<cohort_id>"
+
+      # ISO 639-1 language code of the artifact text.
+      language: "<e.g. en, it, zh>"
+
+      # SHA-256 of the retrieved artifact bytes (after archival).
+      # Required for tamper-evidence; populated at retrieval time.
+      sha256: "<hex string>"
+
+      # Optional permanent-archive URL (e.g., archive.org snapshot).
+      # Strongly recommended for any artifact at risk of removal
+      # (social posts, forum threads, auction listings).
+      archive_url_optional: "<URL or null>"
+
+  # Relative path (from this atlas file) to the JSONL manifest of all
+  # LLM/model API calls used to render and extract spec from cohort
+  # artifacts. Schema per llm_call_logger.py
+  # (one call per JSONL line; operator + model_version + prompts +
+  # parameters + response + tokens + latency + cost + git_sha
+  # + redacted_secrets + timestamp + sequence_id).
+  llm_call_manifest_path: "<relative path e.g. ../logs/<brand>_llm_calls.jsonl>"
+
+  # Relative path to the prompt purity protocol document for this
+  # atlas. Renderer prompts and extractor prompts MUST live in
+  # separate files; extractor prompts MUST NOT carry source-spec
+  # identifiers from renderer outputs.
+  prompt_purity_protocol_path: "<relative path e.g. ../PROMPT_PURITY_PROTOCOL.md>"
+
+# =====================================================================
+# Validation rules summary (enforced by validate_atlas.py)
+# =====================================================================
+#
+# 1.  schema_version MUST equal "0.1".
+# 2.  At least 5 cohorts MUST be present under `cohorts`.
+# 3.  Each cohort MUST reference at least 3 artifact_ids in
+#     `artifact_subset_observed`.
+# 4.  Each cohort's renderer_operator_id MUST differ from its
+#     extractor_operator_id (cross-operator discipline per 2026ap).
+# 5.  Each cohort's inferred_spec MUST contain all 8 SBT dimensions
+#     in the canonical order, with score, ci_95_lower, ci_95_upper
+#     all floats in [0, 10] and lower <= score <= upper.
+# 6.  variance.cross_cohort_sigma MUST contain all 8 SBT dimensions
+#     as floats >= 0.
+# 7.  variance.metameric_degree MUST be a float in [0, 1].
+# 8.  variance.temporal_drift_window.start/end MUST be ISO 8601 dates.
+# 9.  provenance.artifact_inventory MUST be non-empty and every
+#     artifact_id referenced from any cohort MUST exist in it.
+# 10. provenance.llm_call_manifest_path MUST be a non-empty string.
+# 11. Each artifact source_type MUST be one of the allowed values
+#     listed under artifact_inventory above.
+#
+# =====================================================================

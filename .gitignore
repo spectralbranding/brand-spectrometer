@@ -1,0 +1,20 @@
+# OS / editor junk
+.DS_Store
+Thumbs.db
+*.swp
+
+# Python
+__pycache__/
+*.pyc
+.venv/
+venv/
+
+# Secrets — never commit
+.env
+.env.*
+*.key
+*.pem
+
+# Build/deploy artifacts
+dist/
+node_modules/

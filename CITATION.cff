@@ -1,0 +1,31 @@
+cff-version: 1.2.0
+title: "Brand Spectrometer — open renderer, atlas format, and methodology"
+message: "If you use this software or method, please cite it as below."
+type: software
+authors:
+  - family-names: Zharnikov
+    given-names: Dmitry
+    orcid: "https://orcid.org/0009-0000-6893-9231"
+repository-code: "https://github.com/spectralbranding/brand-spectrometer"
+url: "https://meter.spectralbranding.com"
+abstract: >-
+  An instrument that reads cohort-resolved, eight-dimensional brand-perception
+  profiles and reports which differences between audiences clear the instrument's
+  own noise floor. This repository is the open core: the in-browser renderer, the
+  atlas data format and validator, and the published methodology.
+keywords:
+  - brand-perception
+  - measurement
+  - spectral-brand-theory
+  - cohort-analysis
+  - metamerism
+license: MIT
+preferred-citation:
+  type: article
+  title: "Dimensional Collapse in AI Brand Perception"
+  authors:
+    - family-names: Zharnikov
+      given-names: Dmitry
+      orcid: "https://orcid.org/0009-0000-6893-9231"
+  year: 2026
+  doi: "10.5281/zenodo.19422427"

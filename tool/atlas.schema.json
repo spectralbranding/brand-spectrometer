@@ -1,0 +1,104 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "$id": "https://spectralbranding.com/spectrometer/atlas.schema.json",
+  "title": "Brand Spectrometer Atlas",
+  "description": "Standard structure ingested by the Brand Spectrometer web tool. One atlas = one brand read across eight perceptual dimensions for N>=2 cohorts. Cross-constraint (enforced by the tool, not expressible in JSON Schema): every cohorts[].vector and every distances row/column has length == dims.length, and distances is symmetric with a zero diagonal.",
+  "type": "object",
+  "required": ["meta", "dims", "cohorts"],
+  "properties": {
+    "meta": {
+      "type": "object",
+      "required": ["atlas"],
+      "properties": {
+        "brand": { "type": "string", "description": "Display name of the brand being read." },
+        "atlas": { "type": "string", "description": "Short slug id for the atlas." },
+        "schema": { "type": "string", "description": "Schema version, e.g. '0.1'." },
+        "methodology": { "type": "string" },
+        "window": { "type": "string", "description": "Sample window, e.g. '2025-09 -> 2026-05'." },
+        "demo": { "type": "boolean" },
+        "generation": { "type": "string", "enum": ["legacy", "current"] },
+        "notes": { "type": "string" },
+        "checksum": { "type": "string", "description": "Optional integrity token computed as 'BSx-<nCohorts>-<nDims>-<round(sum of all cohort vector entries * 10)>'. The tool recomputes and warns on mismatch." }
+      }
+    },
+    "dims": {
+      "type": "array", "minItems": 2,
+      "description": "The perceptual dimensions, in a fixed canonical order shared by every cohort vector.",
+      "items": {
+        "type": "object",
+        "required": ["key", "label"],
+        "properties": {
+          "key": { "type": "string" },
+          "label": { "type": "string" },
+          "desc": { "type": "string" },
+          "color": { "type": "string", "description": "Hex colour, e.g. '#3a8dde'." }
+        }
+      }
+    },
+    "cohorts": {
+      "type": "array", "minItems": 2,
+      "description": "Each cohort's inferred specification vector across dims (canonical order).",
+      "items": {
+        "type": "object",
+        "required": ["id", "label", "vector"],
+        "properties": {
+          "id": { "type": "string" },
+          "label": { "type": "string" },
+          "color": { "type": "string" },
+          "vector": {
+            "type": "array",
+            "items": { "type": "number", "minimum": 0, "maximum": 10 },
+            "description": "One score per dim, 0-10, in canonical dim order. Length MUST equal dims.length."
+          },
+          "intervals": {
+            "type": "array",
+            "description": "Optional per-dimension [low, high] interval, present in current-methodology atlases.",
+            "items": { "type": "array", "items": { "type": "number" }, "minItems": 2, "maxItems": 2 }
+          }
+        }
+      }
+    },
+    "distances": {
+      "type": "array",
+      "description": "N x N pairwise cohort distance (1 - cosine similarity), same order as cohorts. Symmetric, zero diagonal.",
+      "items": { "type": "array", "items": { "type": "number" } }
+    },
+    "per_pair_sn": {
+      "type": "array",
+      "description": "Optional per-pair signal-to-noise: whether a pair's distance clears its noise floor.",
+      "items": {
+        "type": "object",
+        "required": ["a", "b", "distance", "resolved"],
+        "properties": {
+          "a": { "type": "string" },
+          "b": { "type": "string" },
+          "distance": { "type": "number" },
+          "floor": { "type": "number" },
+          "sn": { "type": "number" },
+          "resolved": { "type": "string", "enum": ["resolved", "marginal", "sub-resolution"] }
+        }
+      }
+    },
+    "noise": {
+      "type": "object",
+      "properties": {
+        "operator": { "type": ["number", "null"] },
+        "artifact": { "type": ["number", "null"] },
+        "coverage": { "type": ["number", "null"] },
+        "sn_aggregate": { "type": ["number", "null"] }
+      }
+    },
+    "metameric_degree": { "type": "number" },
+    "provenance": {
+      "type": "object",
+      "properties": {
+        "operators": { "type": "array", "items": { "type": "string" } },
+        "artifact_count": { "type": "number" },
+        "cross_extractor_compliant": { "type": "string" },
+        "llm_call_manifest": { "type": "string" },
+        "code": { "type": "string" },
+        "data_doi": { "type": ["string", "null"] }
+      }
+    }
+  }
+}

@@ -1,0 +1,690 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width,initial-scale=1" />
+<title>The Brand Spectrometer</title>
+<meta name="description" content="A reproducible instrument that reads how different audiences perceive a brand — cohort by cohort, across eight dimensions. Load any standard atlas. Runs entirely in your browser." />
+<!-- Social share (Open Graph + Twitter) — rich preview drives shares. og.png generated at deploy. -->
+<meta property="og:type" content="website" />
+<meta property="og:title" content="The Brand Spectrometer" />
+<meta property="og:description" content="See how different audiences actually perceive a brand — cohort by cohort, across eight dimensions. Load your own data; it never leaves your browser." />
+<meta property="og:image" content="https://meter.spectralbranding.com/og.png" />
+<meta property="og:url" content="https://meter.spectralbranding.com/" />
+<meta name="twitter:card" content="summary_large_image" />
+<meta name="twitter:title" content="The Brand Spectrometer" />
+<meta name="twitter:description" content="Read the perception you don't control — cohort by cohort, across eight dimensions. Runs in your browser." />
+<meta name="twitter:image" content="https://meter.spectralbranding.com/og.png" />
+<!-- Match the main site's display font (Space Grotesk) for nav consistency -->
+<link rel="icon" type="image/svg+xml" href="/favicon.svg" />
+<link rel="alternate icon" href="/favicon.ico" />
+<link rel="preconnect" href="https://fonts.googleapis.com" />
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+<link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@300;400;500;600&display=swap" rel="stylesheet" />
+<style>
+  :root{
+    --bg:#0a0b10; --bg2:#11131c; --panel:#141824; --ink:#eef0f6; --mut:#9aa0b4;
+    --faint:#5a6273; --line:#262a3a;
+    --grad:linear-gradient(90deg,#e64a3b,#e8842b,#e8c531,#7bc043,#2fb3a8,#3a8dde,#7a5cd0,#c44fa8);
+    --resolved:#4ec3a8; --marginal:#e8c531; --sub:#ff7a6e;
+  }
+  *{box-sizing:border-box}
+  html{scroll-behavior:smooth}
+  body{margin:0;background:radial-gradient(1200px 700px at 72% -8%,#161c2c 0%,var(--bg) 55%) fixed;
+    color:var(--ink);font-family:system-ui,-apple-system,"Segoe UI",Roboto,sans-serif;
+    line-height:1.55;-webkit-font-smoothing:antialiased}
+  .wrap{max-width:1080px;margin:0 auto;padding:0 24px}
+  .spectrum-strip{height:6px;background:var(--grad)}
+  section{padding:64px 0;border-bottom:1px solid var(--line)}
+  section:last-child{border-bottom:0}
+  .eyebrow{text-transform:uppercase;letter-spacing:.16em;font-size:12px;font-weight:700;color:#7fb6f0;margin:0 0 14px}
+  h1{font-family:"Iowan Old Style",Palatino,Georgia,serif;font-size:clamp(34px,6vw,62px);line-height:1.04;margin:0 0 18px;font-weight:650}
+  h2{font-family:"Iowan Old Style",Palatino,Georgia,serif;font-size:clamp(24px,3.4vw,38px);line-height:1.12;margin:0 0 16px;font-weight:600}
+  .grad{background:var(--grad);-webkit-background-clip:text;background-clip:text;color:transparent}
+  .lead{font-size:clamp(17px,1.9vw,22px);max-width:34em;color:#dfe3ee}
+  .sub{color:var(--mut);max-width:none}
+  p{margin:.6em 0}
+  b{color:var(--ink)}
+  a{color:#9fc6ff;text-decoration:none;border-bottom:1px solid #3a567e}
+  a:hover{border-color:#9fc6ff}
+  .hero{padding-top:54px}
+  .badge{display:inline-flex;gap:8px;align-items:center;background:var(--panel);border:1px solid var(--line);
+    border-radius:999px;padding:6px 14px;font-size:13px;color:var(--mut);margin-top:22px}
+  .badge b{color:var(--ink)} .badge .demo{color:#e8c531;font-weight:700}
+  /* "Now reading" meta strip — flex-wraps cleanly instead of cramming one pill */
+  .nowreading{display:flex;flex-wrap:wrap;align-items:center;gap:8px;margin-top:22px;font-size:13px;line-height:1.4}
+  .nowreading .nr-label{text-transform:uppercase;letter-spacing:.12em;font-size:11px;font-weight:700;color:var(--faint)}
+  .nowreading .nr-brand{font-weight:700;color:var(--ink);font-size:14px}
+  .nowreading .nr-chip{display:inline-flex;align-items:center;gap:6px;background:var(--panel);
+    border:1px solid var(--line);border-radius:999px;padding:4px 11px;color:var(--mut);white-space:nowrap}
+  .nowreading .nr-chip b{color:var(--ink);font-weight:700}
+  ul.big{list-style:none;padding:0;margin:0;max-width:none}
+  ul.big li{position:relative;padding:.55em 0 .55em 1.4em;font-size:1.08em;border-bottom:1px solid var(--line)}
+  ul.big li:before{content:"";position:absolute;left:0;top:1.05em;width:.55em;height:.55em;border-radius:50%;background:var(--grad)}
+  ul.big li:last-child{border-bottom:0}
+  .note{color:var(--mut);font-size:.95em;max-width:none;border-left:2px solid var(--line);padding-left:1em;margin-top:1.1em}
+  .dimgrid{display:grid;grid-template-columns:1fr 1fr;gap:.4em 2.4em;margin-top:8px}
+  .dim{display:flex;gap:.7em;padding:.45em 0;border-bottom:1px solid #1b1e2b;align-items:baseline}
+  .dim .sw{width:12px;height:12px;border-radius:4px;flex:0 0 auto;align-self:center}
+  .dim .what{color:var(--mut);font-size:.9em}
+  .panel{background:var(--panel);border:1px solid var(--line);border-radius:16px;padding:20px}
+  /* The conversion block — the most important action on the page. Make it glow. */
+  #load{background:radial-gradient(900px 360px at 80% 0%,rgba(58,141,222,.10),transparent 60%);border-radius:20px}
+  .tryblock{position:relative;overflow:hidden;border:1px solid #3a567e;
+    box-shadow:0 0 0 1px rgba(63,86,126,.22),0 18px 50px -18px rgba(58,141,222,.45);background:#161b29}
+  .tryblock:before{content:"";position:absolute;top:0;left:0;right:0;height:3px;background:var(--grad)}
+  /* input-method tabs in the try-it block */
+  .iotabs{display:flex;gap:4px;margin:8px 0 0;border-bottom:1px solid var(--line)}
+  .iotab{background:none;border:0;border-bottom:2px solid transparent;color:var(--mut);font-size:13px;
+    font-weight:600;padding:9px 14px;cursor:pointer;font-family:inherit;margin-bottom:-1px}
+  .iotab:hover{color:var(--ink)}
+  .iotab.on{color:var(--ink);border-bottom-color:#9fc6ff}
+  .iopane{margin-top:14px}
+  .iopane.hide{display:none}
+  .controls{display:flex;flex-wrap:wrap;gap:10px;align-items:center;margin:6px 0 18px}
+  .chip{border:1px solid var(--line);background:var(--bg2);color:var(--mut);border-radius:999px;
+    padding:6px 13px;font-size:13px;font-weight:600;cursor:pointer;display:inline-flex;gap:7px;align-items:center;user-select:none}
+  .chip .dot{width:10px;height:10px;border-radius:50%}
+  .chip.on{color:var(--ink);border-color:var(--faint)}
+  .chip.off{opacity:.42}
+  .toggle{margin-left:auto;display:inline-flex;gap:9px;align-items:center;font-size:13px;color:var(--mut);cursor:pointer}
+  .switch{width:38px;height:22px;border-radius:999px;background:#2a3142;position:relative;transition:background .2s}
+  .switch:after{content:"";position:absolute;top:2px;left:2px;width:18px;height:18px;border-radius:50%;background:#fff;transition:transform .2s}
+  .toggle.on .switch{background:var(--resolved)} .toggle.on .switch:after{transform:translateX(16px)}
+  .modebtn{font-size:12.5px;color:var(--mut);border:1px solid var(--line);background:var(--bg2);border-radius:8px;padding:5px 11px;cursor:pointer}
+  .modebtn.on{color:var(--ink);border-color:var(--faint)}
+  .chartwrap{display:flex;gap:24px;flex-wrap:wrap;align-items:flex-start}
+  .chartwrap .fig{flex:1 1 540px;min-width:300px}
+  svg{display:block;width:100%;height:auto} svg text{font-family:inherit}
+  .heatrow{display:flex;gap:24px;flex-wrap:wrap;align-items:flex-start}
+  .heatrow .fig{flex:1 1 380px;min-width:280px}
+  .detail{flex:1 1 300px;min-width:260px;background:var(--bg2);border:1px solid var(--line);border-radius:12px;padding:16px;font-size:14px}
+  .detail h4{margin:0 0 10px;font-size:13px;text-transform:uppercase;letter-spacing:.05em;color:var(--mut)}
+  .detail .big{font-size:30px;font-weight:800;font-variant-numeric:tabular-nums}
+  .tag{display:inline-block;padding:2px 9px;border-radius:999px;font-size:12px;font-weight:700}
+  .tag.resolved{background:rgba(78,195,168,.16);color:var(--resolved)}
+  .tag.marginal{background:rgba(232,197,49,.16);color:var(--marginal)}
+  .tag.sub-resolution{background:rgba(255,122,110,.16);color:var(--sub)}
+  .drivers{margin-top:12px} .drivers .d{display:flex;justify-content:space-between;padding:3px 0;border-bottom:1px solid #1b1e2b}
+  table{border-collapse:collapse;width:100%;font-size:clamp(12px,1.5vw,15px);margin-top:6px}
+  th{font-size:11px;text-transform:uppercase;letter-spacing:.04em;color:var(--mut);text-align:center;padding:8px 6px;border-bottom:1px solid var(--line)}
+  td{padding:8px 6px;text-align:center;border-bottom:1px solid #1b1e2b;font-variant-numeric:tabular-nums}
+  td.who{text-align:left;font-weight:700}
+  tr.cohrow{cursor:pointer;transition:background .15s} tr.cohrow:hover,tr.cohrow.hl{background:#1b2233}
+  .explore{display:flex;flex-wrap:wrap;gap:12px;margin-top:44px}
+  .xbtn{display:flex;flex-direction:column;background:var(--panel);border:1px solid var(--line);border-radius:12px;
+    padding:12px 16px;min-width:200px;font-weight:600;color:var(--ink);transition:border-color .2s,transform .2s}
+  .xbtn:hover{border-color:#5a87c8;transform:translateY(-2px)}
+  .xbtn span{font-size:.8em;color:var(--mut);font-weight:400;margin-bottom:2px}
+  .steps{margin:8px 0 14px;padding-left:1.2em;font-size:14.5px;line-height:1.55}
+  .steps li{margin:.55em 0}
+  .kit{display:inline-flex;flex-wrap:wrap;gap:8px;margin-left:2px;vertical-align:middle}
+  a.modebtn{text-decoration:none;border-bottom:0;display:inline-block}
+  .modebtn.copied{color:var(--resolved);border-color:var(--resolved)}
+  .dropzone{margin-top:18px;border:1.5px dashed var(--line);border-radius:12px;padding:16px;text-align:center;color:var(--mut);font-size:13.5px;transition:border-color .2s,background .2s}
+  .dropzone.drag{border-color:var(--resolved);background:rgba(78,195,168,.06)}
+  .dropzone b{color:#9fc6ff;cursor:pointer}
+  .navtop{position:sticky;top:0;z-index:20;background:rgba(10,11,16,.82);backdrop-filter:blur(8px);border-bottom:1px solid var(--line)}
+  .navtop .wrap{display:flex;align-items:center;gap:26px;height:3.5rem}
+  .navtop .brand{font-family:'Space Grotesk',system-ui,sans-serif;font-weight:300;font-size:.875rem;text-transform:uppercase;letter-spacing:.12em}
+  .navtop .wrap>a{font-family:'Space Grotesk',system-ui,sans-serif;font-weight:300;font-size:.75rem;text-transform:uppercase;letter-spacing:.08em;color:var(--mut);border:0}
+  .navtop .wrap>a:hover{color:var(--ink)}
+  .navtop .brand .home{color:var(--ink)} .navtop .brand .home:hover{color:#fff}
+  .navtop .spacer{margin-left:auto}
+  .tip{position:fixed;pointer-events:none;background:#020308;border:1px solid var(--line);border-radius:8px;
+    padding:7px 10px;font-size:12px;color:var(--ink);opacity:0;transition:opacity .12s;z-index:50;max-width:220px}
+  @media(max-width:760px){.dimgrid{grid-template-columns:1fr}.navtop .hidemob{display:none}}
+</style>
+</head>
+<body>
+<div class="spectrum-strip"></div>
+<div class="navtop"><div class="wrap">
+  <span class="brand"><a href="https://spectralbranding.com" class="home">Brand</a> <span class="grad">Spectrometer</span></span>
+  <span class="spacer"></span>
+  <a href="#read" class="hidemob">The read</a>
+  <a href="#distance" class="hidemob">Distance</a>
+  <a href="#table" class="hidemob">Numbers</a>
+  <a href="/faq.html" class="hidemob">FAQ</a>
+  <a href="#load">Load an atlas ↑</a>
+</div></div>
+
+<div class="wrap">
+
+  <section class="hero">
+    <p class="eyebrow">Spectral Brand Theory · measurement layer</p>
+    <h1>Read the perception<br>you don't <span class="grad">control</span></h1>
+    <p class="lead">The Brand Spectrometer reads how different audiences actually perceive a brand —
+      audience by audience, across eight dimensions, from public material — and tells you which
+      of those differences are real and which are just noise.</p>
+    <div class="nowreading">
+      <span class="nr-label">Now reading</span>
+      <span class="nr-brand" id="b-brand">—</span>
+      <span class="nr-chip"><b id="b-cohorts">—</b> cohorts</span>
+      <span class="nr-chip" id="b-gen">—</span>
+      <span class="nr-chip" id="b-demo"></span>
+    </div>
+  </section>
+
+  <section>
+    <p class="eyebrow">The problem</p>
+    <h2>One number hides a population that disagrees</h2>
+    <ul class="big">
+      <li>A single brand-health score averages a press corps that adores you, owners who are
+        lukewarm, and a forum that's openly hostile — and points your spend at an "average
+        customer" who exists nowhere.</li>
+      <li>The variance that wrecks a flat score is exactly the signal you need.
+        <b>This instrument measures the variance — not around it.</b></li>
+    </ul>
+  </section>
+
+  <section>
+    <p class="eyebrow">The instrument's scale</p>
+    <h2>Eight dimensions of a perception</h2>
+    <div class="dimgrid" id="dims"></div>
+    <p class="note">A brand is one signal made of these eight. Two audiences can hold the same
+      overall opinion while reading those dimensions completely differently — <b>the same score
+      hiding two different brands</b>. Toggle the audiences below to see it.</p>
+  </section>
+
+  <section id="read">
+    <p class="eyebrow">A real read</p>
+    <h2>Five cohorts, one brand</h2>
+    <p class="sub">Each cohort's inferred eight-dimension specification. Toggle cohorts to overlay
+      them; switch between bars and radar. The press cohorts read high and rich; owners and online
+      debaters read lower and re-weighted — same brand, different perceptions.</p>
+    <div class="controls" id="chips"></div>
+    <div class="controls" style="margin-top:-6px">
+      <button class="modebtn on" id="m-bars">Bars</button>
+      <button class="modebtn" id="m-radar">Radar</button>
+    </div>
+    <div class="panel"><div class="chartwrap"><div class="fig" id="chart"></div></div></div>
+  </section>
+
+  <section id="distance">
+    <p class="eyebrow">Who agrees · who doesn't · what's real</p>
+    <h2>A map of perceptual distance</h2>
+    <p class="sub">Hover any cell to see the pair, the dimensions driving their distance, and whether
+      the gap clears its own <b>noise floor</b>. Flip the switch to grey out every sub-resolution
+      pair — what remains is real.</p>
+    <div class="controls">
+      <div class="toggle" id="floor"><span>Noise-floor gate</span><span class="switch"></span></div>
+      <span id="floornote" class="sub" style="display:none;font-size:13px">Distances shown by magnitude.
+        The noise-floor gate needs multiple operator runs (our pipeline) — a single-AI atlas doesn't carry it.</span>
+    </div>
+    <div class="panel"><div class="heatrow">
+      <div class="fig" id="heat"></div>
+      <div class="detail" id="detail">
+        <h4>Hover a pair</h4>
+        <p class="sub" style="font-size:13px">Distance is <b>1 − cosine similarity</b> between two
+          cohorts' eight-dimension vectors. The noise floor is the wobble from swapping AI operators
+          alone. Above the floor = real; below = we can't tell.</p>
+      </div>
+    </div></div>
+    <p class="note">In this worked example, the owners ↔ online-debaters split is the largest and is
+      <b>resolved</b>; several press-to-press gaps sit <b>below the floor</b> and are honestly reported
+      as sub-resolution, not findings.</p>
+  </section>
+
+  <section id="table">
+    <p class="eyebrow">The read, in numbers</p>
+    <h2>Every cohort, every dimension</h2>
+    <p class="sub">Hover a row to highlight that cohort in the chart above. These are the raw vectors
+      the whole read is built from.</p>
+    <div class="panel" style="overflow:auto"><table id="tbl"></table></div>
+  </section>
+
+  <section>
+    <p class="eyebrow">The managerial reading</p>
+    <h2>What you actually do with it</h2>
+    <ul class="big">
+      <li><b>Pick the cohort that's moving</b> — not the average.</li>
+      <li><b>Pick the dimension that carries it</b> — target the wavelength, not "the brand."</li>
+      <li><b>Act only above the floor</b> — spend against real separations; ignore sub-resolution noise.</li>
+      <li><b>Track drift over time</b> — re-read the same cohorts across a campaign and watch what moved.</li>
+    </ul>
+  </section>
+
+  <section id="load">
+    <p class="eyebrow">It's an instrument, not a slideshow</p>
+    <h2>Try it on your own brand</h2>
+    <p class="lead">Bring your own atlas — the whole read re-renders for it. <b>Nothing is uploaded:</b>
+      every atlas is processed entirely in your browser.</p>
+
+    <p class="note" style="margin-top:10px"><span style="color:var(--faint)">Currently loaded — </span><span id="prov"></span></p>
+
+    <div class="panel tryblock" style="margin-top:18px">
+      <h4 style="margin:0 0 6px;font-size:13px;text-transform:uppercase;letter-spacing:.05em;color:#9fc6ff">Make one in three steps with your own AI</h4>
+      <ol class="steps">
+        <li><b>Copy the prompt.</b>
+          <span class="kit">
+            <button class="modebtn on" id="copyprompt">Copy the AI prompt</button>
+            <a class="modebtn" href="CONVERT_WITH_YOUR_AI.md" target="_blank" rel="noopener">Full guide</a>
+          </span>
+        </li>
+        <li><b>Paste it into your AI</b> (Claude, ChatGPT, Gemini…) together with your material —
+          reviews, press, posts. The prompt carries everything the AI needs and pulls the format
+          itself; you don't attach anything. It hands back a ready file — or a note on what's missing.</li>
+        <li><b>Bring it back here</b> — paste it in, drop the file, or paste a link.</li>
+      </ol>
+      <p class="sub" style="font-size:13px;margin:14px 0 0">Bring the result back — pick how:</p>
+      <div class="iotabs">
+        <button class="iotab on" data-pane="paste">Paste AI answer</button>
+        <button class="iotab" data-pane="file">Upload a file</button>
+        <button class="iotab" data-pane="link">Paste a link</button>
+      </div>
+      <div class="iopane" id="pane-paste">
+        <textarea id="paste" rows="4" placeholder="Paste your AI's answer here…"
+          style="width:100%;background:var(--bg2);border:1px solid var(--line);color:var(--ink);border-radius:10px;padding:11px 13px;font-size:13px;font-family:ui-monospace,Menlo,monospace;resize:vertical"></textarea>
+      </div>
+      <div class="iopane hide" id="pane-file">
+        <div class="dropzone" id="dropzone">
+          Drop your file here, or <b id="pick" style="color:#9fc6ff;cursor:pointer">choose a file</b>
+          <span style="color:var(--faint)">· max 2&nbsp;MB</span>
+        </div>
+        <input type="file" id="file" accept="application/json,.json" hidden />
+      </div>
+      <div class="iopane hide" id="pane-link">
+        <input id="url" placeholder="Paste a link to a hosted file (Hugging Face or GitHub)"
+          style="width:100%;background:var(--bg2);border:1px solid var(--line);color:var(--ink);border-radius:10px;padding:10px 13px;font-size:13.5px;font-family:inherit" />
+      </div>
+      <div class="controls" style="margin-top:14px">
+        <button class="modebtn on" id="gobtn" style="padding:10px 20px">See the read →</button>
+        <span class="note" style="margin:0"><span id="loadmsg" style="color:var(--sub)"></span></span>
+      </div>
+    </div>
+
+    <div class="explore">
+      <a class="xbtn" href="https://github.com/spectralbranding/brand-spectrometer" target="_blank" rel="noopener"><span>Open code</span>github.com/spectralbranding/brand-spectrometer</a>
+      <a class="xbtn" href="https://spectralbranding.substack.com/p/the-brand-spectrometer-is-open" target="_blank" rel="noopener"><span>How it works</span>The Brand Spectrometer Is Open</a>
+    </div>
+  </section>
+
+  <section style="border:0">
+    <p class="sub" style="font-size:13px">Measurement instrument for how a brand is <b>perceived</b> —
+      not a verdict on what it "is." Cohort metameric variance is the measurement; there is no presumed
+      ground truth. Code open-source (MIT); theory CC BY 4.0. No brand assets reproduced (nominative use).</p>
+  </section>
+
+</div>
+
+<div class="tip" id="tip"></div>
+
+<!-- Embedded seed atlas (works offline; ?atlas= or upload overrides) -->
+<script type="application/json" id="seed">
+{"meta":{"brand":"An automotive launch (worked example)","atlas":"ferrari_luce","schema":"0.1","methodology":"0.1.0","window":"2025-09 → 2026-05","demo":true,"generation":"legacy","notes":"Legacy single-operator-noise-floor atlas."},
+"dims":[{"key":"semiotic","label":"Semiotic","desc":"signs, symbols, codes","color":"#e64a3b"},{"key":"narrative","label":"Narrative","desc":"the story it tells","color":"#e8842b"},{"key":"ideological","label":"Ideological","desc":"what it stands for","color":"#e8c531"},{"key":"experiential","label":"Experiential","desc":"what it feels like to use","color":"#7bc043"},{"key":"social","label":"Social","desc":"who you're seen as","color":"#2fb3a8"},{"key":"economic","label":"Economic","desc":"value, price, worth","color":"#3a8dde"},{"key":"cultural","label":"Cultural","desc":"its place in the world","color":"#7a5cd0"},{"key":"temporal","label":"Temporal","desc":"heritage & momentum","color":"#c44fa8"}],
+"cohorts":[{"id":"owners","label":"Owners","color":"#e8842b","vector":[2.3,3.1,3.5,5.2,2.9,3.0,2.4,4.0]},{"id":"debaters","label":"Online debaters","color":"#e8c531","vector":[3.5,4.6,5.4,3.2,5.8,3.9,5.7,3.9]},{"id":"chinese","label":"Chinese press","color":"#3a8dde","vector":[6.5,7.0,5.5,8.0,6.0,7.5,5.0,6.5]},{"id":"italian","label":"Italian press","color":"#2fb3a8","vector":[7.8,8.2,6.0,7.5,8.5,9.0,8.0,7.7]},{"id":"nipress","label":"Intl. press","color":"#1f9d57","vector":[8.4,7.8,5.6,9.0,8.1,9.2,7.2,8.6]}],
+"distances":[[0,0.0735,0.0227,0.0481,0.0346],[0.0735,0,0.0524,0.0285,0.0461],[0.0227,0.0524,0,0.0106,0.0047],[0.0481,0.0285,0.0106,0,0.0043],[0.0346,0.0461,0.0047,0.0043,0]],
+"per_pair_sn":[{"a":"owners","b":"debaters","distance":0.0735,"floor":0.0308,"sn":2.3864,"resolved":"resolved"},{"a":"debaters","b":"nipress","distance":0.0461,"floor":0.0213,"sn":2.1643,"resolved":"resolved"},{"a":"debaters","b":"chinese","distance":0.0524,"floor":0.0248,"sn":2.1129,"resolved":"resolved"},{"a":"owners","b":"italian","distance":0.0481,"floor":0.0308,"sn":1.5617,"resolved":"marginal"},{"a":"debaters","b":"italian","distance":0.0285,"floor":0.0213,"sn":1.338,"resolved":"marginal"},{"a":"owners","b":"nipress","distance":0.0346,"floor":0.0308,"sn":1.1234,"resolved":"marginal"},{"a":"italian","b":"nipress","distance":0.0043,"floor":0.0049,"sn":0.8776,"resolved":"sub-resolution"},{"a":"owners","b":"chinese","distance":0.0227,"floor":0.0308,"sn":0.737,"resolved":"sub-resolution"},{"a":"chinese","b":"italian","distance":0.0106,"floor":0.0248,"sn":0.4274,"resolved":"sub-resolution"},{"a":"chinese","b":"nipress","distance":0.0047,"floor":0.0248,"sn":0.1895,"resolved":"sub-resolution"}],
+"noise":{"operator":0.0265,"artifact":null,"coverage":null,"sn_aggregate":2.621},
+"metameric_degree":0.0325,
+"provenance":{"operators":["claude-opus-4-7","gpt-5.5-2026-04-23","claude-haiku-4-5-20251001","gpt-5.4-mini-2026-03-17","qwen3.7-max","deepseek-v4-flash"],"artifact_count":36,"cross_extractor_compliant":"5/5 cohorts","data_doi":null}}
+</script>
+
+<script>
+const SVGNS="http://www.w3.org/2000/svg";
+const E=(t,a,txt)=>{const e=document.createElementNS(SVGNS,t);for(const k in a)e.setAttribute(k,a[k]);if(txt!=null)e.textContent=txt;return e;};
+const $=s=>document.querySelector(s);
+const fmt=v=>(v).toFixed(3).replace(/^0/,"").replace(/^-0/,"-");
+// --- sanitizers: atlas data is UNTRUSTED (upload / arbitrary URL / BYO-AI output) ---
+const escHtml=s=>String(s==null?"":s).replace(/[&<>"']/g,m=>({"&":"&amp;","<":"&lt;",">":"&gt;",'"':"&quot;","'":"&#39;"}[m]));
+const safeColor=c=>(typeof c==="string"&&/^#[0-9a-fA-F]{3,8}$/.test(c))?c:"#8b93a7";
+const RESOLV=["resolved","marginal","sub-resolution"];
+const safeResolved=r=>RESOLV.includes(r)?r:"sub-resolution";
+
+let D=null;                 // atlas data
+const S={sel:new Set(),hover:null,floor:false,mode:"bars"};
+
+function cohIndex(id){return D.cohorts.findIndex(c=>c.id===id);}
+function coh(id){return D.cohorts.find(c=>c.id===id);}
+
+function init(data){
+  D=data;
+  S.sel=new Set(D.cohorts.map(c=>c.id)); S.hover=null; S.floor=false;
+  // the noise-floor gate needs per-pair S/N (multiple operator runs); hide it otherwise
+  const hasSN=Array.isArray(D.per_pair_sn)&&D.per_pair_sn.length>0;
+  const ft=$("#floor"); ft.classList.remove("on");
+  ft.style.display=hasSN?"inline-flex":"none";
+  $("#floornote").style.display=hasSN?"none":"block";
+  // badge
+  $("#b-brand").textContent=D.meta.brand||D.meta.atlas||"atlas";
+  $("#b-cohorts").textContent=D.cohorts.length;
+  $("#b-gen").textContent=(D.meta.generation||"")+" · "+(D.meta.window||"");
+  $("#b-demo").innerHTML=(hasSN
+      ? '<span style="color:var(--resolved);font-weight:700">measurement-grade</span> <span style="color:var(--faint)">· carries a resolution floor</span>'
+      : '<span style="color:var(--marginal);font-weight:700">illustrative</span> <span style="color:var(--faint)">· single-operator, no resolution floor</span>')
+    +(D.meta.demo?' <span style="color:var(--faint)">· demo</span>':'');
+  renderDims(); renderChips(); renderChart(); drawHeat(); clearDetail(); renderTable(); renderProv();
+}
+
+function renderDims(){
+  const h=D.dims.map(d=>`<div class="dim"><span class="sw" style="background:${safeColor(d.color)}"></span>
+    <span><b>${escHtml(d.label)}</b> <span class="what">— ${escHtml(d.desc)}</span></span></div>`).join("");
+  $("#dims").innerHTML=h;
+}
+
+function renderProv(){
+  const p=D.provenance||{};
+  const nf=[D.noise&&typeof D.noise.operator==="number"?`operator floor ${fmt(D.noise.operator)}`:null,
+            D.noise&&typeof D.noise.artifact==="number"?`artifact floor ${fmt(D.noise.artifact)}`:"artifact floor n/a (legacy)",
+            D.noise&&typeof D.noise.coverage==="number"?`coverage ${fmt(D.noise.coverage)}`:null].filter(Boolean).join(" · ");
+  $("#prov").innerHTML=`Atlas <b>${escHtml(D.meta.atlas)}</b> · schema ${escHtml(D.meta.schema)} · methodology ${escHtml(D.meta.methodology)}
+    · ${escHtml(p.artifact_count||"?")} artifacts · operators: ${(p.operators||[]).length} pinned · ${nf}
+    · metameric degree ${fmt(D.metameric_degree||0)}${D.meta.notes?`<br><span style="color:var(--faint)">${escHtml(D.meta.notes)}</span>`:""}`;
+}
+
+function renderChips(){
+  const wrap=$("#chips"); wrap.innerHTML="";
+  D.cohorts.forEach(c=>{
+    const el=document.createElement("span");
+    el.className="chip "+(S.sel.has(c.id)?"on":"off");
+    el.innerHTML=`<span class="dot" style="background:${safeColor(c.color)}"></span>${escHtml(c.label)}`;
+    el.onclick=()=>{ S.sel.has(c.id)?S.sel.delete(c.id):S.sel.add(c.id);
+      if(S.sel.size===0)S.sel.add(c.id); renderChips(); renderChart(); };
+    el.onmouseenter=()=>{S.hover=c.id; renderChart(); hlRow(c.id,true);};
+    el.onmouseleave=()=>{S.hover=null; renderChart(); hlRow(c.id,false);};
+    wrap.appendChild(el);
+  });
+}
+
+function activeCohorts(){return D.cohorts.filter(c=>S.sel.has(c.id));}
+
+function renderChart(){ S.mode==="radar"?drawRadar():drawBars(); }
+
+function drawBars(){
+  const host=$("#chart"); host.innerHTML="";
+  const W=820,H=400,left=34,right=12,top=14,bot=64,max=10;
+  const dims=D.dims, act=activeCohorts();
+  const gw=(W-left-right)/dims.length, bw=(gw-8)/Math.max(1,act.length);
+  const s=E("svg",{viewBox:`0 0 ${W} ${H}`});
+  for(let g=0;g<=10;g+=2){const y=top+(H-top-bot)*(1-g/max);
+    s.appendChild(E("line",{x1:left,y1:y,x2:W-right,y2:y,stroke:"#1f2430","stroke-width":1}));
+    s.appendChild(E("text",{x:left-6,y:y+3,"text-anchor":"end","font-size":10,fill:"#5a6273"},g));}
+  dims.forEach((d,di)=>{
+    const gx=left+di*gw+4;
+    act.forEach((c,ci)=>{
+      const val=c.vector[di], h=(H-top-bot)*(val/max), x=gx+ci*bw, y=H-bot-h;
+      const dim=(S.hover&&S.hover!==c.id)?0.22:0.95;
+      const r=E("rect",{x:x.toFixed(1),y:y.toFixed(1),width:(bw-1.5).toFixed(1),height:h.toFixed(1),
+        rx:1.5,fill:c.color,opacity:dim});
+      r.addEventListener("mousemove",ev=>tip(ev,`${escHtml(c.label)} · ${escHtml(d.label)}: <b>${val.toFixed(1)}</b>`));
+      r.addEventListener("mouseleave",hideTip);
+      s.appendChild(r);
+    });
+    s.appendChild(E("text",{x:gx+(gw-8)/2,y:H-bot+16,"text-anchor":"middle","font-size":11,fill:"#cdd3e0","font-weight":600},d.label.slice(0,4)));
+  });
+  host.appendChild(s);
+}
+
+function drawRadar(){
+  const host=$("#chart"); host.innerHTML="";
+  const W=820,H=440,cx=W/2,cy=H/2+6,R=Math.min(W,H)/2-58,max=10;
+  const dims=D.dims,n=dims.length;
+  const s=E("svg",{viewBox:`0 0 ${W} ${H}`});
+  const ang=i=>(-Math.PI/2)+i*2*Math.PI/n;
+  const pt=(i,r)=>[cx+Math.cos(ang(i))*r,cy+Math.sin(ang(i))*r];
+  for(let g=2;g<=10;g+=2){const rr=R*g/max;
+    const pts=dims.map((_,i)=>pt(i,rr).map(v=>v.toFixed(1)).join(",")).join(" ");
+    s.appendChild(E("polygon",{points:pts,fill:"none",stroke:"#1f2430","stroke-width":1}));}
+  dims.forEach((d,i)=>{
+    const[ex,ey]=pt(i,R);
+    s.appendChild(E("line",{x1:cx,y1:cy,x2:ex,y2:ey,stroke:"#1f2430","stroke-width":1}));
+    const[lx,ly]=pt(i,R+22);
+    s.appendChild(E("text",{x:lx.toFixed(1),y:ly.toFixed(1),"text-anchor":Math.abs(lx-cx)<8?"middle":(lx>cx?"start":"end"),
+      "dominant-baseline":"middle","font-size":11,fill:"#cdd3e0"},d.label.slice(0,4)));
+  });
+  activeCohorts().forEach(c=>{
+    const dim=(S.hover&&S.hover!==c.id)?0.12:0.5;
+    const pts=c.vector.map((v,i)=>pt(i,R*v/max).map(x=>x.toFixed(1)).join(",")).join(" ");
+    s.appendChild(E("polygon",{points:pts,fill:c.color,"fill-opacity":dim*0.4,stroke:c.color,
+      "stroke-width":(S.hover===c.id)?3:1.8,"stroke-opacity":Math.max(dim,0.5)}));
+  });
+  host.appendChild(s);
+}
+
+function resolvabilityOf(a,b){
+  const e=(D.per_pair_sn||[]).find(p=>(p.a===a&&p.b===b)||(p.a===b&&p.b===a));
+  return e||null;
+}
+// Relative luminance of a #rrggbb fill, for picking readable text color on any cell.
+function lum(hex){
+  if(typeof hex!=="string"||hex[0]!=="#"||hex.length<7) return 0;
+  const r=parseInt(hex.slice(1,3),16)/255,g=parseInt(hex.slice(3,5),16)/255,b=parseInt(hex.slice(5,7),16)/255;
+  return 0.299*r+0.587*g+0.114*b;
+}
+function drawHeat(){
+  const host=$("#heat"); host.innerHTML="";
+  const n=D.cohorts.length,cell=64,padl=104,padt=58;
+  const W=padl+cell*n+10,H=padt+cell*n+10,maxd=Math.max(...D.distances.flat());
+  const s=E("svg",{viewBox:`0 0 ${W} ${H}`});
+  const COL={resolved:"#4ec3a8",marginal:"#e8c531","sub-resolution":"#ff7a6e"};
+  for(let i=0;i<n;i++){
+    s.appendChild(E("text",{x:padl-8,y:padt+i*cell+cell/2+4,"text-anchor":"end","font-size":11.5,fill:"#cdd3e0"},D.cohorts[i].label));
+    s.appendChild(E("text",{x:padl+i*cell+cell/2,y:padt-9,"text-anchor":"middle","font-size":10.5,fill:"#8b93a7"},D.cohorts[i].label.split(" ")[0]));
+    for(let j=0;j<n;j++){
+      const d=D.distances[i][j],diag=i===j;
+      const rv=diag?null:resolvabilityOf(D.cohorts[i].id,D.cohorts[j].id);
+      let fill;
+      if(diag) fill="#11151f";
+      else if(S.floor){ const k=rv?rv.resolved:"sub-resolution";
+        fill=(k==="sub-resolution")?"#13161f":COL[k]; }
+      else fill=`rgba(84,160,255,${0.10+0.85*(d/maxd)})`;
+      const r=E("rect",{x:padl+j*cell,y:padt+i*cell,width:cell-3,height:cell-3,rx:5,fill:fill,
+        stroke:"#262c3d","stroke-width":1,style:"cursor:pointer"});
+      if(!diag){
+        r.addEventListener("mouseenter",()=>showDetail(i,j));
+        s.appendChild(r);
+        const faint=S.floor&&rv&&rv.resolved==="sub-resolution";
+        const textFill=faint?"#3a4153"
+          :S.floor?(lum(fill)>0.45?"#0a0b10":"#eef0f6")
+          :((d/maxd>0.5)?"#0a0b10":"#cdd3e0");
+        s.appendChild(E("text",{x:padl+j*cell+cell/2,y:padt+i*cell+cell/2+4,"text-anchor":"middle",
+          "font-size":10.5,fill:textFill,"font-weight":600,
+          style:"pointer-events:none"},fmt(d)));
+      } else s.appendChild(r);
+    }
+  }
+  host.appendChild(s);
+}
+function clearDetail(){ $("#detail").innerHTML=`<h4>Hover a pair</h4>
+  <p class="sub" style="font-size:13px">Distance is <b>1 − cosine similarity</b> between two cohorts'
+  eight-dimension vectors. The noise floor is the wobble from swapping AI operators alone.
+  Above the floor = real; below = we can't tell.</p>`; }
+function showDetail(i,j){
+  const A=D.cohorts[i],B=D.cohorts[j],d=D.distances[i][j],rv=resolvabilityOf(A.id,B.id);
+  const drivers=D.dims.map((dim,k)=>({dim,diff:Math.abs(A.vector[k]-B.vector[k])}))
+    .sort((x,y)=>y.diff-x.diff).slice(0,3);
+  const rk=rv?safeResolved(rv.resolved):null;
+  const tag=rk?`<span class="tag ${rk}">${rk}</span>`:"";
+  $("#detail").innerHTML=`<h4>${escHtml(A.label)} ↔ ${escHtml(B.label)}</h4>
+    <div class="big" style="color:${safeColor(A.color)}">${fmt(d)}</div>
+    <p class="sub" style="margin:.2em 0 .6em">perceptual distance ${tag}</p>
+    ${rv?`<p class="sub" style="font-size:13px">noise floor <b>${fmt(Number(rv.floor)||0)}</b> ·
+      signal/noise <b>${(Number(rv.sn)||0).toFixed(2)}</b> — ${rk==="sub-resolution"
+        ?"below the floor; can't be told from operator noise":rk==="marginal"
+        ?"distinguishable, report with a caveat":"clearly above the floor; a real difference"}</p>`:""}
+    <div class="drivers"><h4>Dimensions driving it</h4>
+      ${drivers.map(x=>`<div class="d"><span><span class="sw" style="display:inline-block;width:9px;height:9px;border-radius:2px;background:${safeColor(x.dim.color)};margin-right:6px"></span>${escHtml(x.dim.label)}</span><b>${x.diff.toFixed(1)}</b></div>`).join("")}
+    </div>`;
+}
+
+function renderTable(){
+  const head=`<tr><th style="text-align:left">Cohort</th>${D.dims.map(d=>`<th>${escHtml(String(d.label).slice(0,3))}</th>`).join("")}<th>Mean</th></tr>`;
+  const rows=D.cohorts.map(c=>{
+    const mean=(c.vector.reduce((a,b)=>a+b,0)/c.vector.length).toFixed(1);
+    return `<tr class="cohrow" data-id="${escHtml(c.id)}"><td class="who" style="color:${safeColor(c.color)}">${escHtml(c.label)}</td>
+      ${c.vector.map(v=>`<td>${v.toFixed(1)}</td>`).join("")}<td><b>${mean}</b></td></tr>`;
+  }).join("");
+  const t=$("#tbl"); t.innerHTML=`<thead>${head}</thead><tbody>${rows}</tbody>`;
+  t.querySelectorAll(".cohrow").forEach(tr=>{
+    const id=tr.dataset.id;
+    tr.onmouseenter=()=>{S.hover=id; renderChart();};
+    tr.onmouseleave=()=>{S.hover=null; renderChart();};
+  });
+}
+function hlRow(id,on){const tr=document.querySelector(`.cohrow[data-id="${id}"]`); if(tr)tr.classList.toggle("hl",on);}
+
+// tooltip
+const tipEl=$("#tip");
+function tip(ev,html){tipEl.innerHTML=html;tipEl.style.opacity=1;
+  tipEl.style.left=(ev.clientX+14)+"px";tipEl.style.top=(ev.clientY-10)+"px";}
+function hideTip(){tipEl.style.opacity=0;}
+
+// controls
+$("#m-bars").onclick=()=>{S.mode="bars";$("#m-bars").classList.add("on");$("#m-radar").classList.remove("on");renderChart();};
+$("#m-radar").onclick=()=>{S.mode="radar";$("#m-radar").classList.add("on");$("#m-bars").classList.remove("on");renderChart();};
+$("#floor").onclick=()=>{S.floor=!S.floor;$("#floor").classList.toggle("on",S.floor);drawHeat();};
+
+// ---- validation gate (the pre-filter) ----
+function validate(o){
+  const e=[];
+  if(!o||typeof o!=="object") return ["not a JSON object"];
+  if(o.ERROR) return ["your AI returned an ERROR: "+o.ERROR+(o.missing?" (missing: "+o.missing.join(", ")+")":"")];
+  if(!o.meta||!o.meta.atlas) e.push("meta.atlas is required");
+  if(!Array.isArray(o.dims)||o.dims.length<2) e.push("dims must be an array of >=2 dimensions");
+  if(!Array.isArray(o.cohorts)||o.cohorts.length<2) e.push("cohorts must be an array of >=2 cohorts");
+  if((o.cohorts||[]).length>100) e.push("too many cohorts (max 100)");      // pathological-input guard
+  if((o.dims||[]).length>32) e.push("too many dimensions (max 32)");
+  const nd=(o.dims||[]).length;
+  (o.cohorts||[]).forEach((c,i)=>{
+    if(!c.id||!c.label) e.push(`cohort #${i+1} needs id and label`);
+    if(!Array.isArray(c.vector)||c.vector.length!==nd) e.push(`cohort "${c.label||i+1}" vector must have ${nd} numbers`);
+    else if(c.vector.some(v=>typeof v!=="number"||v<0||v>10)) e.push(`cohort "${c.label||i+1}" vector values must be 0-10`);
+  });
+  if(o.distances&&(!Array.isArray(o.distances)||o.distances.length!==(o.cohorts||[]).length))
+    e.push("distances, if present, must be an N x N matrix matching cohorts");
+  return e;
+}
+// ---- geometry computed from vectors when absent (so a BYO atlas needs only the vectors) ----
+function cosineDist(a,b){
+  let dot=0,na=0,nb=0;
+  for(let k=0;k<a.length;k++){dot+=a[k]*b[k];na+=a[k]*a[k];nb+=b[k]*b[k];}
+  if(na===0||nb===0) return 1;
+  return 1-dot/(Math.sqrt(na)*Math.sqrt(nb));
+}
+function ensureGeometry(o){
+  const n=o.cohorts.length;
+  if(!Array.isArray(o.distances)||o.distances.length!==n){
+    o.distances=o.cohorts.map((a,i)=>o.cohorts.map((b,j)=>i===j?0:+cosineDist(a.vector,b.vector).toFixed(4)));
+    o._computedDist=true;
+  }
+  if(typeof o.metameric_degree!=="number"){
+    let s=0,c=0; for(let i=0;i<n;i++)for(let j=i+1;j<n;j++){s+=o.distances[i][j];c++;}
+    o.metameric_degree=c?+(s/c).toFixed(4):0; o._computedMD=true;
+  }
+  // default colours if missing
+  const PAL=["#e8842b","#e8c531","#3a8dde","#2fb3a8","#1f9d57","#7a5cd0","#c44fa8","#e64a3b"];
+  o.cohorts.forEach((c,i)=>{if(!c.color)c.color=PAL[i%PAL.length];});
+  o.dims.forEach((d,i)=>{if(!d.color)d.color=PAL[i%PAL.length];});
+  return o;
+}
+// ---- checksum: BSx-<nCohorts>-<nDims>-round(10 * sum of all vector entries) ----
+function checksum(o){
+  const sum=o.cohorts.reduce((a,c)=>a+c.vector.reduce((x,y)=>x+y,0),0);
+  return `BSx-${o.cohorts.length}-${o.dims.length}-${Math.round(10*sum)}`;
+}
+function loadAtlas(obj){
+  const errs=validate(obj);
+  if(errs.length){ setMsg("Could not load: "+errs.slice(0,4).join("; ")); return; }
+  ensureGeometry(obj);
+  const cs=checksum(obj);
+  if(obj.meta&&obj.meta.checksum&&obj.meta.checksum!==cs)
+    setMsg(`Loaded, but checksum mismatch (got ${obj.meta.checksum}, computed ${cs}) — data may have been edited or truncated.`);
+  else setMsg(obj!==SEED?`Loaded ${obj.meta.atlas} · checksum ${cs}`:"");
+  try{init(obj);}catch(e){console.error(e);setMsg("Render error: "+e.message);}
+}
+function setMsg(t){const m=$("#loadmsg");if(m)m.textContent=t?" "+t:"";}
+
+// ---- URL normalization: Hugging Face / GitHub / raw ----
+function normalizeUrl(u){
+  u=u.trim();
+  let m=u.match(/^hf:([^/]+)\/([^/]+)(?:@([^/]+))?\/(.+)$/);   // hf:org/name[@rev]/path
+  if(m) return `https://huggingface.co/datasets/${m[1]}/${m[2]}/resolve/${m[3]||"main"}/${m[4]}`;
+  // HF dataset blob -> resolve
+  u=u.replace(/huggingface\.co\/datasets\/([^/]+)\/([^/]+)\/blob\//,"huggingface.co/datasets/$1/$2/resolve/");
+  // GitHub blob -> raw
+  m=u.match(/^https?:\/\/github\.com\/([^/]+)\/([^/]+)\/blob\/(.+)$/);
+  if(m) return `https://raw.githubusercontent.com/${m[1]}/${m[2]}/${m[3]}`;
+  return u;
+}
+function loadUrl(raw){
+  const url=normalizeUrl(raw);
+  setMsg("fetching…");
+  fetch(url).then(r=>r.ok?r.text():Promise.reject(new Error("HTTP "+r.status)))
+    .then(t=>{
+      if(t.length>MAX_BYTES){setMsg(`That atlas is over 2 MB — refusing to load.`);return;}
+      let o; try{o=JSON.parse(t);}catch(_){setMsg("That URL didn't return valid JSON.");return;}
+      loadAtlas(o);
+    })
+    .catch(err=>setMsg(`Couldn't fetch that URL (${err.message}). The host must allow cross-origin requests (Hugging Face and raw.githubusercontent.com do).`));
+}
+
+let SEED=null;
+function boot(){
+  SEED=JSON.parse($("#seed").textContent);
+  const param=new URLSearchParams(location.search).get("atlas");
+  if(param){
+    fetch(`data/${param}.json`).then(r=>r.ok?r.json():Promise.reject()).then(loadAtlas).catch(()=>loadAtlas(SEED));
+  } else loadAtlas(SEED);
+}
+// upload / drag-drop (2 MB cap) + URL
+const MAX_BYTES=2*1024*1024;
+const dz=$("#dropzone"),fi=$("#file");
+$("#pick").onclick=()=>fi.click();
+fi.onchange=e=>{const f=e.target.files[0];if(f)readFile(f);};
+["dragover","dragenter"].forEach(ev=>dz.addEventListener(ev,e=>{e.preventDefault();dz.classList.add("drag");}));
+["dragleave","drop"].forEach(ev=>dz.addEventListener(ev,e=>{e.preventDefault();dz.classList.remove("drag");}));
+dz.addEventListener("drop",e=>{const f=e.dataTransfer.files[0];if(f)readFile(f);});
+$("#url").addEventListener("keydown",e=>{if(e.key==="Enter"){const v=e.target.value;if(v)loadUrl(v);}});
+// copy the BYO-AI conversion prompt
+const PROMPT=`You are a data-formatting operator for the Brand Spectrometer. The required output format is specified in full below — nothing is attached, you have everything you need here. (If you can open links, you may also fetch the exact format from https://meter.spectralbranding.com/atlas.schema.json and a filled example from https://meter.spectralbranding.com/atlas_template.json, but this prompt is self-contained.) Convert the raw data I provide into a single JSON object that strictly conforms to it.
+
+RULES
+- Output ONLY the JSON object (or the ERROR object below). No prose, no markdown.
+- Use these eight dimensions in order as \`dims\` (keys/labels/colors verbatim): semiotic "Semiotic" #e64a3b; narrative "Narrative" #e8842b; ideological "Ideological" #e8c531; experiential "Experiential" #7bc043; social "Social" #2fb3a8; economic "Economic" #3a8dde; cultural "Cultural" #7a5cd0; temporal "Temporal" #c44fa8.
+- Group the raw data into the audience cohorts it implies (>=2). Give each an id, short label, distinct hex color, and a \`vector\` of eight numbers (0-10) scoring how STRONGLY each dimension registers for that cohort (size of the meaning, NOT approval).
+- Do NOT compute \`distances\` — omit it; the tool computes geometry from the vectors.
+- Fill \`meta\` (brand, atlas slug, window, generation:"byo", a short notes line). No brand logos/wordmarks.
+- Compute \`meta.checksum\` = "BSx-" + (cohort count) + "-8-" + round(10 * sum of every number across all vectors).
+- GATING: if the data cannot support >=2 cohorts or ground the eight dimensions, do NOT invent data. Output exactly: {"ERROR":"reason","missing":["what evidence is needed"]}
+
+Everything you need is specified above — nothing is attached. The raw data follows.`;
+$("#copyprompt").onclick=()=>{
+  const b=$("#copyprompt");
+  navigator.clipboard.writeText(PROMPT).then(()=>{
+    const t=b.textContent; b.textContent="Copied ✓"; b.classList.add("copied");
+    setTimeout(()=>{b.textContent=t;b.classList.remove("copied");},1600);
+  }).catch(()=>setMsg("Couldn't access the clipboard — open the Full guide to copy the prompt."));
+};
+// input-method tabs + one contextual action button
+let activePane="paste";
+function setPane(p){
+  activePane=p;
+  document.querySelectorAll(".iotab").forEach(t=>t.classList.toggle("on",t.dataset.pane===p));
+  ["paste","file","link"].forEach(k=>$("#pane-"+k).classList.toggle("hide",k!==p));
+  $("#gobtn").textContent = p==="file" ? "Choose a file" : (p==="link" ? "Load the link →" : "See the read →");
+  setMsg("");
+}
+document.querySelectorAll(".iotab").forEach(t=>t.onclick=()=>setPane(t.dataset.pane));
+function renderPasted(){
+  const v=$("#paste").value.trim(); if(!v){setMsg("Paste your AI's answer first.");return;}
+  if(v.length>MAX_BYTES){setMsg("That atlas is over 2 MB.");return;}
+  let o; try{o=JSON.parse(v);}catch(_){setMsg("That isn't valid JSON — paste the atlas object your AI returned.");return;}
+  loadAtlas(o);
+}
+$("#gobtn").onclick=()=>{
+  if(activePane==="paste") renderPasted();
+  else if(activePane==="link"){ const v=$("#url").value; if(v) loadUrl(v); else setMsg("Paste a link first."); }
+  else fi.click();
+};
+function readFile(f){
+  if(f.size>MAX_BYTES){setMsg(`That file is ${(f.size/1048576).toFixed(1)} MB — the limit is 2 MB. A standard atlas is only a few KB.`);return;}
+  const r=new FileReader();
+  r.onload=()=>{let o;try{o=JSON.parse(r.result);}catch(_){setMsg("That file isn't valid JSON.");return;}loadAtlas(o);};
+  r.readAsText(f);
+}
+window.addEventListener("resize",()=>{if(D){renderChart();drawHeat();}});
+boot();
+</script>
+</body>
+</html>

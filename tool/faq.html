@@ -1,0 +1,276 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width,initial-scale=1" />
+<title>Brand Spectrometer — FAQ</title>
+<meta name="description" content="How to use the Brand Spectrometer: try it in one click, load your own brand, what the charts mean, what stays private, and what it costs. Plain answers." />
+<meta property="og:type" content="website" />
+<meta property="og:title" content="Brand Spectrometer — FAQ" />
+<meta property="og:description" content="How to use the Brand Spectrometer, what the charts mean, what stays private, and what it costs. Plain answers." />
+<meta property="og:image" content="https://meter.spectralbranding.com/og.png" />
+<meta property="og:url" content="https://meter.spectralbranding.com/faq.html" />
+<meta name="twitter:card" content="summary_large_image" />
+<meta name="twitter:title" content="Brand Spectrometer — FAQ" />
+<meta name="twitter:description" content="How to use the Brand Spectrometer, what the charts mean, and what stays private." />
+<meta name="twitter:image" content="https://meter.spectralbranding.com/og.png" />
+<link rel="icon" type="image/svg+xml" href="/favicon.svg" />
+<link rel="alternate icon" href="/favicon.ico" />
+<link rel="preconnect" href="https://fonts.googleapis.com" />
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+<link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@300;400;500;600&display=swap" rel="stylesheet" />
+<style>
+  :root{
+    --bg:#0a0b10; --bg2:#11131c; --panel:#141824; --ink:#eef0f6; --mut:#9aa0b4;
+    --faint:#5a6273; --line:#262a3a;
+    --grad:linear-gradient(90deg,#e64a3b,#e8842b,#e8c531,#7bc043,#2fb3a8,#3a8dde,#7a5cd0,#c44fa8);
+    --resolved:#4ec3a8; --marginal:#e8c531; --sub:#ff7a6e;
+  }
+  *{box-sizing:border-box}
+  html{scroll-behavior:smooth}
+  body{margin:0;background:radial-gradient(1200px 700px at 72% -8%,#161c2c 0%,var(--bg) 55%) fixed;
+    color:var(--ink);font-family:system-ui,-apple-system,"Segoe UI",Roboto,sans-serif;
+    line-height:1.6;-webkit-font-smoothing:antialiased}
+  .wrap{max-width:820px;margin:0 auto;padding:0 24px}
+  .spectrum-strip{height:6px;background:var(--grad)}
+  a{color:#9fc6ff;text-decoration:none;border-bottom:1px solid #3a567e}
+  a:hover{border-color:#9fc6ff}
+  .navtop{position:sticky;top:0;z-index:20;background:rgba(10,11,16,.82);backdrop-filter:blur(8px);border-bottom:1px solid var(--line)}
+  .navtop .wrap{display:flex;align-items:center;gap:26px;height:3.5rem;max-width:1080px}
+  .navtop .brand{font-family:'Space Grotesk',system-ui,sans-serif;font-weight:300;font-size:.875rem;text-transform:uppercase;letter-spacing:.12em}
+  .navtop .wrap>a{font-family:'Space Grotesk',system-ui,sans-serif;font-weight:300;font-size:.75rem;text-transform:uppercase;letter-spacing:.08em;color:var(--mut);border:0}
+  .navtop .wrap>a:hover{color:var(--ink)}
+  .navtop .brand a{color:var(--ink);border:0} .navtop .brand a:hover{color:#fff}
+  .navtop .spacer{margin-left:auto}
+  .grad{background:var(--grad);-webkit-background-clip:text;background-clip:text;color:transparent}
+  header.hero{padding:56px 0 8px}
+  .eyebrow{text-transform:uppercase;letter-spacing:.16em;font-size:12px;font-weight:700;color:#7fb6f0;margin:0 0 14px}
+  h1{font-family:"Iowan Old Style",Palatino,Georgia,serif;font-size:clamp(32px,5.5vw,52px);line-height:1.05;margin:0 0 16px;font-weight:650}
+  h2{font-family:"Iowan Old Style",Palatino,Georgia,serif;font-size:clamp(20px,2.8vw,27px);line-height:1.18;margin:0 0 10px;font-weight:600}
+  .lead{font-size:clamp(16px,1.8vw,20px);max-width:36em;color:#dfe3ee}
+  p{margin:.55em 0;color:#dfe3ee}
+  .toc{margin:30px 0 8px;padding:18px 20px;background:var(--panel);border:1px solid var(--line);border-radius:14px}
+  .toc h3{margin:0 0 10px;font-size:12px;text-transform:uppercase;letter-spacing:.08em;color:var(--mut)}
+  .toc ol{margin:0;padding-left:1.2em;columns:2;column-gap:30px}
+  .toc li{margin:.25em 0;font-size:14.5px}
+  .toc a{border:0;color:#cdd4e6} .toc a:hover{color:#fff}
+  .group{margin:34px 0 6px;font-family:'Space Grotesk',system-ui,sans-serif;font-size:12px;
+    text-transform:uppercase;letter-spacing:.14em;color:#7fb6f0;font-weight:600}
+  .qa{padding:26px 0;border-bottom:1px solid var(--line)}
+  .qa:last-of-type{border-bottom:0}
+  .pill{display:inline-block;padding:2px 10px;border-radius:999px;font-size:11.5px;font-weight:700;letter-spacing:.02em;vertical-align:middle;margin-left:8px}
+  .pill.priv{background:rgba(78,195,168,.16);color:var(--resolved)}
+  .pill.free{background:rgba(123,192,67,.16);color:#9bdc6a}
+  .steps{margin:.6em 0;padding-left:1.3em}
+  .steps li{margin:.4em 0}
+  .callout{border-left:2px solid var(--faint);padding:.4em 0 .4em 1em;color:var(--mut);margin:.9em 0}
+  table{border-collapse:collapse;width:100%;font-size:14px;margin:14px 0}
+  th,td{text-align:left;padding:9px 10px;border-bottom:1px solid #1b1e2b;vertical-align:top}
+  th{font-size:11px;text-transform:uppercase;letter-spacing:.04em;color:var(--mut)}
+  td b{color:var(--ink)}
+  code{background:#1b1e2b;border:1px solid var(--line);border-radius:5px;padding:1px 6px;font-size:.9em}
+  footer{padding:40px 0 64px;color:var(--mut);font-size:14px}
+  footer a{color:#cdd4e6}
+  .cta{display:inline-block;margin-top:12px;background:var(--panel);border:1px solid var(--faint);border-radius:10px;padding:11px 20px;color:var(--ink);font-weight:600;border-bottom:1px solid var(--faint)}
+  .cta:hover{border-color:#9fc6ff}
+  @media(max-width:680px){.toc ol{columns:1}.navtop .hidemob{display:none}}
+</style>
+</head>
+<body>
+<div class="spectrum-strip"></div>
+<div class="navtop"><div class="wrap">
+  <span class="brand"><a href="/">Brand</a> <span class="grad">Spectrometer</span></span>
+  <span class="spacer"></span>
+  <a href="/" class="hidemob">The tool</a>
+  <a href="/#load">Load an atlas</a>
+  <a href="https://spectralbranding.com">The science</a>
+</div></div>
+
+<div class="wrap">
+  <header class="hero">
+    <p class="eyebrow">Brand Spectrometer · quick answers</p>
+    <h1>Everything you need to <span class="grad">just try it</span></h1>
+    <p class="lead">A fast, AI-driven way to see how different audiences actually perceive your brand —
+      and where they disagree. Short, plain answers below: the first few get you using it in under a
+      minute, the rest explain what you're seeing and what it costs.</p>
+
+    <nav class="toc">
+      <h3>Questions</h3>
+      <ol>
+        <li><a href="#start">How do I try it right now?</a></li>
+        <li><a href="#signup">Do I need to sign up or install anything?</a></li>
+        <li><a href="#own">How do I see my own brand?</a></li>
+        <li><a href="#nodata">I don't have data — can AI make it?</a></li>
+        <li><a href="#format">What file does it take?</a></li>
+        <li><a href="#stuck">My file won't load. What's wrong?</a></li>
+        <li><a href="#charts">What am I looking at?</a></li>
+        <li><a href="#colors">What do the colors mean?</a></li>
+        <li><a href="#tracker">How is this different from my brand tracker?</a></li>
+        <li><a href="#private">Is my data private?</a></li>
+        <li><a href="#truth">Does it tell me the "real" brand?</a></li>
+        <li><a href="#price">Is it open to everyone?</a></li>
+        <li><a href="#trust">Can I trust the numbers?</a></li>
+        <li><a href="#brands">Are you tied to these brands?</a></li>
+        <li><a href="#science">Where's the science?</a></li>
+      </ol>
+    </nav>
+  </header>
+
+  <div class="group">Getting started</div>
+
+  <section class="qa" id="start">
+    <h2>How do I try it right now?</h2>
+    <p>Just <a href="/">open the tool</a>. A real example brand is already loaded, so you can click
+      around straight away — turn cohorts on and off, hover the heatmap, flip the noise switch. No
+      setup, no waiting.</p>
+  </section>
+
+  <section class="qa" id="signup">
+    <h2>Do I need to sign up or install anything?<span class="pill free">open</span></h2>
+    <p><b>No.</b> No account, no download, no install. It's a web page. Open it and use it.</p>
+  </section>
+
+  <section class="qa" id="own">
+    <h2>How do I see my own brand?</h2>
+    <p>Three ways — pick whichever is easiest:</p>
+    <ol class="steps">
+      <li><b>Let an AI build it for you</b> (easiest — see the next question).</li>
+      <li><b>Upload a file</b> — drag a data file onto the page.</li>
+      <li><b>Paste a link</b> — point it at a data file hosted online.</li>
+    </ol>
+    <p>All three live in the <a href="/#load">Load an atlas</a> section of the tool.</p>
+  </section>
+
+  <section class="qa" id="nodata">
+    <h2>I don't have data — can AI make it?</h2>
+    <p><b>Yes, and it's the simplest path.</b> You don't need a spreadsheet or any prep.</p>
+    <ol class="steps">
+      <li>In the tool, click <b>Copy the AI prompt</b>.</li>
+      <li>Paste it into any AI chat (ChatGPT, Claude, Gemini — whatever you use), and tell it which brand you care about.</li>
+      <li>Copy the answer it gives back and paste it into the tool.</li>
+    </ol>
+    <p>The page draws the full picture from that. (Heads up: a single-AI reading is a <em>shape</em> —
+      good for exploring, but not yet a proven measurement. More on that under
+      <a href="#trust">"can I trust the numbers?"</a>.)</p>
+  </section>
+
+  <section class="qa" id="format">
+    <h2>What file does it take?</h2>
+    <p>One small text file. You don't have to write it or even understand it — the AI step above
+      produces it for you, and the prompt tells the AI exactly what to make. If you're curious, you
+      can <a href="/atlas_template.json">see a worked example</a> or read the
+      <a href="/CONVERT_WITH_YOUR_AI.md">step-by-step guide</a>.</p>
+  </section>
+
+  <section class="qa" id="stuck">
+    <h2>My file won't load. What's wrong?</h2>
+    <p>Almost always one of these:</p>
+    <ul class="steps">
+      <li><b>Extra text got pasted in.</b> If you used AI, copy only its answer — nothing before or after it. Compare against the <a href="/atlas_template.json">worked example</a>.</li>
+      <li><b>Missing pieces.</b> It needs the brand, at least two audiences, and the eight scores for each. The worked example shows exactly what's required.</li>
+      <li><b>Too big.</b> There's a size limit to keep your browser fast. Trim very large files.</li>
+    </ul>
+    <p>Re-running the AI step with the copied prompt usually fixes a bad file in one go.</p>
+  </section>
+
+  <div class="group">Reading the results</div>
+
+  <section class="qa" id="charts">
+    <h2>What am I looking at?</h2>
+    <p>How different <b>audiences</b> see the same brand. Each audience (a "cohort") gets a score from
+      0 to 10 on eight things:</p>
+    <p class="callout"><b>Semiotic, Narrative, Ideological, Experiential, Social, Economic, Cultural,
+      Temporal.</b> In plain terms: its symbols, its story, what it stands for, how it feels to use,
+      who's seen with it, money and value, where it sits in culture, and whether it feels fresh or
+      fading.</p>
+    <p>Two audiences can like a brand equally yet see a totally different <em>shape</em>. Overlay them
+      and you can see that gap. The heatmap then shows which audiences are far apart and which are
+      close.</p>
+  </section>
+
+  <section class="qa" id="colors">
+    <h2>What do the colors mean?</h2>
+    <p>They tell you whether a difference between two audiences is <b>real</b> or just wobble in the
+      measurement:</p>
+    <table>
+      <tr><th>Color</th><th>Means</th></tr>
+      <tr><td><b style="color:var(--resolved)">Green — real</b></td><td>The two audiences clearly differ. You can act on it.</td></tr>
+      <tr><td><b style="color:var(--marginal)">Yellow — close call</b></td><td>Probably a difference, but small. Treat it gently.</td></tr>
+      <tr><td><b style="color:var(--sub)">Red — too close to tell</b></td><td>Any gap is within the margin of error. The tool won't call it a real difference.</td></tr>
+    </table>
+    <p>Flip the noise switch and everything that's "too close to tell" greys out, leaving only the
+      differences worth trusting. Most tools hide this; this one shows it on purpose.</p>
+  </section>
+
+  <section class="qa" id="tracker">
+    <h2>How is this different from my brand tracker?</h2>
+    <p>A normal tracker rolls everyone into one average — one score, one funnel, one number that
+      drifts up or down. That average <b>hides</b> the most useful thing: that your investors, your
+      power users, and your critics may be seeing almost different brands.</p>
+    <p>The Brand Spectrometer keeps those audiences <b>apart</b> and shows the eight-part shape of each, so
+      you can see exactly where they diverge — and it flags which of those gaps are real versus noise.
+      It's the unusual idea behind Spectral Brand Theory: a brand isn't one fixed thing, it's a
+      spread of perceptions, and the spread is where the decisions are. And because it reads from
+      public material with AI, you get a first look in minutes, not a fielded survey in weeks.</p>
+  </section>
+
+  <div class="group">Trust &amp; privacy</div>
+
+  <section class="qa" id="private">
+    <h2>Is my data private?<span class="pill priv">yes</span></h2>
+    <p><b>Yes. Nothing you load leaves your browser.</b> There's no server and no database on our end.
+      Your file is read and drawn right on your own device. We never see it, so there's nothing for us
+      to store or leak.</p>
+  </section>
+
+  <section class="qa" id="truth">
+    <h2>Does it tell me the "real" brand?</h2>
+    <p><b>No — on purpose.</b> There isn't one single "true" version of a brand. Different people
+      honestly see it differently, and that spread <em>is</em> the thing we measure. So the tool shows
+      you "here's how these audiences read it," never "here's the final verdict."</p>
+  </section>
+
+  <section class="qa" id="price">
+    <h2>Is it open to everyone?<span class="pill free">open</span></h2>
+    <p><b>Yes.</b> The tool is open and runs in your browser at no cost — no account, no API key,
+      nothing to install. The method behind it is open too: the research is published and the code is
+      open-source. There's nothing to buy to get the full read.</p>
+    <p>One honest limit: a reading you build yourself in a couple of minutes is a useful <em>shape</em>,
+      not yet a proven measurement. Turning a shape into a measurement takes rigor — multiple
+      independent runs and checked data — which is the method's job, not the screen's. Both use the
+      same open tool. See <a href="#trust">"can I trust the numbers?"</a>.</p>
+  </section>
+
+  <section class="qa" id="trust">
+    <h2>Can I trust the numbers?</h2>
+    <p>A rigorous reading is built so it can be <b>checked</b>: feed it the same input and it gives the
+      same answer; anyone can re-create the result from public data; and it only reports differences
+      big enough to clear its own margin of error (the colors above). A quick build-it-yourself
+      reading is great for exploring, but it skips that checking — so treat it as a sketch, not a
+      verdict.</p>
+  </section>
+
+  <section class="qa" id="brands">
+    <h2>Are you tied to these brands?</h2>
+    <p><b>No.</b> Brands are named only as examples, for analysis. No logos, no endorsement, no
+      sponsorship. A reading is our best estimate from public material — not a statement from the
+      brand.</p>
+  </section>
+
+  <section class="qa" id="science">
+    <h2>Where's the science?</h2>
+    <p>The Brand Spectrometer is the measuring tool behind <b>Spectral Brand Theory</b>. The eight
+      dimensions, the audience/shape idea, and the margin-of-error method are written up in published
+      research, and the tool's testing is open and repeatable. Read it all at
+      <a href="https://spectralbranding.com">spectralbranding.com</a>.</p>
+    <a class="cta" href="/#load">Open the tool and try it →</a>
+  </section>
+
+  <footer>
+    <p><b><a href="/">Brand Spectrometer</a></b> · the measuring layer of Spectral Brand Theory ·
+      <a href="https://spectralbranding.com">spectralbranding.com</a></p>
+    <p>Runs entirely in your browser. Nothing you load is uploaded or stored.</p>
+  </footer>
+</div>
+</body>
+</html>
