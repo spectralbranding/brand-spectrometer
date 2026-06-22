@@ -1,0 +1,65 @@
+{
+  "atlas": "ferrari_luce_fresh_2606",
+  "grain": "host",
+  "seed": 20260621,
+  "V2_cross_operator": {
+    "cohort_attributable_variance": 0.01584,
+    "operator_attributable_variance": 0.01418,
+    "mean_cross_operator_cosine": 0.98582,
+    "per_cohort_operator_variance": {
+      "actual-owners": 0.03945,
+      "brand-debaters": 0.00744,
+      "chinese-cohort": 0.00348,
+      "italian-press": 0.01393,
+      "non-italian-press": 0.00661
+    },
+    "pass": true,
+    "criterion": "operator_attr < cohort_attr AND mean_cross_cos >= .95"
+  },
+  "V3_split_half": {
+    "per_cohort": {
+      "actual-owners": {
+        "mean_split_half_cosine": 0.93336,
+        "operator_floor": 0.05645,
+        "n_sources": 5,
+        "pass": false
+      },
+      "brand-debaters": {
+        "mean_split_half_cosine": 0.98784,
+        "operator_floor": 0.00968,
+        "n_sources": 7,
+        "pass": true
+      },
+      "chinese-cohort": {
+        "mean_split_half_cosine": 0.98379,
+        "operator_floor": 0.00337,
+        "n_sources": 8,
+        "pass": true
+      },
+      "italian-press": {
+        "mean_split_half_cosine": 0.98998,
+        "operator_floor": 0.01307,
+        "n_sources": 8,
+        "pass": true
+      },
+      "non-italian-press": {
+        "mean_split_half_cosine": 0.98917,
+        "operator_floor": 0.00958,
+        "n_sources": 7,
+        "pass": true
+      }
+    },
+    "pass_count": 4,
+    "splits_per_cohort": 200,
+    "pass": true,
+    "criterion": "mean split-half cosine >= .95 for >=4/5"
+  },
+  "V5_reproducibility": {
+    "deterministic": true,
+    "note": "reflection aggregation is seeded and key-free; re-running aggregate_reflections.py reproduces atlas_reflections.yaml byte-for-byte"
+  },
+  "V1_test_retest": {
+    "recomputed_from_reflections": false,
+    "note": "reflections are single deterministic renders per (artifact, operator); a faithful reflection-based V1 needs K-fold re-renders"
+  }
+}

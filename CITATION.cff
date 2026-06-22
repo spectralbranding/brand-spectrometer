@@ -11,8 +11,9 @@ url: "https://meter.spectralbranding.com"
 abstract: >-
   An instrument that reads cohort-resolved, eight-dimensional brand-perception
   profiles and reports which differences between audiences clear the instrument's
-  own noise floor. This repository is the open core: the in-browser renderer, the
-  atlas data format and validator, and the published methodology.
+  own noise floor. This repository contains the in-browser renderer, the
+  atlas data format and validator, the offline reproduction battery, and the
+  published methodology.
 keywords:
   - brand-perception
   - measurement
@@ -22,10 +23,10 @@ keywords:
 license: MIT
 preferred-citation:
   type: article
-  title: "Dimensional Collapse in AI Brand Perception"
+  title: "The Brand Spectrometer: A Reproducible Instrument for Cohort-Resolved, Multi-Dimensional Brand-Perception Measurement from Public Artifacts"
   authors:
     - family-names: Zharnikov
       given-names: Dmitry
       orcid: "https://orcid.org/0009-0000-6893-9231"
   year: 2026
-  doi: "10.5281/zenodo.19422427"
+  doi: "10.5281/zenodo.20775963"

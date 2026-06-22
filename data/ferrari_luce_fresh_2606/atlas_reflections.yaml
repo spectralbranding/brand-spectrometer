@@ -1,0 +1,566 @@
+atlas: ferrari_luce_fresh_2606
+draws: 20000
+seed: 20260621
+grain: source
+aggregation: reflection -> source -> cohort (signal-source clustered; source grain
+  = source; pseudonymous provenance, not an individual identity)
+n_reflections:
+  actual-owners: 6
+  brand-debaters: 7
+  chinese-cohort: 8
+  italian-press: 8
+  non-italian-press: 7
+n_sources:
+  actual-owners: 5
+  brand-debaters: 7
+  chinese-cohort: 8
+  italian-press: 8
+  non-italian-press: 7
+sources:
+  actual-owners:
+  - The Free Press (Jack Baruth)
+  - FerrariChat (Electric Ferraris)
+  - Gulf Insider
+  - AutoGuide
+  - InsideEVs
+  brand-debaters:
+  - PistonHeads (General Gassing)
+  - FerrariChat (Electric Ferraris)
+  - ROSSOautomobili Magazine
+  - ItalPassion
+  - TechCrunch
+  - PlanetF1
+  - YouTube — The Car Designer
+  chinese-cohort:
+  - IT之家 (ithome.com)
+  - 虎嗅网 (huxiu.com)
+  - 太平洋科技 (pconline.com.cn)
+  - 中关村在线汽车 (auto.zol.com.cn)
+  - 汽车之家·车家号 (autohome.com.cn)
+  - ZAKER新闻·燃擎频道 (myzaker.com)
+  - 新浪财经/快科技 (finance.sina.com.cn)
+  - 网易订阅 (163.com)
+  italian-press:
+  - Milano Finanza
+  - ANSA
+  - Motorionline
+  - HDmotori
+  - Vaielettrico
+  - Autoblog.it
+  - Automoto.it
+  - Wise Society
+  non-italian-press:
+  - Motor1
+  - Technology.org
+  - Auto Express
+  - Creative Bloq
+  - Electrifying.com
+  - Simply Wall St
+  - BusinessDay NG
+operators_per_cohort:
+  actual-owners:
+  - mid_tier_homogeneous
+  - primary
+  - tier_flip
+  brand-debaters:
+  - mid_tier_homogeneous
+  - primary
+  - tier_flip
+  chinese-cohort:
+  - chinese_family_flip
+  - chinese_variants
+  - primary
+  italian-press:
+  - mid_tier_homogeneous
+  - primary
+  - tier_flip
+  non-italian-press:
+  - mid_tier_homogeneous
+  - primary
+  - tier_flip
+cohort_vectors:
+  actual-owners:
+  - 2.86
+  - 4.24
+  - 2.98
+  - 2.85
+  - 5.27
+  - 2.98
+  - 3.58
+  - 3.35
+  brand-debaters:
+  - 5.9571
+  - 6.2286
+  - 5.7714
+  - 5.1857
+  - 5.8429
+  - 6.2143
+  - 6.2
+  - 5.4286
+  chinese-cohort:
+  - 5.6875
+  - 5.4
+  - 5.5
+  - 6.1
+  - 5.75
+  - 5.8125
+  - 6.0
+  - 7.225
+  italian-press:
+  - 6.275
+  - 5.125
+  - 5.3625
+  - 5.1375
+  - 5.8875
+  - 5.3625
+  - 6.2
+  - 4.775
+  non-italian-press:
+  - 6.1714
+  - 6.7714
+  - 6.6143
+  - 6.3286
+  - 5.8571
+  - 7.3857
+  - 6.1286
+  - 6.5714
+per_dimension_ci:
+  actual-owners:
+    semiotic:
+      score: 2.86
+      ci_95_lower: 0.838
+      ci_95_upper: 4.882
+      se: 0.7284
+      n_reflections: 6
+      n_sources: 5
+    narrative:
+      score: 4.24
+      ci_95_lower: 0.292
+      ci_95_upper: 8.188
+      se: 1.4222
+      n_reflections: 6
+      n_sources: 5
+    ideological:
+      score: 2.98
+      ci_95_lower: 1.054
+      ci_95_upper: 4.906
+      se: 0.6938
+      n_reflections: 6
+      n_sources: 5
+    experiential:
+      score: 2.85
+      ci_95_lower: 1.309
+      ci_95_upper: 4.391
+      se: 0.555
+      n_reflections: 6
+      n_sources: 5
+    social:
+      score: 5.27
+      ci_95_lower: 1.142
+      ci_95_upper: 9.398
+      se: 1.4871
+      n_reflections: 6
+      n_sources: 5
+    economic:
+      score: 2.98
+      ci_95_lower: 0.871
+      ci_95_upper: 5.089
+      se: 0.7599
+      n_reflections: 6
+      n_sources: 5
+    cultural:
+      score: 3.58
+      ci_95_lower: 1.187
+      ci_95_upper: 5.973
+      se: 0.8622
+      n_reflections: 6
+      n_sources: 5
+    temporal:
+      score: 3.35
+      ci_95_lower: 2.241
+      ci_95_upper: 4.459
+      se: 0.3994
+      n_reflections: 6
+      n_sources: 5
+  brand-debaters:
+    semiotic:
+      score: 5.957
+      ci_95_lower: 4.401
+      ci_95_upper: 7.513
+      se: 0.6358
+      n_reflections: 7
+      n_sources: 7
+    narrative:
+      score: 6.229
+      ci_95_lower: 4.728
+      ci_95_upper: 7.729
+      se: 0.6132
+      n_reflections: 7
+      n_sources: 7
+    ideological:
+      score: 5.771
+      ci_95_lower: 3.861
+      ci_95_upper: 7.682
+      se: 0.7806
+      n_reflections: 7
+      n_sources: 7
+    experiential:
+      score: 5.186
+      ci_95_lower: 3.897
+      ci_95_upper: 6.474
+      se: 0.5266
+      n_reflections: 7
+      n_sources: 7
+    social:
+      score: 5.843
+      ci_95_lower: 4.731
+      ci_95_upper: 6.955
+      se: 0.4545
+      n_reflections: 7
+      n_sources: 7
+    economic:
+      score: 6.214
+      ci_95_lower: 5.139
+      ci_95_upper: 7.289
+      se: 0.4394
+      n_reflections: 7
+      n_sources: 7
+    cultural:
+      score: 6.2
+      ci_95_lower: 4.194
+      ci_95_upper: 8.206
+      se: 0.8197
+      n_reflections: 7
+      n_sources: 7
+    temporal:
+      score: 5.429
+      ci_95_lower: 4.308
+      ci_95_upper: 6.55
+      se: 0.4581
+      n_reflections: 7
+      n_sources: 7
+  chinese-cohort:
+    semiotic:
+      score: 5.688
+      ci_95_lower: 3.727
+      ci_95_upper: 7.648
+      se: 0.8288
+      n_reflections: 8
+      n_sources: 8
+    narrative:
+      score: 5.4
+      ci_95_lower: 3.837
+      ci_95_upper: 6.963
+      se: 0.6609
+      n_reflections: 8
+      n_sources: 8
+    ideological:
+      score: 5.5
+      ci_95_lower: 3.578
+      ci_95_upper: 7.422
+      se: 0.8128
+      n_reflections: 8
+      n_sources: 8
+    experiential:
+      score: 6.1
+      ci_95_lower: 4.148
+      ci_95_upper: 8.052
+      se: 0.8255
+      n_reflections: 8
+      n_sources: 8
+    social:
+      score: 5.75
+      ci_95_lower: 3.841
+      ci_95_upper: 7.659
+      se: 0.8073
+      n_reflections: 8
+      n_sources: 8
+    economic:
+      score: 5.812
+      ci_95_lower: 3.729
+      ci_95_upper: 7.896
+      se: 0.881
+      n_reflections: 8
+      n_sources: 8
+    cultural:
+      score: 6.0
+      ci_95_lower: 3.916
+      ci_95_upper: 8.084
+      se: 0.8814
+      n_reflections: 8
+      n_sources: 8
+    temporal:
+      score: 7.225
+      ci_95_lower: 5.619
+      ci_95_upper: 8.831
+      se: 0.6792
+      n_reflections: 8
+      n_sources: 8
+  italian-press:
+    semiotic:
+      score: 6.275
+      ci_95_lower: 5.066
+      ci_95_upper: 7.484
+      se: 0.5112
+      n_reflections: 8
+      n_sources: 8
+    narrative:
+      score: 5.125
+      ci_95_lower: 4.661
+      ci_95_upper: 5.589
+      se: 0.1962
+      n_reflections: 8
+      n_sources: 8
+    ideological:
+      score: 5.363
+      ci_95_lower: 3.745
+      ci_95_upper: 6.98
+      se: 0.6837
+      n_reflections: 8
+      n_sources: 8
+    experiential:
+      score: 5.137
+      ci_95_lower: 3.982
+      ci_95_upper: 6.293
+      se: 0.4884
+      n_reflections: 8
+      n_sources: 8
+    social:
+      score: 5.887
+      ci_95_lower: 4.438
+      ci_95_upper: 7.337
+      se: 0.6128
+      n_reflections: 8
+      n_sources: 8
+    economic:
+      score: 5.362
+      ci_95_lower: 4.334
+      ci_95_upper: 6.391
+      se: 0.435
+      n_reflections: 8
+      n_sources: 8
+    cultural:
+      score: 6.2
+      ci_95_lower: 4.801
+      ci_95_upper: 7.599
+      se: 0.5916
+      n_reflections: 8
+      n_sources: 8
+    temporal:
+      score: 4.775
+      ci_95_lower: 4.045
+      ci_95_upper: 5.505
+      se: 0.3087
+      n_reflections: 8
+      n_sources: 8
+  non-italian-press:
+    semiotic:
+      score: 6.171
+      ci_95_lower: 4.666
+      ci_95_upper: 7.677
+      se: 0.6152
+      n_reflections: 7
+      n_sources: 7
+    narrative:
+      score: 6.771
+      ci_95_lower: 5.467
+      ci_95_upper: 8.076
+      se: 0.5331
+      n_reflections: 7
+      n_sources: 7
+    ideological:
+      score: 6.614
+      ci_95_lower: 5.631
+      ci_95_upper: 7.598
+      se: 0.402
+      n_reflections: 7
+      n_sources: 7
+    experiential:
+      score: 6.329
+      ci_95_lower: 4.352
+      ci_95_upper: 8.306
+      se: 0.8079
+      n_reflections: 7
+      n_sources: 7
+    social:
+      score: 5.857
+      ci_95_lower: 3.894
+      ci_95_upper: 7.82
+      se: 0.8023
+      n_reflections: 7
+      n_sources: 7
+    economic:
+      score: 7.386
+      ci_95_lower: 6.127
+      ci_95_upper: 8.644
+      se: 0.5143
+      n_reflections: 7
+      n_sources: 7
+    cultural:
+      score: 6.129
+      ci_95_lower: 4.923
+      ci_95_upper: 7.334
+      se: 0.4927
+      n_reflections: 7
+      n_sources: 7
+    temporal:
+      score: 6.571
+      ci_95_lower: 5.368
+      ci_95_upper: 7.775
+      se: 0.4917
+      n_reflections: 7
+      n_sources: 7
+operator_floor:
+  actual-owners: 0.0565
+  brand-debaters: 0.0097
+  chinese-cohort: 0.0034
+  italian-press: 0.0131
+  non-italian-press: 0.0096
+source_floor:
+  actual-owners: 0.0072
+  brand-debaters: 0.0008
+  chinese-cohort: 0.0012
+  italian-press: 0.0006
+  non-italian-press: 0.0008
+pair_distance:
+  actual-owners|brand-debaters: 0.0232
+  actual-owners|chinese-cohort: 0.032
+  actual-owners|italian-press: 0.0261
+  actual-owners|non-italian-press: 0.0333
+  brand-debaters|chinese-cohort: 0.009
+  brand-debaters|italian-press: 0.0035
+  brand-debaters|non-italian-press: 0.0031
+  chinese-cohort|italian-press: 0.0118
+  chinese-cohort|non-italian-press: 0.0065
+  italian-press|non-italian-press: 0.01
+pair_signal_to_noise:
+  actual-owners|brand-debaters: 0.4106
+  actual-owners|chinese-cohort: 0.5664
+  actual-owners|italian-press: 0.4619
+  actual-owners|non-italian-press: 0.5894
+  brand-debaters|chinese-cohort: 0.9278
+  brand-debaters|italian-press: 0.2672
+  brand-debaters|non-italian-press: 0.3196
+  chinese-cohort|italian-press: 0.9008
+  chinese-cohort|non-italian-press: 0.6771
+  italian-press|non-italian-press: 0.7634
+aggregate_signal_to_noise: 0.8586
+bootstrap:
+  operator_floor:
+    actual-owners:
+      lo: 0.0203
+      median: 0.0756
+      hi: 0.1581
+    brand-debaters:
+      lo: 0.0042
+      median: 0.0127
+      hi: 0.0248
+    chinese-cohort:
+      lo: 0.0031
+      median: 0.0065
+      hi: 0.0167
+    italian-press:
+      lo: 0.012
+      median: 0.0195
+      hi: 0.0425
+    non-italian-press:
+      lo: 0.0064
+      median: 0.0134
+      hi: 0.025
+  source_floor:
+    actual-owners:
+      lo: 0.0
+      median: 0.0072
+      hi: 0.0283
+    brand-debaters:
+      lo: 0.0001
+      median: 0.0012
+      hi: 0.0061
+    chinese-cohort:
+      lo: 0.0003
+      median: 0.0017
+      hi: 0.0079
+    italian-press:
+      lo: 0.0003
+      median: 0.0011
+      hi: 0.0042
+    non-italian-press:
+      lo: 0.0002
+      median: 0.0013
+      hi: 0.0043
+  pair_signal_to_noise:
+    actual-owners|brand-debaters:
+      lo: 0.2829
+      median: 0.4642
+      hi: 0.7225
+    actual-owners|chinese-cohort:
+      lo: 0.3247
+      median: 0.5976
+      hi: 1.036
+    actual-owners|italian-press:
+      lo: 0.3159
+      median: 0.4897
+      hi: 1.178
+    actual-owners|non-italian-press:
+      lo: 0.3737
+      median: 0.5846
+      hi: 0.8698
+    brand-debaters|chinese-cohort:
+      lo: 0.3866
+      median: 0.8718
+      hi: 2.0602
+    brand-debaters|italian-press:
+      lo: 0.11
+      median: 0.2741
+      hi: 0.6499
+    brand-debaters|non-italian-press:
+      lo: 0.0755
+      median: 0.3293
+      hi: 0.9915
+    chinese-cohort|italian-press:
+      lo: 0.2687
+      median: 0.6986
+      hi: 1.6259
+    chinese-cohort|non-italian-press:
+      lo: 0.3109
+      median: 0.7565
+      hi: 1.4686
+    italian-press|non-italian-press:
+      lo: 0.2112
+      median: 0.5703
+      hi: 1.1419
+  pair_verdict_robustness:
+    actual-owners|brand-debaters:
+      p_gt_1: 0.0024
+      p_gt_2: 0.0
+    actual-owners|chinese-cohort:
+      p_gt_1: 0.0342
+      p_gt_2: 0.0
+    actual-owners|italian-press:
+      p_gt_1: 0.0495
+      p_gt_2: 0.0
+    actual-owners|non-italian-press:
+      p_gt_1: 0.0043
+      p_gt_2: 0.0
+    brand-debaters|chinese-cohort:
+      p_gt_1: 0.3755
+      p_gt_2: 0.0315
+    brand-debaters|italian-press:
+      p_gt_1: 0.0021
+      p_gt_2: 0.0
+    brand-debaters|non-italian-press:
+      p_gt_1: 0.0244
+      p_gt_2: 0.0002
+    chinese-cohort|italian-press:
+      p_gt_1: 0.2105
+      p_gt_2: 0.0046
+    chinese-cohort|non-italian-press:
+      p_gt_1: 0.2161
+      p_gt_2: 0.001
+    italian-press|non-italian-press:
+      p_gt_1: 0.0632
+      p_gt_2: 0.0001
+  aggregate_signal_to_noise:
+    lo: 0.635
+    median: 0.8406
+    hi: 1.1116

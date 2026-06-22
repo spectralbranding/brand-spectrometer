@@ -1,0 +1,62 @@
+{
+  "atlas": "ferrari_luce_fresh_2606",
+  "grain": "host",
+  "per_cohort": {
+    "actual-owners": {
+      "max_pairwise_floor": 0.0565,
+      "ensemble_centroid_floor": 0.022,
+      "tightest_alt": "mid_tier_homogeneous",
+      "tightest_pair_floor": 0.0509,
+      "alt_distances": {
+        "mid_tier_homogeneous": 0.0509,
+        "tier_flip": 0.0565
+      }
+    },
+    "brand-debaters": {
+      "max_pairwise_floor": 0.0097,
+      "ensemble_centroid_floor": 0.0033,
+      "tightest_alt": "tier_flip",
+      "tightest_pair_floor": 0.0056,
+      "alt_distances": {
+        "mid_tier_homogeneous": 0.0097,
+        "tier_flip": 0.0056
+      }
+    },
+    "chinese-cohort": {
+      "max_pairwise_floor": 0.0034,
+      "ensemble_centroid_floor": 0.002,
+      "tightest_alt": "chinese_variants",
+      "tightest_pair_floor": 0.002,
+      "alt_distances": {
+        "chinese_family_flip": 0.0034,
+        "chinese_variants": 0.002
+      }
+    },
+    "italian-press": {
+      "max_pairwise_floor": 0.0131,
+      "ensemble_centroid_floor": 0.0064,
+      "tightest_alt": "tier_flip",
+      "tightest_pair_floor": 0.0113,
+      "alt_distances": {
+        "mid_tier_homogeneous": 0.0131,
+        "tier_flip": 0.0113
+      }
+    },
+    "non-italian-press": {
+      "max_pairwise_floor": 0.0096,
+      "ensemble_centroid_floor": 0.0034,
+      "tightest_alt": "tier_flip",
+      "tightest_pair_floor": 0.0035,
+      "alt_distances": {
+        "mid_tier_homogeneous": 0.0096,
+        "tier_flip": 0.0035
+      }
+    }
+  },
+  "aggregate_sn": {
+    "current_max_pairwise": 0.8582,
+    "ensemble_centroid": 0.6539,
+    "tightest_pair_selection": 1.0807
+  },
+  "note": "ensemble_centroid uses the 3-operator mean as the cohort vector AND the centroid floor; tightest_pair keeps only the best-agreeing alt. Both are OPTIMISTIC previews from the current operator set -- a true test needs NEW model families."
+}

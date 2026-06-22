@@ -1,0 +1,567 @@
+atlas: ferrari_luce_fresh_2606
+draws: 20000
+seed: 20260621
+grain: artifact
+aggregation: reflection -> source -> cohort (signal-source clustered; source grain
+  = artifact; pseudonymous provenance, not an individual identity)
+n_reflections:
+  actual-owners: 6
+  brand-debaters: 7
+  chinese-cohort: 8
+  italian-press: 8
+  non-italian-press: 7
+n_sources:
+  actual-owners: 6
+  brand-debaters: 7
+  chinese-cohort: 8
+  italian-press: 8
+  non-italian-press: 7
+sources:
+  actual-owners:
+  - actual-owners_01
+  - actual-owners_02
+  - actual-owners_03
+  - actual-owners_04
+  - actual-owners_05
+  - actual-owners_06
+  brand-debaters:
+  - brand-debaters_01
+  - brand-debaters_02
+  - brand-debaters_03
+  - brand-debaters_04
+  - brand-debaters_05
+  - brand-debaters_06
+  - brand-debaters_07
+  chinese-cohort:
+  - chinese-cohort_01
+  - chinese-cohort_02
+  - chinese-cohort_03
+  - chinese-cohort_04
+  - chinese-cohort_05
+  - chinese-cohort_06
+  - chinese-cohort_07
+  - chinese-cohort_08
+  italian-press:
+  - italian-press_01
+  - italian-press_02
+  - italian-press_03
+  - italian-press_04
+  - italian-press_05
+  - italian-press_06
+  - italian-press_07
+  - italian-press_08
+  non-italian-press:
+  - non-italian-press_01
+  - non-italian-press_02
+  - non-italian-press_03
+  - non-italian-press_04
+  - non-italian-press_05
+  - non-italian-press_06
+  - non-italian-press_07
+operators_per_cohort:
+  actual-owners:
+  - mid_tier_homogeneous
+  - primary
+  - tier_flip
+  brand-debaters:
+  - mid_tier_homogeneous
+  - primary
+  - tier_flip
+  chinese-cohort:
+  - chinese_family_flip
+  - chinese_variants
+  - primary
+  italian-press:
+  - mid_tier_homogeneous
+  - primary
+  - tier_flip
+  non-italian-press:
+  - mid_tier_homogeneous
+  - primary
+  - tier_flip
+cohort_vectors:
+  actual-owners:
+  - 2.95
+  - 4.7333
+  - 3.4167
+  - 2.9
+  - 5.2667
+  - 3.4333
+  - 3.6333
+  - 3.4167
+  brand-debaters:
+  - 5.9571
+  - 6.2286
+  - 5.7714
+  - 5.1857
+  - 5.8429
+  - 6.2143
+  - 6.2
+  - 5.4286
+  chinese-cohort:
+  - 5.6875
+  - 5.4
+  - 5.5
+  - 6.1
+  - 5.75
+  - 5.8125
+  - 6.0
+  - 7.225
+  italian-press:
+  - 6.275
+  - 5.125
+  - 5.3625
+  - 5.1375
+  - 5.8875
+  - 5.3625
+  - 6.2
+  - 4.775
+  non-italian-press:
+  - 6.1714
+  - 6.7714
+  - 6.6143
+  - 6.3286
+  - 5.8571
+  - 7.3857
+  - 6.1286
+  - 6.5714
+per_dimension_ci:
+  actual-owners:
+    semiotic:
+      score: 2.95
+      ci_95_lower: 1.353
+      ci_95_upper: 4.547
+      se: 0.6212
+      n_reflections: 6
+      n_sources: 6
+    narrative:
+      score: 4.733
+      ci_95_lower: 1.446
+      ci_95_upper: 8.02
+      se: 1.2785
+      n_reflections: 6
+      n_sources: 6
+    ideological:
+      score: 3.417
+      ci_95_lower: 0.984
+      ci_95_upper: 5.85
+      se: 0.9464
+      n_reflections: 6
+      n_sources: 6
+    experiential:
+      score: 2.9
+      ci_95_lower: 1.599
+      ci_95_upper: 4.201
+      se: 0.506
+      n_reflections: 6
+      n_sources: 6
+    social:
+      score: 5.267
+      ci_95_lower: 1.472
+      ci_95_upper: 9.061
+      se: 1.476
+      n_reflections: 6
+      n_sources: 6
+    economic:
+      score: 3.433
+      ci_95_lower: 0.937
+      ci_95_upper: 5.93
+      se: 0.9711
+      n_reflections: 6
+      n_sources: 6
+    cultural:
+      score: 3.633
+      ci_95_lower: 1.623
+      ci_95_upper: 5.643
+      se: 0.7817
+      n_reflections: 6
+      n_sources: 6
+    temporal:
+      score: 3.417
+      ci_95_lower: 2.486
+      ci_95_upper: 4.347
+      se: 0.3619
+      n_reflections: 6
+      n_sources: 6
+  brand-debaters:
+    semiotic:
+      score: 5.957
+      ci_95_lower: 4.401
+      ci_95_upper: 7.513
+      se: 0.6358
+      n_reflections: 7
+      n_sources: 7
+    narrative:
+      score: 6.229
+      ci_95_lower: 4.728
+      ci_95_upper: 7.729
+      se: 0.6132
+      n_reflections: 7
+      n_sources: 7
+    ideological:
+      score: 5.771
+      ci_95_lower: 3.861
+      ci_95_upper: 7.682
+      se: 0.7806
+      n_reflections: 7
+      n_sources: 7
+    experiential:
+      score: 5.186
+      ci_95_lower: 3.897
+      ci_95_upper: 6.474
+      se: 0.5266
+      n_reflections: 7
+      n_sources: 7
+    social:
+      score: 5.843
+      ci_95_lower: 4.731
+      ci_95_upper: 6.955
+      se: 0.4545
+      n_reflections: 7
+      n_sources: 7
+    economic:
+      score: 6.214
+      ci_95_lower: 5.139
+      ci_95_upper: 7.289
+      se: 0.4394
+      n_reflections: 7
+      n_sources: 7
+    cultural:
+      score: 6.2
+      ci_95_lower: 4.194
+      ci_95_upper: 8.206
+      se: 0.8197
+      n_reflections: 7
+      n_sources: 7
+    temporal:
+      score: 5.429
+      ci_95_lower: 4.308
+      ci_95_upper: 6.55
+      se: 0.4581
+      n_reflections: 7
+      n_sources: 7
+  chinese-cohort:
+    semiotic:
+      score: 5.688
+      ci_95_lower: 3.727
+      ci_95_upper: 7.648
+      se: 0.8288
+      n_reflections: 8
+      n_sources: 8
+    narrative:
+      score: 5.4
+      ci_95_lower: 3.837
+      ci_95_upper: 6.963
+      se: 0.6609
+      n_reflections: 8
+      n_sources: 8
+    ideological:
+      score: 5.5
+      ci_95_lower: 3.578
+      ci_95_upper: 7.422
+      se: 0.8128
+      n_reflections: 8
+      n_sources: 8
+    experiential:
+      score: 6.1
+      ci_95_lower: 4.148
+      ci_95_upper: 8.052
+      se: 0.8255
+      n_reflections: 8
+      n_sources: 8
+    social:
+      score: 5.75
+      ci_95_lower: 3.841
+      ci_95_upper: 7.659
+      se: 0.8073
+      n_reflections: 8
+      n_sources: 8
+    economic:
+      score: 5.812
+      ci_95_lower: 3.729
+      ci_95_upper: 7.896
+      se: 0.881
+      n_reflections: 8
+      n_sources: 8
+    cultural:
+      score: 6.0
+      ci_95_lower: 3.916
+      ci_95_upper: 8.084
+      se: 0.8814
+      n_reflections: 8
+      n_sources: 8
+    temporal:
+      score: 7.225
+      ci_95_lower: 5.619
+      ci_95_upper: 8.831
+      se: 0.6792
+      n_reflections: 8
+      n_sources: 8
+  italian-press:
+    semiotic:
+      score: 6.275
+      ci_95_lower: 5.066
+      ci_95_upper: 7.484
+      se: 0.5112
+      n_reflections: 8
+      n_sources: 8
+    narrative:
+      score: 5.125
+      ci_95_lower: 4.661
+      ci_95_upper: 5.589
+      se: 0.1962
+      n_reflections: 8
+      n_sources: 8
+    ideological:
+      score: 5.363
+      ci_95_lower: 3.745
+      ci_95_upper: 6.98
+      se: 0.6837
+      n_reflections: 8
+      n_sources: 8
+    experiential:
+      score: 5.137
+      ci_95_lower: 3.982
+      ci_95_upper: 6.293
+      se: 0.4884
+      n_reflections: 8
+      n_sources: 8
+    social:
+      score: 5.887
+      ci_95_lower: 4.438
+      ci_95_upper: 7.337
+      se: 0.6128
+      n_reflections: 8
+      n_sources: 8
+    economic:
+      score: 5.362
+      ci_95_lower: 4.334
+      ci_95_upper: 6.391
+      se: 0.435
+      n_reflections: 8
+      n_sources: 8
+    cultural:
+      score: 6.2
+      ci_95_lower: 4.801
+      ci_95_upper: 7.599
+      se: 0.5916
+      n_reflections: 8
+      n_sources: 8
+    temporal:
+      score: 4.775
+      ci_95_lower: 4.045
+      ci_95_upper: 5.505
+      se: 0.3087
+      n_reflections: 8
+      n_sources: 8
+  non-italian-press:
+    semiotic:
+      score: 6.171
+      ci_95_lower: 4.666
+      ci_95_upper: 7.677
+      se: 0.6152
+      n_reflections: 7
+      n_sources: 7
+    narrative:
+      score: 6.771
+      ci_95_lower: 5.467
+      ci_95_upper: 8.076
+      se: 0.5331
+      n_reflections: 7
+      n_sources: 7
+    ideological:
+      score: 6.614
+      ci_95_lower: 5.631
+      ci_95_upper: 7.598
+      se: 0.402
+      n_reflections: 7
+      n_sources: 7
+    experiential:
+      score: 6.329
+      ci_95_lower: 4.352
+      ci_95_upper: 8.306
+      se: 0.8079
+      n_reflections: 7
+      n_sources: 7
+    social:
+      score: 5.857
+      ci_95_lower: 3.894
+      ci_95_upper: 7.82
+      se: 0.8023
+      n_reflections: 7
+      n_sources: 7
+    economic:
+      score: 7.386
+      ci_95_lower: 6.127
+      ci_95_upper: 8.644
+      se: 0.5143
+      n_reflections: 7
+      n_sources: 7
+    cultural:
+      score: 6.129
+      ci_95_lower: 4.923
+      ci_95_upper: 7.334
+      se: 0.4927
+      n_reflections: 7
+      n_sources: 7
+    temporal:
+      score: 6.571
+      ci_95_lower: 5.368
+      ci_95_upper: 7.775
+      se: 0.4917
+      n_reflections: 7
+      n_sources: 7
+operator_floor:
+  actual-owners: 0.0449
+  brand-debaters: 0.0097
+  chinese-cohort: 0.0034
+  italian-press: 0.0131
+  non-italian-press: 0.0096
+source_floor:
+  actual-owners: 0.0054
+  brand-debaters: 0.0008
+  chinese-cohort: 0.0012
+  italian-press: 0.0006
+  non-italian-press: 0.0008
+pair_distance:
+  actual-owners|brand-debaters: 0.0187
+  actual-owners|chinese-cohort: 0.0312
+  actual-owners|italian-press: 0.0249
+  actual-owners|non-italian-press: 0.027
+  brand-debaters|chinese-cohort: 0.009
+  brand-debaters|italian-press: 0.0035
+  brand-debaters|non-italian-press: 0.0031
+  chinese-cohort|italian-press: 0.0118
+  chinese-cohort|non-italian-press: 0.0065
+  italian-press|non-italian-press: 0.01
+pair_signal_to_noise:
+  actual-owners|brand-debaters: 0.4165
+  actual-owners|chinese-cohort: 0.6949
+  actual-owners|italian-press: 0.5546
+  actual-owners|non-italian-press: 0.6013
+  brand-debaters|chinese-cohort: 0.9278
+  brand-debaters|italian-press: 0.2672
+  brand-debaters|non-italian-press: 0.3196
+  chinese-cohort|italian-press: 0.9008
+  chinese-cohort|non-italian-press: 0.6771
+  italian-press|non-italian-press: 0.7634
+aggregate_signal_to_noise: 0.9027
+bootstrap:
+  operator_floor:
+    actual-owners:
+      lo: 0.0275
+      median: 0.057
+      hi: 0.1086
+    brand-debaters:
+      lo: 0.0042
+      median: 0.0127
+      hi: 0.0248
+    chinese-cohort:
+      lo: 0.0031
+      median: 0.0065
+      hi: 0.0167
+    italian-press:
+      lo: 0.012
+      median: 0.0195
+      hi: 0.0425
+    non-italian-press:
+      lo: 0.0064
+      median: 0.0134
+      hi: 0.025
+  source_floor:
+    actual-owners:
+      lo: 0.0005
+      median: 0.007
+      hi: 0.0252
+    brand-debaters:
+      lo: 0.0001
+      median: 0.0012
+      hi: 0.0061
+    chinese-cohort:
+      lo: 0.0003
+      median: 0.0017
+      hi: 0.0073
+    italian-press:
+      lo: 0.0003
+      median: 0.0011
+      hi: 0.0042
+    non-italian-press:
+      lo: 0.0001
+      median: 0.0013
+      hi: 0.0042
+  pair_signal_to_noise:
+    actual-owners|brand-debaters:
+      lo: 0.2833
+      median: 0.4609
+      hi: 0.7006
+    actual-owners|chinese-cohort:
+      lo: 0.3787
+      median: 0.6674
+      hi: 1.198
+    actual-owners|italian-press:
+      lo: 0.319
+      median: 0.5653
+      hi: 1.104
+    actual-owners|non-italian-press:
+      lo: 0.3496
+      median: 0.5769
+      hi: 0.9063
+    brand-debaters|chinese-cohort:
+      lo: 0.3804
+      median: 0.8711
+      hi: 2.0374
+    brand-debaters|italian-press:
+      lo: 0.11
+      median: 0.2736
+      hi: 0.6506
+    brand-debaters|non-italian-press:
+      lo: 0.0734
+      median: 0.3311
+      hi: 0.9702
+    chinese-cohort|italian-press:
+      lo: 0.2698
+      median: 0.6967
+      hi: 1.6091
+    chinese-cohort|non-italian-press:
+      lo: 0.3056
+      median: 0.7514
+      hi: 1.4671
+    italian-press|non-italian-press:
+      lo: 0.219
+      median: 0.5692
+      hi: 1.1493
+  pair_verdict_robustness:
+    actual-owners|brand-debaters:
+      p_gt_1: 0.0013
+      p_gt_2: 0.0
+    actual-owners|chinese-cohort:
+      p_gt_1: 0.094
+      p_gt_2: 0.0003
+    actual-owners|italian-press:
+      p_gt_1: 0.051
+      p_gt_2: 0.0
+    actual-owners|non-italian-press:
+      p_gt_1: 0.0097
+      p_gt_2: 0.0
+    brand-debaters|chinese-cohort:
+      p_gt_1: 0.3744
+      p_gt_2: 0.0292
+    brand-debaters|italian-press:
+      p_gt_1: 0.002
+      p_gt_2: 0.0
+    brand-debaters|non-italian-press:
+      p_gt_1: 0.0213
+      p_gt_2: 0.0001
+    chinese-cohort|italian-press:
+      p_gt_1: 0.2099
+      p_gt_2: 0.0044
+    chinese-cohort|non-italian-press:
+      p_gt_1: 0.2165
+      p_gt_2: 0.0008
+    italian-press|non-italian-press:
+      p_gt_1: 0.0653
+      p_gt_2: 0.0
+  aggregate_signal_to_noise:
+    lo: 0.6407
+    median: 0.8602
+    hi: 1.1503

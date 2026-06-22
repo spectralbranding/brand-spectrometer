@@ -23,15 +23,15 @@
     },
     "dims": {
       "type": "array", "minItems": 2,
-      "description": "The perceptual dimensions, in a fixed canonical order shared by every cohort vector.",
+      "description": "The perceptual dimensions, in a fixed canonical order shared by every cohort vector. For the eight canonical keys (semiotic, narrative, ideological, experiential, social, economic, cultural, temporal) provide ONLY the key — the tool hardcodes the label, description, and colour by key and overrides any supplied values, so users cannot substitute them.",
       "items": {
         "type": "object",
-        "required": ["key", "label"],
+        "required": ["key"],
         "properties": {
-          "key": { "type": "string" },
-          "label": { "type": "string" },
-          "desc": { "type": "string" },
-          "color": { "type": "string", "description": "Hex colour, e.g. '#3a8dde'." }
+          "key": { "type": "string", "description": "Canonical dimension key. label/desc/color are supplied by the tool for canonical keys." },
+          "label": { "type": "string", "description": "Optional. Ignored (overridden) for canonical keys." },
+          "desc": { "type": "string", "description": "Optional. Ignored (overridden) for canonical keys." },
+          "color": { "type": "string", "description": "Optional hex colour. Ignored (overridden) for canonical keys; auto-assigned for custom keys." }
         }
       }
     },
@@ -44,16 +44,36 @@
         "properties": {
           "id": { "type": "string" },
           "label": { "type": "string" },
-          "color": { "type": "string" },
+          "color": { "type": "string", "description": "Optional hex colour. If omitted, the tool auto-assigns one from a palette." },
           "vector": {
             "type": "array",
             "items": { "type": "number", "minimum": 0, "maximum": 10 },
-            "description": "One score per dim, 0-10, in canonical dim order. Length MUST equal dims.length."
+            "description": "One score per dim, 0-10, in canonical dim order. Length MUST equal dims.length. This is how STRONGLY each dimension registers (size of the meaning), NOT approval."
           },
-          "intervals": {
+          "valence": {
             "type": "array",
-            "description": "Optional per-dimension [low, high] interval, present in current-methodology atlases.",
-            "items": { "type": "array", "items": { "type": "number" }, "minItems": 2, "maxItems": 2 }
+            "items": { "type": "number", "minimum": -1, "maximum": 1 },
+            "description": "Optional per-dimension sentiment, -1 (negative) .. +1 (positive). Same length and order as vector. Lights up the Sentiment (L2) dial: the dot's position on each line. A single AI read can provide this."
+          },
+          "ci_95": {
+            "type": "array",
+            "description": "Optional per-dimension 95% confidence interval [low, high] on the 0-10 scale. Same length/order as vector. Lights up the Resolve (L3) dial (the halo). Produced by the multi-run pipeline; a single read CANNOT estimate it (do not fabricate).",
+            "items": { "type": "array", "items": { "type": "number", "minimum": 0, "maximum": 10 }, "minItems": 2, "maxItems": 2 }
+          },
+          "emission": {
+            "type": "array",
+            "items": { "type": "number", "minimum": 0, "maximum": 1 },
+            "description": "Optional per-dimension signal strength / salience, 0..1. Same length/order as vector. Lights up the Cloud (L4) dial as line weight."
+          },
+          "valence_spread": {
+            "type": "array",
+            "items": { "type": "number", "minimum": 0, "maximum": 1 },
+            "description": "Optional per-dimension spread of valence across sources, 0..1. Same length/order as vector. At the Cloud (L4) dial the valence dot becomes a horizontal distribution cloud whose width scales with this. Produced by the pipeline."
+          },
+          "reflections": {
+            "type": "array",
+            "description": "Optional per-dimension array of per-source reflection readings (the ghost dots at the Cloud (L4) dial). Outer length == dims.length; each inner array is that dimension's individual source readings (0-10). Produced by the pipeline.",
+            "items": { "type": "array", "items": { "type": "number", "minimum": 0, "maximum": 10 } }
           }
         }
       }

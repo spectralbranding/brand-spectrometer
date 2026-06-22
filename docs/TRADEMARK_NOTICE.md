@@ -8,7 +8,7 @@ This notice accompanies the Brand Spectrometer codebase, methodology, and worked
 
 The Brand Spectrometer analyzes publicly observable artifacts associated with named commercial brands (for example: press releases, public-facing advertising, retailer-facing materials, journalistic coverage, and analyst commentary). All brand names, trademarks, registered trademarks, service marks, trade dress, and trade names referenced in this work — including, without limitation, **Ferrari**, **Luce**, **LoveFrom**, and any other brand mark used as a worked-example subject — are the property of their respective owners.
 
-This project, its author, and the `viberesearch` / `spectralbranding` organizations are **not affiliated with, endorsed by, sponsored by, certified by, or otherwise connected to** any brand owner whose mark is discussed in this work. Use of brand names is for identification, commentary, and analytical-research purposes only.
+This project, its author, and the `spectralbranding` organization are **not affiliated with, endorsed by, sponsored by, certified by, or otherwise connected to** any brand owner whose mark is discussed in this work. Use of brand names is for identification, commentary, and analytical-research purposes only.
 
 ## 2. Fair-Use Rationale
 
@@ -42,8 +42,8 @@ Under Spectral Brand Theory, brand specifications inferred from public artifacts
 
 The author welcomes correction of factual errors, takedown requests for any inadvertent reproduction of trademark assets, and good-faith dialogue with brand owners whose marks are referenced.
 
-- Contact email: *<contact email to be added before public launch>*
-- Repository issue tracker: *<https://github.com/viberesearch/brand-spectrometer/issues — placeholder until repository goes public>*
+- Project: [spectralbranding.com](https://spectralbranding.com)
+- Repository issue tracker: <https://github.com/spectralbranding/brand-spectrometer/issues>
 
 The author will review and respond to any well-founded notice in a reasonable timeframe.
 

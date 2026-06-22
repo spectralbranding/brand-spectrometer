@@ -1,0 +1,428 @@
+{
+  "atlas": "ferrari_luce_fresh_2606",
+  "grain": "host",
+  "focal": "actual-owners",
+  "press_cohorts": [
+    "brand-debaters",
+    "chinese-cohort",
+    "italian-press",
+    "non-italian-press"
+  ],
+  "perms": 9999,
+  "seed": 20260621,
+  "effect_size": "Cohen's d (pooled SD); raw_mean_diff on 0-10 scale",
+  "multiple_comparison": "Holm (FWER) over the 8 dimensions",
+  "focal_vs_pooled_press": {
+    "semiotic": {
+      "focal_mean": 2.86,
+      "other_mean": 6.02,
+      "raw_mean_diff": 3.16,
+      "cohens_d": 1.832,
+      "perm_p": 0.0007,
+      "n_focal_sources": 5,
+      "n_other_sources": 30,
+      "perm_p_holm": 0.0056
+    },
+    "narrative": {
+      "focal_mean": 4.24,
+      "other_mean": 5.84,
+      "raw_mean_diff": 1.6,
+      "cohens_d": 0.886,
+      "perm_p": 0.081,
+      "n_focal_sources": 5,
+      "n_other_sources": 30,
+      "perm_p_holm": 0.162
+    },
+    "ideological": {
+      "focal_mean": 2.98,
+      "other_mean": 5.787,
+      "raw_mean_diff": 2.807,
+      "cohens_d": 1.523,
+      "perm_p": 0.0028,
+      "n_focal_sources": 5,
+      "n_other_sources": 30,
+      "perm_p_holm": 0.0112
+    },
+    "experiential": {
+      "focal_mean": 2.85,
+      "other_mean": 5.683,
+      "raw_mean_diff": 2.833,
+      "cohens_d": 1.587,
+      "perm_p": 0.0011,
+      "n_focal_sources": 5,
+      "n_other_sources": 30,
+      "perm_p_holm": 0.0066
+    },
+    "social": {
+      "focal_mean": 5.27,
+      "other_mean": 5.833,
+      "raw_mean_diff": 0.563,
+      "cohens_d": 0.276,
+      "perm_p": 0.5731,
+      "n_focal_sources": 5,
+      "n_other_sources": 30,
+      "perm_p_holm": 0.5731
+    },
+    "economic": {
+      "focal_mean": 2.98,
+      "other_mean": 6.153,
+      "raw_mean_diff": 3.173,
+      "cohens_d": 1.81,
+      "perm_p": 0.0007,
+      "n_focal_sources": 5,
+      "n_other_sources": 30,
+      "perm_p_holm": 0.0056
+    },
+    "cultural": {
+      "focal_mean": 3.58,
+      "other_mean": 6.13,
+      "raw_mean_diff": 2.55,
+      "cohens_d": 1.357,
+      "perm_p": 0.0052,
+      "n_focal_sources": 5,
+      "n_other_sources": 30,
+      "perm_p_holm": 0.0156
+    },
+    "temporal": {
+      "focal_mean": 3.35,
+      "other_mean": 6.0,
+      "raw_mean_diff": 2.65,
+      "cohens_d": 1.682,
+      "perm_p": 0.0017,
+      "n_focal_sources": 5,
+      "n_other_sources": 30,
+      "perm_p_holm": 0.0085
+    }
+  },
+  "focal_vs_each_press": {
+    "brand-debaters": {
+      "semiotic": {
+        "focal_mean": 2.86,
+        "other_mean": 5.957,
+        "raw_mean_diff": 3.097,
+        "cohens_d": 1.865,
+        "perm_p": 0.0139,
+        "n_focal_sources": 5,
+        "n_other_sources": 7,
+        "perm_p_holm": 0.0973
+      },
+      "narrative": {
+        "focal_mean": 4.24,
+        "other_mean": 6.229,
+        "raw_mean_diff": 1.989,
+        "cohens_d": 0.838,
+        "perm_p": 0.1738,
+        "n_focal_sources": 5,
+        "n_other_sources": 7,
+        "perm_p_holm": 0.3476
+      },
+      "ideological": {
+        "focal_mean": 2.98,
+        "other_mean": 5.771,
+        "raw_mean_diff": 2.791,
+        "cohens_d": 1.487,
+        "perm_p": 0.0353,
+        "n_focal_sources": 5,
+        "n_other_sources": 7,
+        "perm_p_holm": 0.1412
+      },
+      "experiential": {
+        "focal_mean": 2.85,
+        "other_mean": 5.186,
+        "raw_mean_diff": 2.336,
+        "cohens_d": 1.75,
+        "perm_p": 0.0163,
+        "n_focal_sources": 5,
+        "n_other_sources": 7,
+        "perm_p_holm": 0.0973
+      },
+      "social": {
+        "focal_mean": 5.27,
+        "other_mean": 5.843,
+        "raw_mean_diff": 0.573,
+        "cohens_d": 0.249,
+        "perm_p": 0.6567,
+        "n_focal_sources": 5,
+        "n_other_sources": 7,
+        "perm_p_holm": 0.6567
+      },
+      "economic": {
+        "focal_mean": 2.98,
+        "other_mean": 6.214,
+        "raw_mean_diff": 3.234,
+        "cohens_d": 2.307,
+        "perm_p": 0.0043,
+        "n_focal_sources": 5,
+        "n_other_sources": 7,
+        "perm_p_holm": 0.0344
+      },
+      "cultural": {
+        "focal_mean": 3.58,
+        "other_mean": 6.2,
+        "raw_mean_diff": 2.62,
+        "cohens_d": 1.262,
+        "perm_p": 0.0576,
+        "n_focal_sources": 5,
+        "n_other_sources": 7,
+        "perm_p_holm": 0.1728
+      },
+      "temporal": {
+        "focal_mean": 3.35,
+        "other_mean": 5.429,
+        "raw_mean_diff": 2.079,
+        "cohens_d": 1.897,
+        "perm_p": 0.0155,
+        "n_focal_sources": 5,
+        "n_other_sources": 7,
+        "perm_p_holm": 0.0973
+      }
+    },
+    "chinese-cohort": {
+      "semiotic": {
+        "focal_mean": 2.86,
+        "other_mean": 5.688,
+        "raw_mean_diff": 2.827,
+        "cohens_d": 1.339,
+        "perm_p": 0.0447,
+        "n_focal_sources": 5,
+        "n_other_sources": 8,
+        "perm_p_holm": 0.2682
+      },
+      "narrative": {
+        "focal_mean": 4.24,
+        "other_mean": 5.4,
+        "raw_mean_diff": 1.16,
+        "cohens_d": 0.478,
+        "perm_p": 0.409,
+        "n_focal_sources": 5,
+        "n_other_sources": 8,
+        "perm_p_holm": 0.818
+      },
+      "ideological": {
+        "focal_mean": 2.98,
+        "other_mean": 5.5,
+        "raw_mean_diff": 2.52,
+        "cohens_d": 1.224,
+        "perm_p": 0.0594,
+        "n_focal_sources": 5,
+        "n_other_sources": 8,
+        "perm_p_holm": 0.2682
+      },
+      "experiential": {
+        "focal_mean": 2.85,
+        "other_mean": 6.1,
+        "raw_mean_diff": 3.25,
+        "cohens_d": 1.619,
+        "perm_p": 0.0205,
+        "n_focal_sources": 5,
+        "n_other_sources": 8,
+        "perm_p_holm": 0.1435
+      },
+      "social": {
+        "focal_mean": 5.27,
+        "other_mean": 5.75,
+        "raw_mean_diff": 0.48,
+        "cohens_d": 0.177,
+        "perm_p": 0.7915,
+        "n_focal_sources": 5,
+        "n_other_sources": 8,
+        "perm_p_holm": 0.818
+      },
+      "economic": {
+        "focal_mean": 2.98,
+        "other_mean": 5.812,
+        "raw_mean_diff": 2.833,
+        "cohens_d": 1.267,
+        "perm_p": 0.0524,
+        "n_focal_sources": 5,
+        "n_other_sources": 8,
+        "perm_p_holm": 0.2682
+      },
+      "cultural": {
+        "focal_mean": 3.58,
+        "other_mean": 6.0,
+        "raw_mean_diff": 2.42,
+        "cohens_d": 1.051,
+        "perm_p": 0.0979,
+        "n_focal_sources": 5,
+        "n_other_sources": 8,
+        "perm_p_holm": 0.2937
+      },
+      "temporal": {
+        "focal_mean": 3.35,
+        "other_mean": 7.225,
+        "raw_mean_diff": 3.875,
+        "cohens_d": 2.386,
+        "perm_p": 0.0025,
+        "n_focal_sources": 5,
+        "n_other_sources": 8,
+        "perm_p_holm": 0.02
+      }
+    },
+    "italian-press": {
+      "semiotic": {
+        "focal_mean": 2.86,
+        "other_mean": 6.275,
+        "raw_mean_diff": 3.415,
+        "cohens_d": 2.254,
+        "perm_p": 0.0037,
+        "n_focal_sources": 5,
+        "n_other_sources": 8,
+        "perm_p_holm": 0.0259
+      },
+      "narrative": {
+        "focal_mean": 4.24,
+        "other_mean": 5.125,
+        "raw_mean_diff": 0.885,
+        "cohens_d": 0.45,
+        "perm_p": 0.4355,
+        "n_focal_sources": 5,
+        "n_other_sources": 8,
+        "perm_p_holm": 0.871
+      },
+      "ideological": {
+        "focal_mean": 2.98,
+        "other_mean": 5.362,
+        "raw_mean_diff": 2.382,
+        "cohens_d": 1.321,
+        "perm_p": 0.0446,
+        "n_focal_sources": 5,
+        "n_other_sources": 8,
+        "perm_p_holm": 0.1338
+      },
+      "experiential": {
+        "focal_mean": 2.85,
+        "other_mean": 5.137,
+        "raw_mean_diff": 2.287,
+        "cohens_d": 1.717,
+        "perm_p": 0.0019,
+        "n_focal_sources": 5,
+        "n_other_sources": 8,
+        "perm_p_holm": 0.0152
+      },
+      "social": {
+        "focal_mean": 5.27,
+        "other_mean": 5.888,
+        "raw_mean_diff": 0.617,
+        "cohens_d": 0.254,
+        "perm_p": 0.6634,
+        "n_focal_sources": 5,
+        "n_other_sources": 8,
+        "perm_p_holm": 0.871
+      },
+      "economic": {
+        "focal_mean": 2.98,
+        "other_mean": 5.362,
+        "raw_mean_diff": 2.382,
+        "cohens_d": 1.679,
+        "perm_p": 0.0149,
+        "n_focal_sources": 5,
+        "n_other_sources": 8,
+        "perm_p_holm": 0.0894
+      },
+      "cultural": {
+        "focal_mean": 3.58,
+        "other_mean": 6.2,
+        "raw_mean_diff": 2.62,
+        "cohens_d": 1.48,
+        "perm_p": 0.0254,
+        "n_focal_sources": 5,
+        "n_other_sources": 8,
+        "perm_p_holm": 0.103
+      },
+      "temporal": {
+        "focal_mean": 3.35,
+        "other_mean": 4.775,
+        "raw_mean_diff": 1.425,
+        "cohens_d": 1.619,
+        "perm_p": 0.0206,
+        "n_focal_sources": 5,
+        "n_other_sources": 8,
+        "perm_p_holm": 0.103
+      }
+    },
+    "non-italian-press": {
+      "semiotic": {
+        "focal_mean": 2.86,
+        "other_mean": 6.171,
+        "raw_mean_diff": 3.311,
+        "cohens_d": 2.034,
+        "perm_p": 0.0093,
+        "n_focal_sources": 5,
+        "n_other_sources": 7,
+        "perm_p_holm": 0.0465
+      },
+      "narrative": {
+        "focal_mean": 4.24,
+        "other_mean": 6.771,
+        "raw_mean_diff": 2.531,
+        "cohens_d": 1.106,
+        "perm_p": 0.1067,
+        "n_focal_sources": 5,
+        "n_other_sources": 7,
+        "perm_p_holm": 0.2134
+      },
+      "ideological": {
+        "focal_mean": 2.98,
+        "other_mean": 6.614,
+        "raw_mean_diff": 3.634,
+        "cohens_d": 2.836,
+        "perm_p": 0.0036,
+        "n_focal_sources": 5,
+        "n_other_sources": 7,
+        "perm_p_holm": 0.0216
+      },
+      "experiential": {
+        "focal_mean": 2.85,
+        "other_mean": 6.329,
+        "raw_mean_diff": 3.479,
+        "cohens_d": 1.898,
+        "perm_p": 0.0139,
+        "n_focal_sources": 5,
+        "n_other_sources": 7,
+        "perm_p_holm": 0.0556
+      },
+      "social": {
+        "focal_mean": 5.27,
+        "other_mean": 5.857,
+        "raw_mean_diff": 0.587,
+        "cohens_d": 0.22,
+        "perm_p": 0.7153,
+        "n_focal_sources": 5,
+        "n_other_sources": 7,
+        "perm_p_holm": 0.7153
+      },
+      "economic": {
+        "focal_mean": 2.98,
+        "other_mean": 7.386,
+        "raw_mean_diff": 4.406,
+        "cohens_d": 2.927,
+        "perm_p": 0.0022,
+        "n_focal_sources": 5,
+        "n_other_sources": 7,
+        "perm_p_holm": 0.0154
+      },
+      "cultural": {
+        "focal_mean": 3.58,
+        "other_mean": 6.129,
+        "raw_mean_diff": 2.549,
+        "cohens_d": 1.61,
+        "perm_p": 0.0316,
+        "n_focal_sources": 5,
+        "n_other_sources": 7,
+        "perm_p_holm": 0.0948
+      },
+      "temporal": {
+        "focal_mean": 3.35,
+        "other_mean": 6.571,
+        "raw_mean_diff": 3.221,
+        "cohens_d": 2.789,
+        "perm_p": 0.001,
+        "n_focal_sources": 5,
+        "n_other_sources": 7,
+        "perm_p_holm": 0.008
+      }
+    }
+  },
+  "note": "source-level per-dimension values (signal-source clustered). Localizes the multivariate owners-vs-press separation to specific dimensions; positive raw_mean_diff = press read the brand HIGHER than owners on that dimension."
+}

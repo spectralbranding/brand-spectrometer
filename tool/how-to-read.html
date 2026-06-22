@@ -1,0 +1,280 @@
+<!doctype html><html lang="en"><head><meta charset="utf-8"/>
+<meta name="viewport" content="width=device-width,initial-scale=1"/>
+<title>How to read the Brand Spectrometer</title>
+<meta name="description" content="A plain-language guide to the spectrum strip: from one number to eight dimensions, audiences, sentiment, and the noise floor — and why a brand, like a constellation, is completed in the observer." />
+<meta property="og:type" content="article" />
+<meta property="og:title" content="How to read the Brand Spectrometer" />
+<meta property="og:description" content="A plain-language guide to the spectrum strip: from one number to eight dimensions, audiences, sentiment, and the noise floor — and why a brand is completed in the observer." />
+<meta property="og:image" content="https://meter.spectralbranding.com/og.png" />
+<meta property="og:url" content="https://meter.spectralbranding.com/how-to-read" />
+<meta property="og:site_name" content="Brand Spectrometer" />
+<meta property="og:locale" content="en_US" />
+<meta name="twitter:card" content="summary_large_image" />
+<meta name="twitter:title" content="How to read the Brand Spectrometer" />
+<meta name="twitter:description" content="From one number to eight dimensions, audiences, sentiment, and the noise floor — how to read the spectrum strip." />
+<meta name="twitter:image" content="https://meter.spectralbranding.com/og.png" />
+<meta name="theme-color" content="#0a0b10" />
+<link rel="canonical" href="https://meter.spectralbranding.com/how-to-read" />
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "TechArticle",
+  "headline": "How to read the Brand Spectrometer",
+  "description": "A plain-language guide to the spectrum strip: from one number to eight dimensions, audience cohorts, sentiment (valence), and the noise floor.",
+  "url": "https://meter.spectralbranding.com/how-to-read",
+  "image": "https://meter.spectralbranding.com/og.png",
+  "author": { "@type": "Person", "name": "Dmitry Zharnikov" },
+  "publisher": { "@id": "https://spectralbranding.com/#org" },
+  "isPartOf": { "@id": "https://meter.spectralbranding.com/#app" },
+  "about": [ "brand perception", "spectral brand theory", "data visualization", "measurement uncertainty" ]
+}
+</script>
+<link rel="icon" type="image/svg+xml" href="/favicon.svg" />
+<link rel="alternate icon" href="/favicon.ico" />
+<style>
+:root{
+  --bg:#0a0b10; --bg2:#11131c; --panel:#141824; --ink:#eef0f6; --mut:#9aa0b4;
+  --faint:#5a6273; --line:#262a3a;
+  --grad:linear-gradient(90deg,#e64a3b,#e8842b,#e8c531,#7bc043,#2fb3a8,#3a8dde,#7a5cd0,#c44fa8);
+  --resolved:#4ec3a8; --marginal:#e8c531; --sub:#ff7a6e;
+}
+*{box-sizing:border-box}
+html{scroll-behavior:smooth}
+body{margin:0;background:radial-gradient(1200px 700px at 72% -8%,#161c2c 0%,var(--bg) 55%) fixed;
+  color:var(--ink);font-family:system-ui,-apple-system,"Segoe UI",Roboto,sans-serif;line-height:1.55;-webkit-font-smoothing:antialiased}
+.wrap{max-width:1080px;margin:0 auto;padding:0 24px}
+.spectrum-strip{height:6px;background:var(--grad)}
+.navtop{position:sticky;top:0;z-index:20;background:rgba(10,11,16,.82);backdrop-filter:blur(8px);border-bottom:1px solid var(--line)}
+.navtop .wrap{display:flex;align-items:center;gap:22px;height:3.4rem}
+.navtop .brand{font-weight:300;font-size:.8rem;text-transform:uppercase;letter-spacing:.12em;color:var(--mut)}
+.navtop a{color:var(--mut);text-decoration:none;font-size:.85rem;border-bottom:0}
+.navtop a:hover{color:var(--ink)}
+.navtop .home{color:var(--ink)}
+.navtop .spacer{margin-left:auto}
+.navtop .brand a.grad{color:transparent}
+.demohint{color:var(--faint);font-weight:400}
+section{padding:40px 0;border-bottom:1px solid var(--line)}
+section:last-child{border-bottom:0}
+.eyebrow{text-transform:uppercase;letter-spacing:.16em;font-size:11px;font-weight:700;color:#7fb6f0;margin:0 0 12px}
+h1{font-family:"Iowan Old Style",Palatino,Georgia,serif;font-size:clamp(28px,4.5vw,44px);line-height:1.06;margin:0 0 14px;font-weight:650}
+h2{font-family:"Iowan Old Style",Palatino,Georgia,serif;font-size:clamp(21px,3vw,30px);line-height:1.12;margin:0 0 12px;font-weight:600}
+.grad{background:var(--grad);-webkit-background-clip:text;background-clip:text;color:transparent}
+.lead{font-size:clamp(16px,1.8vw,20px);max-width:42em;color:#dfe3ee}
+p{margin:.6em 0;max-width:46em}
+b{color:var(--ink)} a{color:#9fc6ff;text-decoration:none;border-bottom:1px solid #3a567e}
+a:hover{border-color:#9fc6ff}
+.panel{background:var(--panel);border:1px solid var(--line);border-radius:16px;padding:20px 22px}
+.dialrow{display:flex;align-items:center;gap:10px;flex-wrap:wrap;margin:6px 0 14px}
+.diallabel{font-size:11px;text-transform:uppercase;letter-spacing:.14em;color:var(--faint);font-weight:700}
+.dial{display:inline-flex;gap:6px;flex-wrap:wrap}
+.lvl{font-size:12.5px;color:var(--mut);border:1px solid var(--line);background:var(--bg2);border-radius:999px;padding:5px 12px;cursor:pointer;user-select:none;transition:background .15s,color .15s}
+.lvl.on{color:#0a0b10;background:#7fb6f0;border-color:#7fb6f0;font-weight:600}
+.dialaud{font-size:12px;color:var(--faint)}
+.controls{display:flex;flex-wrap:wrap;gap:8px;margin:6px 0 4px}
+.chip{border:1px solid var(--line);background:var(--bg2);color:var(--mut);border-radius:999px;padding:5px 12px;font-size:12.5px;font-weight:600;cursor:pointer;display:inline-flex;gap:7px;align-items:center;user-select:none}
+.chip .cdot{width:9px;height:9px;border-radius:50%}
+.chip.off{opacity:.4}
+svg{display:block;width:100%;height:auto} svg text{font-family:inherit;fill:var(--ink)}
+#chart svg .band,#chart svg .cohline,#chart svg .vdot,#chart svg .cihalo,#chart svg .vaxis{transition:opacity .4s ease}
+.chartcap{margin:12px 2px 0;font-size:12.5px;color:var(--marginal);border-left:2px solid rgba(232,197,49,.4);padding-left:10px}
+.tip{position:fixed;pointer-events:none;background:#020308;border:1px solid var(--line);border-radius:8px;padding:7px 10px;font-size:12px;color:var(--ink);opacity:0;transition:opacity .12s;z-index:50;max-width:240px}
+.legend{display:flex;flex-wrap:wrap;gap:12px 18px;font-size:12.5px;color:var(--mut);margin-top:14px}
+.legend .lz{display:inline-flex;align-items:center;gap:7px;cursor:help}
+.swk{width:20px;height:10px;border-radius:3px;display:inline-block}
+.dot{width:9px;height:9px;border-radius:50%;display:inline-block}
+.cols{display:grid;grid-template-columns:1fr 1fr;gap:20px;margin-top:10px}
+@media(max-width:640px){.cols{grid-template-columns:1fr}}
+.note{color:var(--mut);font-size:.95em;border-left:2px solid var(--line);padding-left:1em;margin-top:1.1em}
+.foot{color:var(--faint);font-size:12px;padding:30px 0 60px}
+</style></head><body>
+<div class="spectrum-strip"></div>
+<nav class="navtop"><div class="wrap">
+  <span class="brand"><a class="home" href="https://spectralbranding.com">Brand</a> <a class="grad" href="/">Spectrometer</a></span>
+  <span class="spacer"></span>
+  <a href="/how-to-read">How to read</a>
+  <a href="/faq">FAQ</a>
+  <a href="/#load">Load an atlas ↑</a>
+</div></nav>
+
+<div class="wrap">
+
+<section>
+  <p class="eyebrow">How to read this</p>
+  <h1>From one number<br>to the <span class="grad">whole instrument</span></h1>
+  <p class="lead">A single brand score is a flat reading of a thing that isn't flat. The Brand
+  Spectrometer un-flattens it one step at a time. Move the dial below and watch the one number
+  open into eight dimensions, then into the audiences that disagree, then into how they feel and
+  how sure we are.</p>
+</section>
+
+<section id="dial">
+  <p class="eyebrow">The detail dial · move it</p>
+  <h2>One number, opened up</h2>
+  <p>Each step <b>adds</b> to the one before — nothing is swapped out. Every step also says, in plain
+  words, what it still hides.</p>
+  <div class="controls" id="chips"></div>
+  <div class="dialrow"><span class="diallabel">Detail</span><span class="dial" id="dial2"></span>
+    <span class="dialaud" id="dialaud"></span></div>
+  <div class="panel"><div id="chart"></div><div class="legend" id="legend"></div>
+    <p class="chartcap" id="chartcap"></p></div>
+  <div class="cols">
+    <p><b>−1 · One number.</b> A single brand-health score: every dimension and every audience
+    averaged into one line. It's not wrong — it's just low-resolution. This is the world most
+    metrics live in.</p>
+    <p><b>0 · Headline.</b> That one number was a blend of <b>eight dimensions</b>. The line splits
+    into eight. Already you can see the brand is read more strongly on some dimensions than others.</p>
+    <p><b>1 · Compare.</b> Each of those was an average over <b>audiences who disagree</b>. The band
+    is the spread; each line is one audience. The same brand, read differently by each.</p>
+    <p><b>2 · Sentiment.</b> Height is how <i>strongly</i> a dimension registers; the <b>dot</b> on
+    the line is the <i>feeling</i> — its valence, from −1 (negative, left) to +1 (positive, right).
+    A line that's high but whose dot sits far left is the dangerous one: strong, and negative.</p>
+    <p><b>3 · Resolve.</b> The halo around each line is the <b>95% confidence interval</b> — how sure
+    we are. And the instrument carries a <b>noise floor</b>: gaps smaller than the floor are reported
+    as "can't tell," not as findings.</p>
+    <p><b>4 · Cloud.</b> The line's <b>weight</b> is its emission strength — how loudly the brand
+    emits on that dimension — and every signal source behind the reading is shown. The full
+    distribution, not a point.</p>
+  </div>
+</section>
+
+<section id="filters">
+  <p class="eyebrow">Why it's called a spectrometer</p>
+  <h2>Eight <span class="grad">filters</span>, one sky</h2>
+  <p>A real spectrometer splits incoming light into separate wavelength bands and measures each one.
+  This does the same with a brand. Picture every public signal about a brand — a review, a post, a
+  press piece, a survey answer — as a <b>star</b> in the sky.</p>
+  <p>Each column of the strip is the sky <b>photographed through one filter</b>. The "Semiotic" column
+  lets through only Semiotic-wavelength light, so you see which stars shine on <i>that</i> dimension,
+  and how brightly. Slide to the next column and you're looking through a different filter.</p>
+  <p><b>Here's the key:</b> you can't find an audience from one filter alone. Through the Semiotic
+  filter the stars clump one way; through Economic, another. An <b>audience (a cohort) is the group of
+  stars that stay together across all eight filters</b> — a pattern in the full picture, not in any
+  single band. That's why the same audience sits at a <i>different height in every column</i>: same
+  group of stars, read differently at each wavelength. (That difference between audiences is the
+  measurement — what the theory calls metameric variance.)</p>
+  <p class="note">You choose how finely to group the stars. Loosely, you get a few broad audiences;
+  finely, many small ones. The instrument doesn't impose the audiences — it shows the stars and lets
+  you set the resolution.</p>
+</section>
+
+<section id="sky">
+  <p class="eyebrow">A brand is completed in the observer</p>
+  <h2>The <span class="grad">constellation</span>, not the stars</h2>
+  <p>A constellation isn't a property of the stars — it's a pattern you see from <b>where you stand</b>.
+  The stars (the signals) are real. The shape they make is the observer's. Move to a different place
+  in the universe and the same stars fall into an entirely different figure. <b>That different
+  standpoint is a different audience.</b> So there's no single "true" brand to find — only the
+  pattern each audience completes, and (from where they stand) some stars are hidden from them
+  altogether.</p>
+  <p>The <b>halo</b> around an audience's line is how tightly its attributable stars cluster: a tight
+  halo means a confident, agreed reading; a wide one means the audience is unsure or divided.</p>
+  <h2 style="margin-top:30px">Astrology, or <span class="grad">spectroscopy</span>?</h2>
+  <p>The old way reads the sky like <b>astrology</b>: it flattens it to a 2-D dome and collapses a
+  whole person to <b>one sign</b> — one number. Same sky; very low fidelity. The Brand Spectrometer
+  reads it like <b>astronomy with a spectrograph</b>: it splits the light into bands and recovers
+  what the flat map threw away — what each signal is made of (the eight dimensions), how it's moving
+  (heritage and momentum, the Temporal band), how far apart audiences really are (the spread), and —
+  honestly — what it <i>cannot</i> resolve (the noise floor). Climbing the dial is that whole move,
+  from one flat sign to a multi-band reading. We're judging the <i>instrument's</i> fidelity, not
+  anyone who reads stars.</p>
+</section>
+
+<section>
+  <p class="eyebrow">What it deliberately does not show</p>
+  <h2>The honest footer</h2>
+  <p>No single "true" silhouette — there's no presumed ground truth, only a distribution across
+  audiences. Anything below the noise floor is reported as <b>unresolved, not zero</b>: the
+  instrument tells you when it can't tell two audiences apart, instead of inventing a difference.
+  It measures audiences, never individuals.</p>
+  <p style="margin-top:18px"><a href="spectrometer.html">← Back to the tool</a></p>
+</section>
+
+</div>
+<div id="tip" class="tip"></div>
+<div class="wrap foot">Measurement instrument for how a brand is perceived — not a verdict on what it
+"is." Code open-source (MIT); theory CC BY 4.0. No brand assets reproduced (nominative use). Valence,
+CI and emission in this guide use an illustrative atlas so every level renders.</div>
+
+<script src="spectrum_strip.js"></script>
+<script>
+const $=s=>document.querySelector(s);
+// Use the SAME worked-example atlas the tool loads, so this diagram matches the main page.
+// Fetched from /data/ferrari_luce.json (its detail-dial channels are illustrative — see footer).
+let DIMS=[], COH=[];
+
+const LVLS=[{n:-1,nm:"One number",aud:"the old way"},{n:0,nm:"Headline",aud:"CEO / CMO"},{n:1,nm:"Compare",aud:"brand lead"},
+ {n:2,nm:"Sentiment",aud:"insights"},{n:3,nm:"Resolve",aud:"analyst"},{n:4,nm:"Cloud",aud:"researcher"}];
+const CAP={"-1":"one number — the average across every dimension and audience; it hides everything below. Turn the dial up...",
+ "0":"eight dimensions now — still no audiences, sentiment or noise floor",
+ "1":"audiences and their spread — scores only so far",
+ "2":"sentiment too: height = strength, the dot = valence (−1 left … +1 right)",
+ "3":"uncertainty (the 95% CI halo) and the noise floor — what can and can't be resolved",
+ "4":"the full distribution — emission strength (line weight) and every signal source"};
+let LEVEL=-1, demo=true, demoTimer=null;
+const tipEl=$("#tip");
+function onTip(ev,html){ if(html==null||ev==null){tipEl.style.opacity=0;return;} tipEl.innerHTML=html;
+  tipEl.style.opacity=1; tipEl.style.left=(ev.clientX+14)+"px"; tipEl.style.top=(ev.clientY-10)+"px"; }
+const LEG_TIP={
+  band:"The shaded band spans the lowest to the highest cohort on this dimension — the size of the disagreement across audiences.",
+  dot:"Strength (the line's height) is how loudly the dimension registers; valence is which way it leans. The dot slides left (hostile/negative) to right (favourable/positive). A high line with a left-sitting dot is the dangerous one: an audience that cares a lot, against you.",
+  ci:"The faint band around each line is the 95% confidence interval — how precisely the instrument pins that score. Wider = less certain.",
+  cloud:"At full detail valence is a distribution, not a point: the cloud is densest at the typical sentiment and stretches as sources disagree about how an audience feels.",
+  emis:"Thicker line = the brand emits more strongly on that dimension for that cohort (more salient across its sources).",
+  src:"Each faint dot is one signal source's reading — the raw spread the line summarizes."};
+function legend(level){
+  // encoding key only — cohorts are the chips above the chart, not repeated here
+  let h=""; const item=(t,inner)=>`<span class="lz" title="${t}">${inner}</span>`;
+  if(level>=1) h+=item(LEG_TIP.band,`<span class="swk" style="background:#7a5cd0;opacity:.4"></span>spread band`);
+  if(level>=2 && level<4) h+=item(LEG_TIP.dot,`<span class="dot" style="background:#9aa0b4"></span>dot = valence (−1 negative … +1 positive)`);
+  if(level>=3) h+=item(LEG_TIP.ci,`<span class="swk" style="background:#888;opacity:.3"></span>95% CI halo`);
+  if(level>=4) h+=item(LEG_TIP.cloud,`<span class="swk" style="background:#9aa0b4;opacity:.35;border-radius:8px"></span>valence cloud (sentiment distribution)`)
+    +item(LEG_TIP.emis,`line weight = emission strength`)
+    +item(LEG_TIP.src,`<span class="dot" style="background:#9aa0b4;width:6px;height:6px"></span>faint dots = signal sources`);
+  $("#legend").innerHTML=h;
+}
+let SEL=new Set();
+function renderChips(){
+  $("#chips").innerHTML=COH.map(c=>`<span class="chip ${SEL.has(c.id)?'':'off'}" data-id="${c.id}"><span class="cdot" style="background:${c.color}"></span>${c.label}</span>`).join("");
+  $("#chips").querySelectorAll(".chip").forEach(el=>el.onclick=()=>{const id=el.dataset.id;
+    if(SEL.has(id))SEL.delete(id); else SEL.add(id); if(SEL.size===0)SEL.add(id); renderChips(); draw();});
+}
+function draw(){
+  renderSpectrumStrip({host:$("#chart"),captionEl:$("#chartcap"),dims:DIMS,cohorts:COH.filter(c=>SEL.has(c.id)),
+    level:LEVEL,captionText:CAP[String(LEVEL)],onTip:onTip});
+  legend(LEVEL);
+}
+function renderDial(){
+  $("#dial2").innerHTML=LVLS.map(l=>`<span class="lvl${l.n===LEVEL?' on':''}" data-lvl="${l.n}">${l.n} · ${l.nm}</span>`).join("");
+  $("#dialaud").innerHTML="view: "+(LVLS.find(l=>l.n===LEVEL)||{}).aud
+    +(demo?' <span class="demohint">· auto-playing — click any control to explore</span>':'');
+  $("#dial2").querySelectorAll(".lvl").forEach(el=>el.onclick=()=>{LEVEL=+el.dataset.lvl;renderDial();draw();});
+}
+// Demo mode: on load, auto-advance the dial through the levels every ~4.5s so the
+// page shows the whole reduction-to-detail story by itself. Any click on a cohort
+// or level control stops it until the page is reloaded.
+function stopDemo(){
+  if(!demo && !demoTimer) return;
+  demo=false; if(demoTimer){clearInterval(demoTimer); demoTimer=null;}
+  // drop the hint WITHOUT rebuilding #dial2, so the clicked control's own handler still fires
+  $("#dialaud").innerHTML="view: "+(LVLS.find(l=>l.n===LEVEL)||{}).aud;
+}
+function startDemo(){
+  const order=LVLS.map(l=>l.n);
+  demoTimer=setInterval(()=>{
+    if(!demo){clearInterval(demoTimer); demoTimer=null; return;}
+    LEVEL=order[(order.indexOf(LEVEL)+1)%order.length];
+    renderDial(); draw();
+  }, 4500);
+}
+// Load the tool's atlas, then render + start the demo (capture-phase listeners stop it on any click).
+function initFromAtlas(d){
+  DIMS=d.dims; COH=d.cohorts; SEL=new Set(COH.map(c=>c.id));
+  renderChips(); renderDial(); draw();
+  $("#chips").addEventListener("click", stopDemo, true);
+  $("#dial2").addEventListener("click", stopDemo, true);
+  startDemo();
+}
+fetch("/data/ferrari_luce.json").then(r=>r.json()).then(initFromAtlas)
+  .catch(()=>{ const c=$("#chartcap"); if(c) c.textContent="(could not load the example atlas)"; });
+</script>
+</body></html>

@@ -1,0 +1,342 @@
+schema_version: '0.1'
+brand_name: Ferrari
+brand_product: Luce
+atlas_version: 0.2.0
+atlas_role: fresh-window validation atlas (V1-V6); pinned v0.1.4 is the prior baseline
+sample_date:
+  start: '2026-05-30'
+  end: '2026-06-20'
+methodology_version: 0.1.0
+note: 'SANITIZED STUB for the public reproduction bundle: only the derived variance
+  block is retained (read by aggregate_reflections.py for an OLD-vs-new comparison
+  printout). Per-artifact raw text and SHA inventories are intentionally omitted;
+  the offline battery does not need them.'
+variance:
+  cross_cohort_sigma:
+    semiotic: 2.8332
+    narrative: 2.7455
+    ideological: 2.2612
+    experiential: 2.1241
+    social: 2.4835
+    economic: 2.1742
+    cultural: 2.9988
+    temporal: 2.4704
+  metameric_degree: 0.0557
+  mean_pairwise_cosine_similarity: 0.9443
+  pairwise_distance_matrix:
+    actual-owners:
+      actual-owners: 0.0
+      brand-debaters: 0.0141
+      chinese-cohort: 0.1119
+      italian-press: 0.0413
+      non-italian-press: 0.0399
+    brand-debaters:
+      actual-owners: 0.0141
+      brand-debaters: 0.0
+      chinese-cohort: 0.078
+      italian-press: 0.029
+      non-italian-press: 0.0447
+    chinese-cohort:
+      actual-owners: 0.1119
+      brand-debaters: 0.078
+      chinese-cohort: 0.0
+      italian-press: 0.0635
+      non-italian-press: 0.0831
+    italian-press:
+      actual-owners: 0.0413
+      brand-debaters: 0.029
+      chinese-cohort: 0.0635
+      italian-press: 0.0
+      non-italian-press: 0.052
+    non-italian-press:
+      actual-owners: 0.0399
+      brand-debaters: 0.0447
+      chinese-cohort: 0.0831
+      italian-press: 0.052
+      non-italian-press: 0.0
+  temporal_drift_window:
+    start: '2026-05-30'
+    end: '2026-06-20'
+  operator_sensitivity:
+    actual-owners:
+      alt_pairs_tested: 2
+      mean_alt_distance: 0.1213
+      max_alt_distance: 0.177
+      alt_pairs:
+      - label: mid_tier_homogeneous
+        renderer_operator_id: claude-sonnet-4-6
+        extractor_operator_id: gpt-4o-mini-2024-07-18
+        distance_to_primary: 0.0656
+      - label: tier_flip
+        renderer_operator_id: claude-haiku-4-5-20251001
+        extractor_operator_id: gpt-5.5-2026-04-23
+        distance_to_primary: 0.177
+    brand-debaters:
+      alt_pairs_tested: 2
+      mean_alt_distance: 0.0577
+      max_alt_distance: 0.0681
+      alt_pairs:
+      - label: mid_tier_homogeneous
+        renderer_operator_id: claude-sonnet-4-6
+        extractor_operator_id: gpt-4o-mini-2024-07-18
+        distance_to_primary: 0.0473
+      - label: tier_flip
+        renderer_operator_id: claude-haiku-4-5-20251001
+        extractor_operator_id: gpt-5.5-2026-04-23
+        distance_to_primary: 0.0681
+    chinese-cohort:
+      alt_pairs_tested: 2
+      mean_alt_distance: 0.0624
+      max_alt_distance: 0.0859
+      alt_pairs:
+      - label: chinese_family_flip
+        renderer_operator_id: deepseek-v4-pro
+        extractor_operator_id: qwen-plus
+        distance_to_primary: 0.0388
+      - label: chinese_variants
+        renderer_operator_id: qwen-max
+        extractor_operator_id: deepseek-v4-pro
+        distance_to_primary: 0.0859
+    italian-press:
+      alt_pairs_tested: 2
+      mean_alt_distance: 0.0494
+      max_alt_distance: 0.0737
+      alt_pairs:
+      - label: mid_tier_homogeneous
+        renderer_operator_id: claude-sonnet-4-6
+        extractor_operator_id: gpt-4o-mini-2024-07-18
+        distance_to_primary: 0.0251
+      - label: tier_flip
+        renderer_operator_id: claude-haiku-4-5-20251001
+        extractor_operator_id: gpt-5.5-2026-04-23
+        distance_to_primary: 0.0737
+    non-italian-press:
+      alt_pairs_tested: 2
+      mean_alt_distance: 0.0345
+      max_alt_distance: 0.0443
+      alt_pairs:
+      - label: mid_tier_homogeneous
+        renderer_operator_id: claude-sonnet-4-6
+        extractor_operator_id: gpt-4o-mini-2024-07-18
+        distance_to_primary: 0.0248
+      - label: tier_flip
+        renderer_operator_id: claude-haiku-4-5-20251001
+        extractor_operator_id: gpt-5.5-2026-04-23
+        distance_to_primary: 0.0443
+  operator_sensitivity_summary:
+    alt_pairs_total: 10
+    mean_operator_attributable_distance: 0.0651
+    mean_cohort_pairwise_distance: 0.0557
+    signal_to_noise_ratio: 0.8556
+    interpretation: signal_to_noise > 2 = cohort differences clearly larger than operator
+      noise; 1 <= ratio <= 2 = marginal; ratio < 1 = operator noise dominates.
+    per_pair_signal_to_noise:
+    - pair:
+      - actual-owners
+      - brand-debaters
+      cohort_pairwise_distance: 0.0141
+      noise_floor: 0.177
+      noise_floor_source: actual-owners
+      signal_to_noise_ratio: 0.0797
+      resolvability: sub-resolution
+    - pair:
+      - actual-owners
+      - non-italian-press
+      cohort_pairwise_distance: 0.0399
+      noise_floor: 0.177
+      noise_floor_source: actual-owners
+      signal_to_noise_ratio: 0.2254
+      resolvability: sub-resolution
+    - pair:
+      - actual-owners
+      - italian-press
+      cohort_pairwise_distance: 0.0413
+      noise_floor: 0.177
+      noise_floor_source: actual-owners
+      signal_to_noise_ratio: 0.2333
+      resolvability: sub-resolution
+    - pair:
+      - brand-debaters
+      - italian-press
+      cohort_pairwise_distance: 0.029
+      noise_floor: 0.0737
+      noise_floor_source: italian-press
+      signal_to_noise_ratio: 0.3935
+      resolvability: sub-resolution
+    - pair:
+      - actual-owners
+      - chinese-cohort
+      cohort_pairwise_distance: 0.1119
+      noise_floor: 0.177
+      noise_floor_source: actual-owners
+      signal_to_noise_ratio: 0.6322
+      resolvability: sub-resolution
+    - pair:
+      - brand-debaters
+      - non-italian-press
+      cohort_pairwise_distance: 0.0447
+      noise_floor: 0.0681
+      noise_floor_source: brand-debaters
+      signal_to_noise_ratio: 0.6564
+      resolvability: sub-resolution
+    - pair:
+      - italian-press
+      - non-italian-press
+      cohort_pairwise_distance: 0.052
+      noise_floor: 0.0737
+      noise_floor_source: italian-press
+      signal_to_noise_ratio: 0.7056
+      resolvability: sub-resolution
+    - pair:
+      - chinese-cohort
+      - italian-press
+      cohort_pairwise_distance: 0.0635
+      noise_floor: 0.0859
+      noise_floor_source: chinese-cohort
+      signal_to_noise_ratio: 0.7392
+      resolvability: sub-resolution
+    - pair:
+      - brand-debaters
+      - chinese-cohort
+      cohort_pairwise_distance: 0.078
+      noise_floor: 0.0859
+      noise_floor_source: chinese-cohort
+      signal_to_noise_ratio: 0.908
+      resolvability: sub-resolution
+    - pair:
+      - chinese-cohort
+      - non-italian-press
+      cohort_pairwise_distance: 0.0831
+      noise_floor: 0.0859
+      noise_floor_source: chinese-cohort
+      signal_to_noise_ratio: 0.9674
+      resolvability: sub-resolution
+    per_pair_interpretation: Per-pair S/N = cohort_pairwise_distance / max(endpoint
+      cohorts' max_alt_distance). resolved (>2) / marginal (1-2) / sub-resolution
+      (<1).
+  artifact_sensitivity:
+    actual-owners:
+      alt_pairs_tested: 4
+      mean_alt_distance: 0.1203
+      max_alt_distance: 0.2065
+      alt_pairs:
+      - label: actual-owners_01
+        renderer_operator_id: gpt-5.5-2026-04-23
+        extractor_operator_id: claude-haiku-4-5-20251001
+        distance_to_primary: 0.2065
+        dropped_artifact: actual-owners_01
+      - label: actual-owners_03
+        renderer_operator_id: gpt-5.5-2026-04-23
+        extractor_operator_id: claude-haiku-4-5-20251001
+        distance_to_primary: 0.0822
+        dropped_artifact: actual-owners_03
+      - label: actual-owners_04
+        renderer_operator_id: gpt-5.5-2026-04-23
+        extractor_operator_id: claude-haiku-4-5-20251001
+        distance_to_primary: 0.1512
+        dropped_artifact: actual-owners_04
+      - label: actual-owners_06
+        renderer_operator_id: gpt-5.5-2026-04-23
+        extractor_operator_id: claude-haiku-4-5-20251001
+        distance_to_primary: 0.0414
+        dropped_artifact: actual-owners_06
+    brand-debaters:
+      alt_pairs_tested: 4
+      mean_alt_distance: 0.0264
+      max_alt_distance: 0.0324
+      alt_pairs:
+      - label: brand-debaters_01
+        renderer_operator_id: claude-opus-4-7
+        extractor_operator_id: gpt-5.4-mini-2026-03-17
+        distance_to_primary: 0.0313
+        dropped_artifact: brand-debaters_01
+      - label: brand-debaters_03
+        renderer_operator_id: claude-opus-4-7
+        extractor_operator_id: gpt-5.4-mini-2026-03-17
+        distance_to_primary: 0.0253
+        dropped_artifact: brand-debaters_03
+      - label: brand-debaters_05
+        renderer_operator_id: claude-opus-4-7
+        extractor_operator_id: gpt-5.4-mini-2026-03-17
+        distance_to_primary: 0.0324
+        dropped_artifact: brand-debaters_05
+      - label: brand-debaters_07
+        renderer_operator_id: claude-opus-4-7
+        extractor_operator_id: gpt-5.4-mini-2026-03-17
+        distance_to_primary: 0.0167
+        dropped_artifact: brand-debaters_07
+    chinese-cohort:
+      alt_pairs_tested: 4
+      mean_alt_distance: 0.1361
+      max_alt_distance: 0.2485
+      alt_pairs:
+      - label: chinese-cohort_01
+        renderer_operator_id: qwen3.7-max
+        extractor_operator_id: deepseek-v4-flash
+        distance_to_primary: 0.082
+        dropped_artifact: chinese-cohort_01
+      - label: chinese-cohort_03
+        renderer_operator_id: qwen3.7-max
+        extractor_operator_id: deepseek-v4-flash
+        distance_to_primary: 0.0975
+        dropped_artifact: chinese-cohort_03
+      - label: chinese-cohort_06
+        renderer_operator_id: qwen3.7-max
+        extractor_operator_id: deepseek-v4-flash
+        distance_to_primary: 0.2485
+        dropped_artifact: chinese-cohort_06
+      - label: chinese-cohort_08
+        renderer_operator_id: qwen3.7-max
+        extractor_operator_id: deepseek-v4-flash
+        distance_to_primary: 0.1162
+        dropped_artifact: chinese-cohort_08
+    italian-press:
+      alt_pairs_tested: 4
+      mean_alt_distance: 0.0256
+      max_alt_distance: 0.0521
+      alt_pairs:
+      - label: italian-press_01
+        renderer_operator_id: claude-opus-4-7
+        extractor_operator_id: gpt-5.4-mini-2026-03-17
+        distance_to_primary: 0.0233
+        dropped_artifact: italian-press_01
+      - label: italian-press_03
+        renderer_operator_id: claude-opus-4-7
+        extractor_operator_id: gpt-5.4-mini-2026-03-17
+        distance_to_primary: 0.0006
+        dropped_artifact: italian-press_03
+      - label: italian-press_06
+        renderer_operator_id: claude-opus-4-7
+        extractor_operator_id: gpt-5.4-mini-2026-03-17
+        distance_to_primary: 0.0263
+        dropped_artifact: italian-press_06
+      - label: italian-press_08
+        renderer_operator_id: claude-opus-4-7
+        extractor_operator_id: gpt-5.4-mini-2026-03-17
+        distance_to_primary: 0.0521
+        dropped_artifact: italian-press_08
+    non-italian-press:
+      alt_pairs_tested: 4
+      mean_alt_distance: 0.0313
+      max_alt_distance: 0.0461
+      alt_pairs:
+      - label: non-italian-press_01
+        renderer_operator_id: gpt-5.5-2026-04-23
+        extractor_operator_id: claude-haiku-4-5-20251001
+        distance_to_primary: 0.0121
+        dropped_artifact: non-italian-press_01
+      - label: non-italian-press_03
+        renderer_operator_id: gpt-5.5-2026-04-23
+        extractor_operator_id: claude-haiku-4-5-20251001
+        distance_to_primary: 0.0224
+        dropped_artifact: non-italian-press_03
+      - label: non-italian-press_05
+        renderer_operator_id: gpt-5.5-2026-04-23
+        extractor_operator_id: claude-haiku-4-5-20251001
+        distance_to_primary: 0.0445
+        dropped_artifact: non-italian-press_05
+      - label: non-italian-press_07
+        renderer_operator_id: gpt-5.5-2026-04-23
+        extractor_operator_id: claude-haiku-4-5-20251001
+        distance_to_primary: 0.0461
+        dropped_artifact: non-italian-press_07

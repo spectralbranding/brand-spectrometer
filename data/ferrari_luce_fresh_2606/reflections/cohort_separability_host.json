@@ -1,0 +1,365 @@
+{
+  "atlas": "ferrari_luce_fresh_2606",
+  "grain": "host",
+  "perms": 9999,
+  "seed": 20260621,
+  "multiple_comparison": "Holm (FWER) + Benjamini-Hochberg (FDR) over 10 cohort pairs (energy distance and MMD)",
+  "metrics": [
+    "energy_distance",
+    "mmd2_rbf_median_heuristic"
+  ],
+  "resolution_criterion": "triangulated: RESOLVED iff Holm-corrected energy-distance perm p < .05 AND operator-floored distributional S/N 95%-CI lower > 1 AND LOO accuracy > .5 (chance)",
+  "aggregate_separability": {
+    "eta_squared": 0.2761,
+    "perm_p": 0.0042
+  },
+  "operator_distributional_floor": {
+    "actual-owners": 2.727,
+    "brand-debaters": 2.2568,
+    "chinese-cohort": 2.6528,
+    "italian-press": 3.0478,
+    "non-italian-press": 2.0835
+  },
+  "distributional_sn": {
+    "actual-owners|brand-debaters": 2.4633,
+    "actual-owners|chinese-cohort": 2.4334,
+    "actual-owners|italian-press": 1.9172,
+    "actual-owners|non-italian-press": 3.56,
+    "brand-debaters|chinese-cohort": 0.7249,
+    "brand-debaters|italian-press": 0.4077,
+    "brand-debaters|non-italian-press": 0.7256,
+    "chinese-cohort|italian-press": 0.7332,
+    "chinese-cohort|non-italian-press": 0.7144,
+    "italian-press|non-italian-press": 0.9726
+  },
+  "distributional_sn_bootstrap": {
+    "actual-owners|brand-debaters": {
+      "lo": 0.7396,
+      "median": 1.7537,
+      "hi": 3.3916,
+      "p_gt_1": 0.891,
+      "p_gt_2": 0.383
+    },
+    "actual-owners|chinese-cohort": {
+      "lo": 0.7495,
+      "median": 1.6875,
+      "hi": 3.4785,
+      "p_gt_1": 0.8855,
+      "p_gt_2": 0.3455
+    },
+    "actual-owners|italian-press": {
+      "lo": 0.6877,
+      "median": 1.4797,
+      "hi": 2.8118,
+      "p_gt_1": 0.828,
+      "p_gt_2": 0.1855
+    },
+    "actual-owners|non-italian-press": {
+      "lo": 1.0556,
+      "median": 2.3915,
+      "hi": 4.6088,
+      "p_gt_1": 0.984,
+      "p_gt_2": 0.6775
+    },
+    "brand-debaters|chinese-cohort": {
+      "lo": 0.4757,
+      "median": 0.8167,
+      "hi": 1.3862,
+      "p_gt_1": 0.2255,
+      "p_gt_2": 0.0
+    },
+    "brand-debaters|italian-press": {
+      "lo": 0.3451,
+      "median": 0.53,
+      "hi": 0.8832,
+      "p_gt_1": 0.005,
+      "p_gt_2": 0.0
+    },
+    "brand-debaters|non-italian-press": {
+      "lo": 0.3832,
+      "median": 0.7504,
+      "hi": 1.5444,
+      "p_gt_1": 0.22,
+      "p_gt_2": 0.0015
+    },
+    "chinese-cohort|italian-press": {
+      "lo": 0.4196,
+      "median": 0.7678,
+      "hi": 1.3979,
+      "p_gt_1": 0.1935,
+      "p_gt_2": 0.0
+    },
+    "chinese-cohort|non-italian-press": {
+      "lo": 0.4248,
+      "median": 0.8066,
+      "hi": 1.5962,
+      "p_gt_1": 0.255,
+      "p_gt_2": 0.0075
+    },
+    "italian-press|non-italian-press": {
+      "lo": 0.5088,
+      "median": 0.9275,
+      "hi": 1.626,
+      "p_gt_1": 0.402,
+      "p_gt_2": 0.005
+    }
+  },
+  "triangulation": {
+    "actual-owners|brand-debaters": {
+      "resolved": false,
+      "holm_p_lt_.05": false,
+      "dist_sn_ci_lower_gt_1": false,
+      "loo_gt_chance": true,
+      "mmd_holm_p_lt_.05": false
+    },
+    "actual-owners|chinese-cohort": {
+      "resolved": false,
+      "holm_p_lt_.05": false,
+      "dist_sn_ci_lower_gt_1": false,
+      "loo_gt_chance": true,
+      "mmd_holm_p_lt_.05": false
+    },
+    "actual-owners|italian-press": {
+      "resolved": false,
+      "holm_p_lt_.05": true,
+      "dist_sn_ci_lower_gt_1": false,
+      "loo_gt_chance": true,
+      "mmd_holm_p_lt_.05": false
+    },
+    "actual-owners|non-italian-press": {
+      "resolved": true,
+      "holm_p_lt_.05": true,
+      "dist_sn_ci_lower_gt_1": true,
+      "loo_gt_chance": true,
+      "mmd_holm_p_lt_.05": true
+    },
+    "brand-debaters|chinese-cohort": {
+      "resolved": false,
+      "holm_p_lt_.05": false,
+      "dist_sn_ci_lower_gt_1": false,
+      "loo_gt_chance": false,
+      "mmd_holm_p_lt_.05": false
+    },
+    "brand-debaters|italian-press": {
+      "resolved": false,
+      "holm_p_lt_.05": false,
+      "dist_sn_ci_lower_gt_1": false,
+      "loo_gt_chance": false,
+      "mmd_holm_p_lt_.05": false
+    },
+    "brand-debaters|non-italian-press": {
+      "resolved": false,
+      "holm_p_lt_.05": false,
+      "dist_sn_ci_lower_gt_1": false,
+      "loo_gt_chance": false,
+      "mmd_holm_p_lt_.05": false
+    },
+    "chinese-cohort|italian-press": {
+      "resolved": false,
+      "holm_p_lt_.05": false,
+      "dist_sn_ci_lower_gt_1": false,
+      "loo_gt_chance": true,
+      "mmd_holm_p_lt_.05": false
+    },
+    "chinese-cohort|non-italian-press": {
+      "resolved": false,
+      "holm_p_lt_.05": false,
+      "dist_sn_ci_lower_gt_1": false,
+      "loo_gt_chance": true,
+      "mmd_holm_p_lt_.05": false
+    },
+    "italian-press|non-italian-press": {
+      "resolved": false,
+      "holm_p_lt_.05": false,
+      "dist_sn_ci_lower_gt_1": false,
+      "loo_gt_chance": true,
+      "mmd_holm_p_lt_.05": false
+    }
+  },
+  "resolved_pairs": [
+    "actual-owners|non-italian-press"
+  ],
+  "pairwise": {
+    "actual-owners|brand-debaters": {
+      "energy_distance": 6.7174,
+      "mmd2": 0.289036,
+      "perm_p": 0.019,
+      "perm_p_mmd": 0.0207,
+      "loo_source_accuracy": 0.6667,
+      "magnitude_norm_diff": 6.3968,
+      "shape_cosine_dist": 0.0232,
+      "n_sources": [
+        5,
+        7
+      ],
+      "perm_p_holm": 0.152,
+      "perm_p_bh": 0.056,
+      "perm_p_mmd_holm": 0.1656,
+      "perm_p_mmd_bh": 0.058,
+      "triangulation_resolved": false
+    },
+    "actual-owners|chinese-cohort": {
+      "energy_distance": 6.6357,
+      "mmd2": 0.229261,
+      "perm_p": 0.028,
+      "perm_p_mmd": 0.0282,
+      "loo_source_accuracy": 0.6923,
+      "magnitude_norm_diff": 6.662,
+      "shape_cosine_dist": 0.032,
+      "n_sources": [
+        5,
+        8
+      ],
+      "perm_p_holm": 0.1925,
+      "perm_p_bh": 0.056,
+      "perm_p_mmd_holm": 0.1974,
+      "perm_p_mmd_bh": 0.058,
+      "triangulation_resolved": false
+    },
+    "actual-owners|italian-press": {
+      "energy_distance": 5.8433,
+      "mmd2": 0.263256,
+      "perm_p": 0.0041,
+      "perm_p_mmd": 0.0065,
+      "loo_source_accuracy": 0.7692,
+      "magnitude_norm_diff": 5.4761,
+      "shape_cosine_dist": 0.0261,
+      "n_sources": [
+        5,
+        8
+      ],
+      "perm_p_holm": 0.0369,
+      "perm_p_bh": 0.0205,
+      "perm_p_mmd_holm": 0.0585,
+      "perm_p_mmd_bh": 0.0325,
+      "triangulation_resolved": false
+    },
+    "actual-owners|non-italian-press": {
+      "energy_distance": 9.7079,
+      "mmd2": 0.478388,
+      "perm_p": 0.0027,
+      "perm_p_mmd": 0.0027,
+      "loo_source_accuracy": 0.8333,
+      "magnitude_norm_diff": 8.1759,
+      "shape_cosine_dist": 0.0333,
+      "n_sources": [
+        5,
+        7
+      ],
+      "perm_p_holm": 0.027,
+      "perm_p_bh": 0.0205,
+      "perm_p_mmd_holm": 0.027,
+      "perm_p_mmd_bh": 0.027,
+      "triangulation_resolved": true
+    },
+    "brand-debaters|chinese-cohort": {
+      "energy_distance": 1.9229,
+      "mmd2": -0.003436,
+      "perm_p": 0.4235,
+      "perm_p_mmd": 0.4017,
+      "loo_source_accuracy": 0.4,
+      "magnitude_norm_diff": 0.2651,
+      "shape_cosine_dist": 0.009,
+      "n_sources": [
+        7,
+        8
+      ],
+      "perm_p_holm": 1.0,
+      "perm_p_bh": 0.4904,
+      "perm_p_mmd_holm": 1.0,
+      "perm_p_mmd_bh": 0.4696,
+      "triangulation_resolved": false
+    },
+    "brand-debaters|italian-press": {
+      "energy_distance": 1.2427,
+      "mmd2": -0.031011,
+      "perm_p": 0.6251,
+      "perm_p_mmd": 0.6223,
+      "loo_source_accuracy": 0.4,
+      "magnitude_norm_diff": 0.9207,
+      "shape_cosine_dist": 0.0035,
+      "n_sources": [
+        7,
+        8
+      ],
+      "perm_p_holm": 1.0,
+      "perm_p_bh": 0.6251,
+      "perm_p_mmd_holm": 1.0,
+      "perm_p_mmd_bh": 0.6223,
+      "triangulation_resolved": false
+    },
+    "brand-debaters|non-italian-press": {
+      "energy_distance": 1.6376,
+      "mmd2": -0.006761,
+      "perm_p": 0.4414,
+      "perm_p_mmd": 0.4226,
+      "loo_source_accuracy": 0.5,
+      "magnitude_norm_diff": 1.7791,
+      "shape_cosine_dist": 0.0031,
+      "n_sources": [
+        7,
+        7
+      ],
+      "perm_p_holm": 1.0,
+      "perm_p_bh": 0.4904,
+      "perm_p_mmd_holm": 1.0,
+      "perm_p_mmd_bh": 0.4696,
+      "triangulation_resolved": false
+    },
+    "chinese-cohort|italian-press": {
+      "energy_distance": 2.2347,
+      "mmd2": 0.049912,
+      "perm_p": 0.1988,
+      "perm_p_mmd": 0.1551,
+      "loo_source_accuracy": 0.6875,
+      "magnitude_norm_diff": 1.1859,
+      "shape_cosine_dist": 0.0118,
+      "n_sources": [
+        8,
+        8
+      ],
+      "perm_p_holm": 0.994,
+      "perm_p_bh": 0.3313,
+      "perm_p_mmd_holm": 0.7755,
+      "perm_p_mmd_bh": 0.2585,
+      "triangulation_resolved": false
+    },
+    "chinese-cohort|non-italian-press": {
+      "energy_distance": 1.8951,
+      "mmd2": -0.004722,
+      "perm_p": 0.4308,
+      "perm_p_mmd": 0.4036,
+      "loo_source_accuracy": 0.5333,
+      "magnitude_norm_diff": 1.5139,
+      "shape_cosine_dist": 0.0065,
+      "n_sources": [
+        8,
+        7
+      ],
+      "perm_p_holm": 1.0,
+      "perm_p_bh": 0.4904,
+      "perm_p_mmd_holm": 1.0,
+      "perm_p_mmd_bh": 0.4696,
+      "triangulation_resolved": false
+    },
+    "italian-press|non-italian-press": {
+      "energy_distance": 2.9644,
+      "mmd2": 0.127677,
+      "perm_p": 0.0275,
+      "perm_p_mmd": 0.029,
+      "loo_source_accuracy": 0.8,
+      "magnitude_norm_diff": 2.6998,
+      "shape_cosine_dist": 0.01,
+      "n_sources": [
+        8,
+        7
+      ],
+      "perm_p_holm": 0.1925,
+      "perm_p_bh": 0.056,
+      "perm_p_mmd_holm": 0.1974,
+      "perm_p_mmd_bh": 0.058,
+      "triangulation_resolved": false
+    }
+  },
+  "note": "source-level vectors (signal-source clustered); energy-distance + kernel-MMD permutation + LOO nearest-centroid + magnitude/shape decomposition. Distribution-level complement to the mean-cosine S/N. Low-powered at this n; resolution verdict is triangulated."
+}

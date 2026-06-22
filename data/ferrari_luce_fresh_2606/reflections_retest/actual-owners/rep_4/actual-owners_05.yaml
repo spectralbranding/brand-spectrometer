@@ -1,0 +1,199 @@
+reflection_id: actual-owners::actual-owners_05::primary::retest4
+cohort_id: actual-owners
+artifact_id: actual-owners_05
+operator_label: primary
+retest_rep: 4
+renderer_operator_id: gpt-5.5-2026-04-23
+renderer_family: openai
+extractor_operator_id: claude-haiku-4-5-20251001
+extractor_family: anthropic
+source_type: press_article
+outlet: InsideEVs
+language: en
+published_date: '2026-06-18'
+url: https://insideevs.com/news/799116/ferrari-luce-ev-allocation-collectors/
+inferred_spec:
+  semiotic:
+    score: 2.0
+    ci_95_lower: 0.8
+    ci_95_upper: 3.9
+  narrative:
+    score: 4.9
+    ci_95_lower: 2.7
+    ci_95_upper: 7.0
+  ideological:
+    score: 2.6
+    ci_95_lower: 1.0
+    ci_95_upper: 5.1
+  experiential:
+    score: 4.1
+    ci_95_lower: 2.2
+    ci_95_upper: 6.1
+  social:
+    score: 6.8
+    ci_95_lower: 4.4
+    ci_95_upper: 8.4
+  economic:
+    score: 1.7
+    ci_95_lower: 0.5
+    ci_95_upper: 3.4
+  cultural:
+    score: 2.3
+    ci_95_lower: 0.9
+    ci_95_upper: 4.3
+  temporal:
+    score: 4.4
+    ci_95_lower: 2.2
+    ci_95_upper: 6.8
+vector:
+- 2.0
+- 4.9
+- 2.6
+- 4.1
+- 6.8
+- 1.7
+- 2.3
+- 4.4
+rendering: "## Cohort-indexed implicit-spec inference  \n**Cohort:** Actual Ferrari\
+  \ owners / self-identified owners and collectors visible in owner forums and owner-quote\
+  \ press coverage  \n**Method:** implicit-spec inference via structural decomposition\
+  \ of publicly observable artifacts only  \n**Artifact base:** `actual-owners_05`;\
+  \ thin post-reveal sample, with vocal-owner overrepresentation\n\nFrom the vantage\
+  \ of actual Ferrari owners and multi-Ferrari collectors visible in the sampled public\
+  \ artifact, the Luce’s implicit Tier-4 product specification is plausibly read less\
+  \ as a straightforward enthusiast EV and more as a high-priced relationship instrument\
+  \ wrapped in a controversial product form. In this observer-side reconstruction,\
+  \ the artifact’s most salient signal is not a technical performance claim, but the\
+  \ reported interaction between the Luce and Ferrari’s allocation culture. The InsideEVs\
+  \ excerpt frames the car as something loyal collectors may feel pressure to accept\
+  \ because skipping it “could make the next dream allocation more difficult” (`actual-owners_05`).\
+  \ As visible to this cohort, that makes the Luce legible as an ownership-network\
+  \ object: a car whose meaning may be partly defined by what buying or refusing it\
+  \ signals inside the Ferrari hierarchy.\n\nThe inferred product spec, as read by\
+  \ this cohort, appears to include a deliberate departure from traditional Ferrari-coded\
+  \ desirability. The artifact describes the Luce as Ferrari’s “first electric vehicle,”\
+  \ “four-door,” “visually divisive,” and an object that “breaks with pretty much\
+  \ everything traditional” (`actual-owners_05`). For owners whose attachment is organized\
+  \ around engine character, two-door sports-car identity, limited allocations, and\
+  \ combustion-era lineage, those descriptors plausibly lower perceived heritage continuity.\
+  \ The car is therefore inferred, from the artifact alone, as a product designed\
+  \ to stretch the brand perimeter rather than reassure the core owner base.\n\nAt\
+  \ the same time, the cohort may plausibly read the Luce as a familiar category in\
+  \ Ferrari’s commercial history: not the halo car, but the regular-production, softer,\
+  \ more practical model that collectors buy to preserve relationship standing. The\
+  \ excerpt explicitly compares it to California, FF, GTC4Lusso, and Portofino-type\
+  \ purchasing patterns, described as regular-production models that can help build\
+  \ long-term access to limited-run cars (`actual-owners_05`). Through that lens,\
+  \ the Luce’s four-door electric format may not be interpreted merely as a product\
+  \ mistake; it may be seen as the newest version of the “relationship-maintenance”\
+  \ Ferrari. The implicit spec visible to this cohort is therefore hybrid: technically\
+  \ novel and aesthetically disruptive, but commercially familiar in its place within\
+  \ the allocation ladder.\n\nOwner-economics confidence appears weak in this reconstruction.\
+  \ The artifact repeatedly signals likely depreciation, calling the Luce “likely\
+  \ exposed to heavy depreciation,” “the hardest sell yet,” and potentially “the quickest-depreciating\
+  \ Ferrari in the current lineup” (`actual-owners_05`). For actual owners and collectors,\
+  \ those claims matter because Ferrari ownership is often partly mediated through\
+  \ residual-value expectations, trade history, and allocation optics. The inferred\
+  \ spec is not just “expensive EV”; it is plausibly read as a $640,000 instrument\
+  \ with unusually poor downside protection. As visible to this cohort, the car may\
+  \ be understood as asking owners to absorb financial depreciation in exchange for\
+  \ maintaining social and allocation capital.\n\nThe allocation dimension is especially\
+  \ ambiguous. The artifact notes that Ferrari “officially frames allocation in terms\
+  \ of loyalty and long-term relationships, not simply as ‘buy this car to get that\
+  \ one’” (`actual-owners_05`). That official framing, as reported, gives owner-readers\
+  \ two possible interpretations. A sympathetic collector may infer continuity with\
+  \ a long-standing relationship model: Ferrari rewarding repeated engagement over\
+  \ transactional flipping. A more skeptical owner may infer coercive bundling by\
+  \ implication, especially because the article says the Luce may be a “loyalty test”\
+  \ and that saying no could hurt future access (`actual-owners_05`). The implicit\
+  \ Tier-4 product spec therefore appears to include an ownership-politics feature:\
+  \ the Luce’s desirability may be partially manufactured through its connection to\
+  \ future scarcity rather than through immediate product pull.\n\nDesign legibility\
+  \ also scores low from this cohort’s likely vantage. The artifact supplies no positive\
+  \ design-language explanation, no owner praise for proportion, cabin experience,\
+  \ or EV performance, and instead foregrounds “unusual-looking” and “visually divisive”\
+  \ descriptors (`actual-owners_05`). In a fuller artifact set, actual owner responses\
+  \ might split between those who appreciate Ferrari’s willingness to experiment and\
+  \ those who see the vehicle as too far from established codes. In this single excerpt,\
+  \ however, the visible signal tilts toward skepticism. The inferred spec is a visually\
+  \ disruptive four-door EV whose aesthetic argument has not yet been made persuasive\
+  \ to the sampled owner audience.\n\nTechnical-innovation legitimacy is more uncertain.\
+  \ The artifact clearly marks the Luce as a major electrification step, which may\
+  \ carry strategic significance, but it does not provide acceleration, range, charging,\
+  \ battery, sound-design, weight, software, or chassis details (`actual-owners_05`).\
+  \ As a result, actual owners visible through this artifact may not be evaluating\
+  \ the car as a compelling EV machine; they may be evaluating the social consequences\
+  \ of buying it. The implicit spec visible here is therefore not “best-in-class electric\
+  \ Ferrari performance,” but “first-EV compliance with the relationship economy,”\
+  \ with technical merit under-evidenced.\n\nOverall, the actual-owner cohort plausibly\
+  \ reads the Luce launch as specifying a Ferrari that is expensive, practical by\
+  \ Ferrari standards, electric, aesthetically polarizing, and commercially tied to\
+  \ allocation standing. The artifact-grounded structural decomposition suggests that\
+  \ the Luce’s strongest owner-visible function is not pure desire generation but\
+  \ loyalty signaling under economic risk. The car’s Tier-4 meaning, as visible in\
+  \ this sample, is therefore less “new dream car” than “costly proof of continued\
+  \ participation.”\n\n```yaml\nsbt_scores:\n  heritage_continuity:\n    score: 2.30\n\
+  \    ci_95_lower: 0.90\n    ci_95_upper: 4.30\n    rationale: \"Inferred from observable\
+  \ artifacts as weak for this cohort because the Luce is described as a first EV,\
+  \ four-door, unusual-looking vehicle that 'breaks with pretty much everything traditional'\
+  \ [actual-owners_05].\"\n  product_use_clarity:\n    score: 4.10\n    ci_95_lower:\
+  \ 2.20\n    ci_95_upper: 6.10\n    rationale: \"Inferred as only moderately legible:\
+  \ the artifact makes the four-door electric format visible, but gives little owner-facing\
+  \ evidence of the use case beyond softer GT/four-seat analogies such as FF, GTC4Lusso,\
+  \ California, and Portofino [actual-owners_05].\"\n  aesthetic_legibility:\n   \
+  \ score: 2.00\n    ci_95_lower: 0.80\n    ci_95_upper: 3.90\n    rationale: \"Inferred\
+  \ as low because the sampled artifact foregrounds 'visually divisive' and 'unusual-looking'\
+  \ descriptors and supplies no countervailing owner-visible design praise [actual-owners_05].\"\
+  \n  technical_innovation_legitimacy:\n    score: 4.40\n    ci_95_lower: 2.20\n \
+  \   ci_95_upper: 6.80\n    rationale: \"Inferred as uncertain-to-moderate: the first-EV\
+  \ signal is strategically significant, but the artifact provides no detailed performance,\
+  \ battery, charging, or chassis evidence that would let actual owners evaluate the\
+  \ EV proposition on technical merit [actual-owners_05].\"\n  exclusivity_allocation_fit:\n\
+  \    score: 6.80\n    ci_95_lower: 4.40\n    ci_95_upper: 8.40\n    rationale: \"\
+  Inferred as relatively strong in mechanism but contested in legitimacy: the artifact\
+  \ links the Luce to Ferrari's allocation culture, loyalty, long-term relationships,\
+  \ and access to future limited-run cars [actual-owners_05].\"\n  owner_economics_confidence:\n\
+  \    score: 1.70\n    ci_95_lower: 0.50\n    ci_95_upper: 3.40\n    rationale: \"\
+  Inferred as very low because the artifact repeatedly predicts heavy depreciation,\
+  \ calls the Luce a likely hard sell, and suggests it could become the quickest-depreciating\
+  \ current Ferrari [actual-owners_05].\"\n  community_identity_resonance:\n    score:\
+  \ 2.60\n    ci_95_lower: 1.00\n    ci_95_upper: 5.10\n    rationale: \"Inferred\
+  \ as weak but internally divided: the artifact presents controversy among loyal\
+  \ collectors and emphasizes that the vehicle departs from traditional Ferrari expectations,\
+  \ while also implying some collectors may participate to preserve standing [actual-owners_05].\"\
+  \n  corporate_stewardship_confidence:\n    score: 4.90\n    ci_95_lower: 2.70\n\
+  \    ci_95_upper: 7.00\n    rationale: \"Inferred as mixed: the artifact reports\
+  \ Ferrari's official allocation framing around loyalty and long-term relationships,\
+  \ but also frames the Luce as a possible loyalty test and EV gamble, creating owner-visible\
+  \ tension [actual-owners_05].\"\ninferred_tier_3_signals:\n  - \"As visible to this\
+  \ cohort, Ferrari's allocation system is signaled through loyalty, long-term relationship\
+  \ language, and access to limited-run cars rather than through a simple public ordering\
+  \ model [actual-owners_05].\"\n  - \"As visible to this cohort, corporate stewardship\
+  \ is being judged through how the first EV is integrated into existing collector\
+  \ relationships [actual-owners_05].\"\n  - \"As visible to this cohort, investor-confidence\
+  \ pressure is implied by the description of the Luce as an EV gamble and a difficult-to-move\
+  \ $640,000 product [actual-owners_05].\"\n  - \"As visible to this cohort, brand-IP\
+  \ stewardship is under scrutiny because the product is described as breaking with\
+  \ traditional Ferrari cues [actual-owners_05].\"\ninferred_tier_5_process_couplings:\n\
+  \  - \"As visible to this cohort, platform strategy appears to be expanding into\
+  \ a four-door electric architecture rather than remaining centered on combustion\
+  \ sports cars [actual-owners_05].\"\n  - \"As visible to this cohort, production\
+  \ planning may be coupled to allocation incentives if the Luce is treated as a relationship-maintenance\
+  \ purchase within the regular-production ladder [actual-owners_05].\"\n  - \"As\
+  \ visible to this cohort, design-process output appears polarizing, with the public\
+  \ artifact emphasizing an unusual and visually divisive form [actual-owners_05].\"\
+  \n  - \"As visible to this cohort, supply-chain and manufacturing readiness are\
+  \ implied only indirectly by the first-EV launch framing; the artifact provides\
+  \ no concrete battery, supplier, or production-rate evidence [actual-owners_05].\"\
+  \n  - \"As visible to this cohort, product-line planning appears coupled to the\
+  \ historical role of softer GT and four-seat models that have helped collectors\
+  \ maintain relationship standing [actual-owners_05].\"\n```\n\nThe cohort’s internal\
+  \ divergence is likely material and is reflected in the wider confidence intervals,\
+  \ especially on technical-innovation legitimacy, community-identity resonance, and\
+  \ corporate-stewardship confidence. A vocal skeptical subset may read the Luce as\
+  \ an expensive, depreciating, visually awkward loyalty toll, while a more allocation-sensitive\
+  \ or institutionally loyal owner subset may read the same observable signals as\
+  \ a familiar relationship-building purchase in a new EV form. Because the artifact\
+  \ base is thin and publicly vocal owners are overrepresented, the CIs are widest\
+  \ where quiet long-term owners could plausibly soften or invert the visible skepticism."
+seed: 20260620

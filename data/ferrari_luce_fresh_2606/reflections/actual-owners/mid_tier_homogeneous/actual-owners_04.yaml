@@ -1,0 +1,329 @@
+reflection_id: actual-owners::actual-owners_04::mid_tier_homogeneous
+cohort_id: actual-owners
+artifact_id: actual-owners_04
+operator_label: mid_tier_homogeneous
+renderer_operator_id: claude-sonnet-4-6
+renderer_family: anthropic
+extractor_operator_id: gpt-4o-mini-2024-07-18
+extractor_family: openai
+source_type: press_article
+outlet: AutoGuide
+language: en
+published_date: '2026-06-18'
+url: https://www.autoguide.com/auto/ferrari-reportedly-tells-buyers-buy-our-ev-or-youre-off-the-list-44634319
+inferred_spec:
+  semiotic:
+    score: 2.5
+    ci_95_lower: 1.0
+    ci_95_upper: 4.5
+  narrative:
+    score: 2.0
+    ci_95_lower: 1.0
+    ci_95_upper: 3.5
+  ideological:
+    score: 7.0
+    ci_95_lower: 5.5
+    ci_95_upper: 8.5
+  experiential:
+    score: 1.8
+    ci_95_lower: 0.8
+    ci_95_upper: 3.5
+  social:
+    score: 3.5
+    ci_95_lower: 1.5
+    ci_95_upper: 5.5
+  economic:
+    score: 3.0
+    ci_95_lower: 1.5
+    ci_95_upper: 5.0
+  cultural:
+    score: 2.5
+    ci_95_lower: 1.0
+    ci_95_upper: 4.5
+  temporal:
+    score: 3.8
+    ci_95_lower: 2.0
+    ci_95_upper: 6.0
+inferred_tier_3_signals:
+- 'Investor-confidence signal (actual-owners_04): A ''sharp, highly publicized slump
+  in Ferrari''s stock price'' following the Luce reveal is directly observable to
+  this cohort as a Tier-3 institutional-confidence marker, suggesting that capital
+  markets decoded the reception as demand-risk.'
+- 'Allocation-system legal / contractual architecture (actual-owners_04): The description
+  of Ferrari''s allocation system—including implied resale restrictions (''agree not
+  to flip their cars'')—surfaces a Tier-3 contractual stewardship structure that governs
+  this cohort''s relationship with the brand. The insertion of the Luce into this
+  structure has observable IP-governance and client-relationship-management implications
+  visible to owners who have navigated it.'
+- 'Brand-equity stewardship concern (actual-owners_04): The ''corporate extortion''
+  framing and the reference to Ferrari using the Luce ''as a literal bargaining chip''
+  signals a Tier-3 brand-stewardship risk as visible to this cohort: the allocation
+  system''s legitimacy—historically a competitive moat—may be eroded if weaponized
+  for a poorly-received product.'
+- 'Collector-advisory intermediary visibility (actual-owners_04): The Girardo & Co.
+  advisory firm is cited as a source, indicating that institutional intermediaries
+  serving this cohort have sufficient visibility into Ferrari''s allocation mechanics
+  to characterize them publicly—a Tier-3 signal about information asymmetry and third-party
+  stewardship actors.'
+inferred_tier_5_process_couplings:
+- 'Allocation-system integration as distribution mechanism (actual-owners_04): Ferrari''s
+  use of its existing hyper-curated allocation infrastructure—rather than open-market
+  sales or waitlist mechanisms—to move Luce units is a visible Tier-5 process signal.
+  The platform strategy couples EV adoption to a pre-existing client-relationship
+  management process originally designed for combustion hypercars.'
+- 'Demand-generation process substitution (actual-owners_04): The artifact implies
+  that organic demand generation (product desire → purchase intent) has been substituted
+  with a relational-coercion process (allocation leverage → compliance purchase).
+  This is a visible Tier-5 process coupling in which the sales and demand-creation
+  workflow is structurally altered for the Luce relative to legacy Ferrari product
+  introductions.'
+- 'Price-point process signal (actual-owners_04): The $640,000 price figure, cited
+  directly, implies a production-cost and margin-recovery process assumption that
+  positions the Luce within Ferrari''s ultra-premium tier rather than as a volume
+  EV play—a visible Tier-5 platform-strategy signal about unit economics and target
+  production volumes.'
+- 'Factory-sanctioned event integration (actual-owners_04): The reference to clients
+  being required to ''attend factory-sanctioned events'' as part of allocation qualification
+  suggests that experiential / relationship-management processes at Maranello are
+  formally coupled to the sales pipeline—a Tier-5 process visibility signal about
+  how the Luce''s commercial strategy interfaces with Ferrari''s existing client-cultivation
+  infrastructure.'
+vector:
+- 2.5
+- 2.0
+- 7.0
+- 1.8
+- 3.5
+- 3.0
+- 2.5
+- 3.8
+rendering: "# Tier-4 Implicit-Spec Inference: Ferrari Luce\n## Cohort: Actual Ferrari\
+  \ Owners (FerrariChat / FerrariOwners.club / collector + owner quotes)\n### Observation\
+  \ Window: 2026-05-30 – 2026-06-20 | Method: Structural Decomposition / Implicit-Spec\
+  \ Inference\n\n---\n\n## Analytical Narrative\n\nAs inferred from observable artifacts,\
+  \ the actual-owner cohort's reading of the Ferrari Luce's implicit Tier-4 product\
+  \ specification is dominated by a single acute tension: the perceived subordination\
+  \ of product desire to allocation leverage. Where non-owner enthusiasts might debate\
+  \ the Luce's design or powertrain on merit, this cohort's public signal is almost\
+  \ entirely channeled through the prism of *what the Luce costs them relationally*—specifically,\
+  \ what refusal to purchase may cost them in access to future allocations.\n\nThe\
+  \ excerpt from actual-owners_04 (AutoGuide, 2026-06-18) constructs a narrative visible\
+  \ to this cohort in which Ferrari's implicit Tier-4 spec for the Luce is not primarily\
+  \ a performance document, an aesthetic statement, or even an EV-transition signal—it\
+  \ is, as inferred from the artifact, a *relational compliance instrument*. The Girardo\
+  \ & Co. advisory quote (\"If you go every week, eventually they find you one\")\
+  \ frames the allocation system in terms this cohort understands experientially:\
+  \ loyalty quantified as purchase history, event attendance, and resale abstention.\
+  \ The Luce, within this structural reading, is positioned as a new mandatory rung\
+  \ on a pre-existing ladder. The implicit spec, visible to long-term collector-owners,\
+  \ is that the vehicle's Tier-4 identity is partially constituted by its function\
+  \ as a gating credential rather than by its standalone desirability.\n\nThis produces\
+  \ a bifurcated cohort response that should be reflected in scoring uncertainty.\
+  \ The vocal subset—represented in forum excerpts and press-carried owner quotes—reads\
+  \ the Luce with considerable hostility: the artifact characterizes the reception\
+  \ as \"universally panned by automotive journalists and brand purists alike,\" and\
+  \ the allocation-coercion framing (\"corporate extortion,\" \"Allocation Trap\"\
+  ) suggests that a meaningful portion of this cohort perceives the implicit spec\
+  \ as a betrayal of the unspoken compact between Maranello and its most committed\
+  \ clients. The compact, as inferred from observable artifacts, historically ran:\
+  \ *spend loyally, receive preferential access to emotionally resonant, heritage-coherent\
+  \ product*. The Luce, as read by this cohort through the artifact, ruptures that\
+  \ compact by inserting an allegedly unwanted product into the loyalty calculus.\n\
+  \nHowever, the artifact also surfaces a quieter, more pragmatic owner logic. The\
+  \ Girardo framing—while descriptive rather than prescriptive—implies that some clients\
+  \ will rationally absorb the Luce purchase as a relationship maintenance cost. For\
+  \ high-frequency multi-Ferrari collectors whose annual spend on Maranello product\
+  \ already runs to millions, a $640,000 EV acquisition may function as a relatively\
+  \ low-friction toll for continued access to limited hypercars. This segment of the\
+  \ cohort, which by the artifact's own admission is *under-represented* in the public\
+  \ sample, likely reads the implicit Tier-4 spec more neutrally: the Luce is a portfolio\
+  \ obligation, not a desiderata object. This divergence is substantial and must widen\
+  \ CIs across nearly all dimensions.\n\nThe implicit Tier-4 product specification\
+  \ inferrable from these artifacts, as visible to this cohort, thus resolves to something\
+  \ like: *the Luce is a compliance-optimized, allocation-system-integrated EV whose\
+  \ design brief, as visible externally, prioritized Ferrari's electrification mandate\
+  \ and investor-narrative obligations over cohort-specific desire formation*. The\
+  \ $640,000 price point, cited directly in the artifact, signals that the vehicle\
+  \ is not positioned as accessible even within ownership demographics—it is priced\
+  \ as a serious collector acquisition—yet the accompanying coercion narrative undermines\
+  \ the organic desirability that would normally justify such a figure to this cohort.\
+  \ The stock-price slump referenced in the artifact further signals to owner-investors\
+  \ in this cohort that the market decoded the same implicit spec: forced rather than\
+  \ earned demand.\n\nThe artifact's language—\"leveraging,\" \"force the market's\
+  \ hand,\" \"desperate\"—is editorial rather than owner-direct-quoted, which introduces\
+  \ a material confound: the cohort's actual emotional register may be more varied\
+  \ than the press framing suggests. Nevertheless, as observable artifacts are all\
+  \ that are available, this framing is treated as a plausible representation of the\
+  \ vocal-owner subset's interpretation, with widened CIs to account for the likely\
+  \ quieter, more compliant majority.\n\n---\n\n## Structured Scoring Block\n\n```yaml\n\
+  sbt_tier4_implicit_spec_inference:\n  cohort: \"Actual Ferrari owners (FerrariChat\
+  \ / FerrariOwners.club / collector + owner quotes)\"\n  product: \"Ferrari Luce\"\
+  \n  observation_window: \"2026-05-30 to 2026-06-20\"\n  method: \"Implicit-spec\
+  \ inference via structural decomposition of publicly observable artifacts\"\n  artifact_ids_available:\
+  \ [\"actual-owners_04\"]\n  caveat: >\n    Single-artifact basis. All scores and\
+  \ CIs reflect thin evidence and significant\n    cohort internal divergence. No\
+  \ confidential or non-public materials were accessed.\n    Inferences are observer-side\
+  \ reconstructions only.\n\n  dimensions:\n\n    - dimension: \"1. Desirability Signal\
+  \ Strength\"\n      label: \"How strongly does the implicit spec generate intrinsic\
+  \ want within the cohort?\"\n      score: 2.5\n      ci_95_lower: 1.0\n      ci_95_upper:\
+  \ 4.5\n      rationale: >\n        As inferred from actual-owners_04, the Luce's\
+  \ reception among the vocal\n        owner subset is characterized as \"universally\
+  \ panned\" and \"widely rejected.\"\n        The allocation-coercion framing implies\
+  \ that demand, to whatever extent it\n        exists, is instrumentally rather than\
+  \ intrinsically motivated. The implicit\n        spec, as visible to this cohort,\
+  \ does not appear to generate genuine want;\n        instead, purchase is framed\
+  \ as a relational tax. CI is wide because the\n        under-represented quiet-majority\
+  \ owner may hold a more neutral or\n        compliance-pragmatic view that the public\
+  \ artifact pool cannot capture.\n\n    - dimension: \"2. Heritage Coherence\"\n\
+  \      label: \"Degree to which the implicit spec legibly extends Ferrari's established\n\
+  \              product identity and ownership mythology as perceived by this cohort.\"\
+  \n      score: 2.0\n      ci_95_lower: 1.0\n      ci_95_upper: 3.5\n      rationale:\
+  \ >\n        Actual-owners_04 explicitly frames the Luce as a \"departure from Ferrari's\n\
+  \        performance heritage,\" a characterization attributed to both journalists\
+  \ and\n        \"brand purists\"—a category this cohort identifies with. The coercion\
+  \ narrative\n        further erodes heritage coherence: the implicit spec, as visible\
+  \ here,\n        subordinates the traditional meritocratic-desire compact to a corporate\n\
+  \        electrification mandate. The Girardo allocation-system description preserves\n\
+  \        *process* heritage (exclusivity, curated ownership history) but not *product*\n\
+  \        heritage. CI lower bound reflects the possibility that some owners read\n\
+  \        Ferrari's EV move as a natural brand evolution; upper bound is constrained\
+  \ by\n        the artifact's uniformly negative heritage framing.\n\n    - dimension:\
+  \ \"3. Exclusivity Architecture\"\n      label: \"How legibly does the implicit\
+  \ spec encode scarcity, access hierarchy,\n              and ownership selectivity\
+  \ as experienced by this cohort?\"\n      score: 7.0\n      ci_95_lower: 5.5\n \
+  \     ci_95_upper: 8.5\n      rationale: >\n        This is the dimension where\
+  \ the Luce's implicit spec scores highest with this\n        cohort, though the\
+  \ valence is ambiguous. Actual-owners_04 describes Ferrari's\n        allocation\
+  \ system in granular terms (\"curated who is allowed to buy,\"\n        \"millions\
+  \ building a curated ownership history,\" \"agree not to flip\"), and\n        the\
+  \ Luce is explicitly inserted into this architecture as a gate. The\n        exclusivity\
+  \ mechanics are highly legible to this cohort—they have navigated\n        them\
+  \ directly. Score is elevated because the spec's exclusivity architecture\n    \
+  \    is structurally robust and cohort-recognizable, even if its application to\n\
+  \        the Luce is resented. CI spread reflects disagreement about whether\n \
+  \       leveraging the system for the Luce strengthens or degrades the architecture's\n\
+  \        legitimacy.\n\n    - dimension: \"4. Emotional Resonance Depth\"\n    \
+  \  label: \"Degree to which the implicit spec, as read by this cohort, is\n    \
+  \          perceived to generate deep affective attachment rather than\n       \
+  \       transactional or obligatory engagement.\"\n      score: 1.8\n      ci_95_lower:\
+  \ 0.8\n      ci_95_upper: 3.5\n      rationale: >\n        The artifact's framing\
+  \ of purchase as \"corporate extortion\" and the\n        \"Allocation Trap\" header\
+  \ suggest that the dominant emotional register\n        for the vocal owner subset\
+  \ is resentment or reluctant compliance, not\n        affective resonance. The Luce's\
+  \ implicit spec, as visible here, appears\n        to have failed to generate the\
+  \ emotional mythology that Ferrari's heritage\n        products typically do with\
+  \ this cohort. Wide CI because quiet compliant\n        owners may have a more neutral\
+  \ affect, and the artifact pool is too thin\n        to characterize the full emotional\
+  \ distribution.\n\n    - dimension: \"5. Investment / Asset Coherence\"\n      label:\
+  \ \"How clearly does the implicit spec signal retained or appreciating\n       \
+  \       asset value as perceived by collector-owners?\"\n      score: 3.5\n    \
+  \  ci_95_lower: 1.5\n      ci_95_upper: 5.5\n      rationale: >\n        Actual-owners_04\
+  \ references \"a sharp, highly publicized slump in Ferrari's\n        stock price\"\
+  \ following the Luce's debut, which is directly legible to\n        owner-investors\
+  \ as a negative asset-coherence signal. However, the artifact\n        also implies\
+  \ that compliance-buyers may treat the Luce as a portfolio toll\n        that unlocks\
+  \ access to *other* appreciating assets (future hypercars).\n        The investment\
+  \ coherence of the Luce itself appears weak; its indirect\n        investment logic\
+  \ (as access credential) is more plausible but highly\n        uncertain. Very wide\
+  \ CI reflecting near-total artifact ambiguity on\n        secondary-market trajectory.\n\
+  \n    - dimension: \"6. Community / Identity Signal Clarity\"\n      label: \"How\
+  \ clearly does the implicit spec reinforce or challenge the\n              cohort's\
+  \ self-conception as Ferrari owners and collectors?\"\n      score: 3.0\n      ci_95_lower:\
+  \ 1.5\n      ci_95_upper: 5.0\n      rationale: >\n        The artifact frames the\
+  \ Luce as identity-dissonant for the vocal owner\n        subset: it is described\
+  \ as a product \"rejected\" by purists, and its\n        coerced acquisition undermines\
+  \ the voluntary, merit-based identity\n        narrative (\"I earned this Ferrari\"\
+  ) that this cohort has historically\n        constructed around their ownership.\
+  \ The implicit spec, as visible here,\n        challenges rather than reinforces\
+  \ cohort identity for the vocal minority.\n        CI is wide because the quiet\
+  \ majority—for whom the Luce may simply be\n        another car in a large collection—may\
+  \ experience minimal identity\n        disruption.\n\n    - dimension: \"7. Institutional\
+  \ Trust Signal\"\n      label: \"Degree to which the implicit spec reinforces Ferrari's\
+  \ perceived\n              trustworthiness, stewardship, and relational integrity\
+  \ with this cohort.\"\n      score: 2.5\n      ci_95_lower: 1.0\n      ci_95_upper:\
+  \ 4.5\n      rationale: >\n        The coercion framing in actual-owners_04 (\"\
+  corporate extortion,\" \"force\n        the market's hand,\" \"desperate\") directly\
+  \ maps onto an institutional trust\n        deficit as perceived by the vocal owner\
+  \ subset. The unspoken Ferrari-client\n        compact—preferential access in exchange\
+  \ for loyal, non-speculative\n        purchasing—is described as being weaponized\
+  \ rather than honored. The\n        Girardo quote preserves some institutional coherence\
+  \ (the system itself is\n        described as functioning), but its application\
+  \ to the Luce is framed as\n        a distortion. CI lower bound reflects possible\
+  \ narrative exaggeration in\n        press framing; upper bound constrained by the\
+  \ artifact's consistent\n        trust-deficit framing.\n\n    - dimension: \"8.\
+  \ Novelty / Forward-Trajectory Legibility\"\n      label: \"How clearly does the\
+  \ implicit spec communicate a coherent and\n              credible path forward\
+  \ for the brand and product line, as read\n              by this cohort?\"\n   \
+  \   score: 3.8\n      ci_95_lower: 2.0\n      ci_95_upper: 6.0\n      rationale:\
+  \ >\n        The Luce's EV positioning does communicate a directional signal legible\n\
+  \        to this cohort: Ferrari is entering electric mobility. However, the\n \
+  \       artifact frames this trajectory as \"desperate\" and investor-questioned\n\
+  \        (stock slump), undermining its credibility as a coherent forward path.\n\
+  \        The implicit spec, as visible here, suggests a brand navigating a\n   \
+  \     transition it has not yet persuaded its most committed clients to\n      \
+  \  embrace. Some owner-investors may read the EV trajectory as necessary\n     \
+  \   and ultimately credible; others read it as brand dilution. This dimension\n\
+  \        has the widest legitimate interpretive range, producing a moderately\n\
+  \        wide CI. Score is slightly higher than desirability dimensions because\n\
+  \        forward-trajectory legibility is partially independent of whether owners\n\
+  \        *want* the direction.\n\n  inferred_tier_3_signals:\n    - >\n      Investor-confidence\
+  \ signal (actual-owners_04): A \"sharp, highly publicized\n      slump in Ferrari's\
+  \ stock price\" following the Luce reveal is directly\n      observable to this\
+  \ cohort as a Tier-3 institutional-confidence marker,\n      suggesting that capital\
+  \ markets decoded the reception as demand-risk.\n    - >\n      Allocation-system\
+  \ legal / contractual architecture (actual-owners_04):\n      The description of\
+  \ Ferrari's allocation system—including implied resale\n      restrictions (\"agree\
+  \ not to flip their cars\")—surfaces a Tier-3 contractual\n      stewardship structure\
+  \ that governs this cohort's relationship with the brand.\n      The insertion of\
+  \ the Luce into this structure has observable IP-governance\n      and client-relationship-management\
+  \ implications visible to owners who have\n      navigated it.\n    - >\n      Brand-equity\
+  \ stewardship concern (actual-owners_04): The \"corporate extortion\"\n      framing\
+  \ and the reference to Ferrari using the Luce \"as a literal bargaining\n      chip\"\
+  \ signals a Tier-3 brand-stewardship risk as visible to this cohort:\n      the\
+  \ allocation system's legitimacy—historically a competitive moat—may be\n      eroded\
+  \ if weaponized for a poorly-received product.\n    - >\n      Collector-advisory\
+  \ intermediary visibility (actual-owners_04): The Girardo\n      & Co. advisory\
+  \ firm is cited as a source, indicating that institutional\n      intermediaries\
+  \ serving this cohort have sufficient visibility into\n      Ferrari's allocation\
+  \ mechanics to characterize them publicly—a Tier-3\n      signal about information\
+  \ asymmetry and third-party stewardship actors.\n\n  inferred_tier_5_process_couplings:\n\
+  \    - >\n      Allocation-system integration as distribution mechanism (actual-owners_04):\n\
+  \      Ferrari's use of its existing hyper-curated allocation infrastructure—rather\n\
+  \      than open-market sales or waitlist mechanisms—to move Luce units is a\n \
+  \     visible Tier-5 process signal. The platform strategy couples EV adoption\n\
+  \      to a pre-existing client-relationship management process originally designed\n\
+  \      for combustion hypercars.\n    - >\n      Demand-generation process substitution\
+  \ (actual-owners_04): The artifact\n      implies that organic demand generation\
+  \ (product desire → purchase intent)\n      has been substituted with a relational-coercion\
+  \ process (allocation\n      leverage → compliance purchase). This is a visible\
+  \ Tier-5 process\n      coupling in which the sales and demand-creation workflow\
+  \ is structurally\n      altered for the Luce relative to legacy Ferrari product\
+  \ introductions.\n    - >\n      Price-point process signal (actual-owners_04):\
+  \ The $640,000 price figure,\n      cited directly, implies a production-cost and\
+  \ margin-recovery process\n      assumption that positions the Luce within Ferrari's\
+  \ ultra-premium tier\n      rather than as a volume EV play—a visible Tier-5 platform-strategy\
+  \ signal\n      about unit economics and target production volumes.\n    - >\n \
+  \     Factory-sanctioned event integration (actual-owners_04): The reference to\n\
+  \      clients being required to \"attend factory-sanctioned events\" as part of\n\
+  \      allocation qualification suggests that experiential / relationship-management\n\
+  \      processes at Maranello are formally coupled to the sales pipeline—a\n   \
+  \   Tier-5 process visibility signal about how the Luce's commercial strategy\n\
+  \      interfaces with Ferrari's existing client-cultivation infrastructure.\n\n\
+  \  cohort_internal_divergence_note: >\n    The actual-owner cohort exhibits substantial\
+  \ internal divergence that is\n    explicitly acknowledged in the cohort definition\
+  \ (the quiet long-term owner\n    is under-represented) and that materially widens\
+  \ CIs across all eight\n    dimensions. The observable artifact pool is dominated\
+  \ by the vocal, heritage-\n    committed, coercion-resentful subset, whose implicit-spec\
+  \ reading scores the\n    Luce very low on desirability, heritage coherence, emotional\
+  \ resonance, and\n    institutional trust. However, a structurally distinct sub-population—high-\n\
+  \    frequency multi-Ferrari collectors for whom the $640,000 Luce represents a\n\
+  \    manageable portfolio toll rather than an identity affront—is plausibly\n  \
+  \  present but nearly invisible in the public artifact pool. This sub-population\n\
+  \    likely holds higher scores on exclusivity architecture acceptance and forward-\n\
+  \    trajectory credibility, and lower emotional salience on the coercion framing.\n\
+  \    The resulting CI spread (averaging approximately ±1.5 to ±2.0 points across\n\
+  \    dimensions) reflects not just thin artifact coverage but genuine distributional\n\
+  \    heterogeneity within a cohort that appears unified from the outside but is\n\
+  \    internally segmented by collection scale, investment orientation, and\n   \
+  \ relational history with Maranello's allocation infrastructure.\n```"
+seed: 20260620

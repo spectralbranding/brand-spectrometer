@@ -1,0 +1,45 @@
+{
+  "atlas": "ferrari_luce_fresh_2606",
+  "grain": "host",
+  "draws": 4000,
+  "seed": 20260621,
+  "n_sources_per_cohort": {
+    "actual-owners": 5,
+    "brand-debaters": 7,
+    "chinese-cohort": 8,
+    "italian-press": 8,
+    "non-italian-press": 7
+  },
+  "resolution_levers": {
+    "aggregate_sn_full_sample": 0.8595,
+    "operator_tighten_factor_for_sn_gt_1": 1.163,
+    "operator_tighten_factor_for_sn_gt_2": 2.327,
+    "divergence_multiple_for_sn_gt_1": 1.163,
+    "divergence_multiple_for_sn_gt_2": 2.327,
+    "note": "S/N = d / O. The learning curve is ~flat in n and its CI TIGHTENS around a sub-1 value as sources grow, so collecting more artifacts makes the abstention MORE confident, not less. To resolve, cut the systematic operator floor O by the tighten factor (more/better-agreeing cross-family operator pairs) OR measure a window whose true cohort divergence d is larger by the divergence multiple."
+  },
+  "learning_curve_aggregate_sn": {
+    "3": {
+      "median": 0.8037,
+      "lo": 0.5593,
+      "hi": 1.1502
+    },
+    "4": {
+      "median": 0.8121,
+      "lo": 0.6059,
+      "hi": 1.0744
+    },
+    "5": {
+      "median": 0.8193,
+      "lo": 0.6588,
+      "hi": 1.0105
+    }
+  },
+  "asymptote": {
+    "operator_floor_inf": 0.0,
+    "pair_distance_inf": 0.0,
+    "aggregate_sn_inf": NaN
+  },
+  "interpretation": "operator/window-limited: asymptotic S/N<=1, so more artifacts alone do not resolve; needs tighter operators (more/better cross-family pairs lowering the systematic floor) or a window with larger true cohort divergence",
+  "n_star_sources_for_sn_gt_1": null
+}

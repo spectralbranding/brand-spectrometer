@@ -1,0 +1,54 @@
+{
+  "atlas": "ferrari_luce_fresh_2606",
+  "grain": "host",
+  "metric": "cohort-level test-retest: each rep aggregated reflection->source->cohort into a replicate cohort vector, compared at the operator floor's aggregation level. PRIMARY (aligned-replicates): max replicate distance from the across-replicate mean (mirrors max-over-alternates). FALLBACK for sparse cohorts (bootstrap-sparse): bootstrap one rep per artifact (>=3 artifacts with >=2 reps), 95th-pct re-draw distance.",
+  "criterion": "pass iff test-retest distance (aligned: max; sparse: 95th pct) <= operator floor",
+  "per_cohort": {
+    "actual-owners": {
+      "method": "aligned-replicates",
+      "test_retest_distance_max": 0.01497,
+      "test_retest_distance_mean": 0.0086,
+      "operator_floor": 0.0565,
+      "n_replicates": 5,
+      "pass": true
+    },
+    "brand-debaters": {
+      "method": "aligned-replicates",
+      "test_retest_distance_max": 0.00589,
+      "test_retest_distance_mean": 0.00233,
+      "operator_floor": 0.0097,
+      "n_replicates": 5,
+      "pass": true
+    },
+    "chinese-cohort": {
+      "method": "bootstrap-sparse",
+      "test_retest_distance_p95": 0.00762,
+      "test_retest_distance_mean": 0.00359,
+      "operator_floor": 0.0034,
+      "n_artifacts_total": 6,
+      "n_artifacts_multi_rep": 6,
+      "bootstrap_draws": 2000,
+      "seed": 20260621,
+      "pass": false
+    },
+    "italian-press": {
+      "method": "aligned-replicates",
+      "test_retest_distance_max": 0.00253,
+      "test_retest_distance_mean": 0.00144,
+      "operator_floor": 0.0131,
+      "n_replicates": 5,
+      "pass": true
+    },
+    "non-italian-press": {
+      "method": "aligned-replicates",
+      "test_retest_distance_max": 0.00358,
+      "test_retest_distance_mean": 0.00196,
+      "operator_floor": 0.0096,
+      "n_replicates": 5,
+      "pass": true
+    }
+  },
+  "pass_count": 4,
+  "n_scored": 5,
+  "pass": false
+}

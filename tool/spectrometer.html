@@ -10,11 +10,65 @@
 <meta property="og:title" content="The Brand Spectrometer" />
 <meta property="og:description" content="See how different audiences actually perceive a brand — cohort by cohort, across eight dimensions. Load your own data; it never leaves your browser." />
 <meta property="og:image" content="https://meter.spectralbranding.com/og.png" />
+<meta property="og:image:alt" content="The Brand Spectrometer — a spectrum strip reading eight perception dimensions across audience cohorts." />
+<meta property="og:image:width" content="1200" />
+<meta property="og:image:height" content="630" />
 <meta property="og:url" content="https://meter.spectralbranding.com/" />
+<meta property="og:site_name" content="Brand Spectrometer" />
+<meta property="og:locale" content="en_US" />
 <meta name="twitter:card" content="summary_large_image" />
 <meta name="twitter:title" content="The Brand Spectrometer" />
 <meta name="twitter:description" content="Read the perception you don't control — cohort by cohort, across eight dimensions. Runs in your browser." />
 <meta name="twitter:image" content="https://meter.spectralbranding.com/og.png" />
+<meta name="twitter:image:alt" content="A spectrum strip reading eight perception dimensions across audience cohorts." />
+<meta name="theme-color" content="#0a0b10" />
+<meta name="author" content="Dmitry Zharnikov" />
+<link rel="canonical" href="https://meter.spectralbranding.com/" />
+<!-- Structured data (Schema.org / JSON-LD) for SEO + generative-engine discovery (GEO). -->
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@graph": [
+    {
+      "@type": "WebApplication",
+      "@id": "https://meter.spectralbranding.com/#app",
+      "name": "Brand Spectrometer",
+      "alternateName": "The Brand Spectrometer",
+      "url": "https://meter.spectralbranding.com/",
+      "applicationCategory": "BusinessApplication",
+      "applicationSubCategory": "Brand measurement / market research",
+      "operatingSystem": "Any (web browser)",
+      "browserRequirements": "Requires JavaScript. Runs entirely client-side.",
+      "offers": { "@type": "Offer", "price": "0", "priceCurrency": "USD" },
+      "isAccessibleForFree": true,
+      "description": "A reproducible instrument that reads how different audiences perceive a brand — cohort by cohort, across eight dimensions (Semiotic, Narrative, Ideological, Experiential, Social, Economic, Cultural, Temporal). Load any standard atlas; it runs entirely in your browser and nothing you load is uploaded or stored.",
+      "featureList": [
+        "Eight-dimension perception reading per audience cohort",
+        "Spectrum-strip visualization with a detail dial (headline to full cloud)",
+        "Signal-to-noise floor flags real vs. within-margin differences",
+        "Client-side only — no account, no upload, no server"
+      ],
+      "keywords": "brand measurement, brand perception, spectral brand theory, cohort analysis, market research instrument, brand metrology",
+      "softwareVersion": "0.1.0",
+      "author": { "@id": "https://spectralbranding.com/#org" },
+      "publisher": { "@id": "https://spectralbranding.com/#org" },
+      "license": "https://opensource.org/licenses/MIT",
+      "subjectOf": { "@type": "ScholarlyArticle", "name": "The Brand Spectrometer: A Reproducible Instrument for Measuring Brand Perception", "identifier": "10.57967/hf/9249" }
+    },
+    {
+      "@type": "Organization",
+      "@id": "https://spectralbranding.com/#org",
+      "name": "Spectral Branding",
+      "url": "https://spectralbranding.com",
+      "description": "Spectral Brand Theory — measuring brand perception as a spread across audience cohorts and eight dimensions.",
+      "sameAs": [
+        "https://github.com/spectralbranding",
+        "https://huggingface.co/spectralbranding"
+      ]
+    }
+  ]
+}
+</script>
 <!-- Match the main site's display font (Space Grotesk) for nav consistency -->
 <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
 <link rel="alternate icon" href="/favicon.ico" />
@@ -41,8 +95,9 @@
   h1{font-family:"Iowan Old Style",Palatino,Georgia,serif;font-size:clamp(34px,6vw,62px);line-height:1.04;margin:0 0 18px;font-weight:650}
   h2{font-family:"Iowan Old Style",Palatino,Georgia,serif;font-size:clamp(24px,3.4vw,38px);line-height:1.12;margin:0 0 16px;font-weight:600}
   .grad{background:var(--grad);-webkit-background-clip:text;background-clip:text;color:transparent}
-  .lead{font-size:clamp(17px,1.9vw,22px);max-width:34em;color:#dfe3ee}
+  .lead{font-size:clamp(17px,1.9vw,22px);max-width:none;color:#dfe3ee}
   .sub{color:var(--mut);max-width:none}
+  .valbreak{margin-top:1.9em;padding-top:1.3em;border-top:1px solid var(--line)}
   p{margin:.6em 0}
   b{color:var(--ink)}
   a{color:#9fc6ff;text-decoration:none;border-bottom:1px solid #3a567e}
@@ -91,6 +146,20 @@
   .switch{width:38px;height:22px;border-radius:999px;background:#2a3142;position:relative;transition:background .2s}
   .switch:after{content:"";position:absolute;top:2px;left:2px;width:18px;height:18px;border-radius:50%;background:#fff;transition:transform .2s}
   .toggle.on .switch{background:var(--resolved)} .toggle.on .switch:after{transform:translateX(16px)}
+  .dialrow{display:flex;align-items:center;gap:10px;flex-wrap:wrap;margin:4px 0 14px}
+  .diallabel{font-size:11px;text-transform:uppercase;letter-spacing:.14em;color:var(--faint);font-weight:700}
+  .dial{display:inline-flex;gap:6px;flex-wrap:wrap}
+  .dialaud{font-size:12px;color:var(--faint)}
+  .lvl{font-size:12.5px;color:var(--mut);border:1px solid var(--line);background:var(--bg2);border-radius:999px;padding:5px 12px;cursor:pointer;user-select:none;transition:background .15s,color .15s}
+  .lvl.on{color:#0a0b10;background:#7fb6f0;border-color:#7fb6f0;font-weight:600}
+  .lvl.dis{opacity:.4;cursor:not-allowed}
+  .chartcap{margin:12px 4px 0;font-size:12.5px;color:var(--marginal);border-left:2px solid rgba(232,197,49,.4);padding-left:10px}
+  .legend{display:flex;flex-wrap:wrap;gap:14px;margin:12px 4px 0;font-size:11.5px;color:var(--mut)}
+  .legend .lz{display:inline-flex;align-items:center;gap:7px;cursor:help}
+  .legend .swk{width:20px;height:10px;border-radius:3px;display:inline-block}
+  .legend .vdotk{width:8px;height:8px;border-radius:50%;display:inline-block}
+  /* spectrum strip: animate the additive morph between detail levels */
+  #chart svg .band,#chart svg .cohline,#chart svg .vdot,#chart svg .cihalo,#chart svg .vaxis{transition:opacity .35s ease, transform .35s ease}
   .modebtn{font-size:12.5px;color:var(--mut);border:1px solid var(--line);background:var(--bg2);border-radius:8px;padding:5px 11px;cursor:pointer}
   .modebtn.on{color:var(--ink);border-color:var(--faint)}
   .chartwrap{display:flex;gap:24px;flex-wrap:wrap;align-items:flex-start}
@@ -105,6 +174,8 @@
   .tag.resolved{background:rgba(78,195,168,.16);color:var(--resolved)}
   .tag.marginal{background:rgba(232,197,49,.16);color:var(--marginal)}
   .tag.sub-resolution{background:rgba(255,122,110,.16);color:var(--sub)}
+  /* load-status colour coding: success green, warning amber, error red, neutral subdued */
+  .loadmsg{color:var(--faint)} .loadmsg.ok{color:var(--resolved)} .loadmsg.warn{color:var(--marginal)} .loadmsg.err{color:#ff6b6b} .loadmsg.info{color:var(--faint)}
   .drivers{margin-top:12px} .drivers .d{display:flex;justify-content:space-between;padding:3px 0;border-bottom:1px solid #1b1e2b}
   table{border-collapse:collapse;width:100%;font-size:clamp(12px,1.5vw,15px);margin-top:6px}
   th{font-size:11px;text-transform:uppercase;letter-spacing:.04em;color:var(--mut);text-align:center;padding:8px 6px;border-bottom:1px solid var(--line)}
@@ -129,6 +200,7 @@
   .navtop .brand{font-family:'Space Grotesk',system-ui,sans-serif;font-weight:300;font-size:.875rem;text-transform:uppercase;letter-spacing:.12em}
   .navtop .wrap>a{font-family:'Space Grotesk',system-ui,sans-serif;font-weight:300;font-size:.75rem;text-transform:uppercase;letter-spacing:.08em;color:var(--mut);border:0}
   .navtop .wrap>a:hover{color:var(--ink)}
+  .navtop .brand a{text-decoration:none} .navtop .brand a.grad{color:transparent}
   .navtop .brand .home{color:var(--ink)} .navtop .brand .home:hover{color:#fff}
   .navtop .spacer{margin-left:auto}
   .tip{position:fixed;pointer-events:none;background:#020308;border:1px solid var(--line);border-radius:8px;
@@ -139,12 +211,10 @@
 <body>
 <div class="spectrum-strip"></div>
 <div class="navtop"><div class="wrap">
-  <span class="brand"><a href="https://spectralbranding.com" class="home">Brand</a> <span class="grad">Spectrometer</span></span>
+  <span class="brand"><a href="https://spectralbranding.com" class="home">Brand</a> <a href="/" class="grad">Spectrometer</a></span>
   <span class="spacer"></span>
-  <a href="#read" class="hidemob">The read</a>
-  <a href="#distance" class="hidemob">Distance</a>
-  <a href="#table" class="hidemob">Numbers</a>
-  <a href="/faq.html" class="hidemob">FAQ</a>
+  <a href="/how-to-read">How to read</a>
+  <a href="/faq">FAQ</a>
   <a href="#load">Load an atlas ↑</a>
 </div></div>
 
@@ -152,7 +222,7 @@
 
   <section class="hero">
     <p class="eyebrow">Spectral Brand Theory · measurement layer</p>
-    <h1>Read the perception<br>you don't <span class="grad">control</span></h1>
+    <h1>Read the <span class="grad">perception</span><br>you don't control</h1>
     <p class="lead">The Brand Spectrometer reads how different audiences actually perceive a brand —
       audience by audience, across eight dimensions, from public material — and tells you which
       of those differences are real and which are just noise.</p>
@@ -179,25 +249,40 @@
 
   <section>
     <p class="eyebrow">The instrument's scale</p>
-    <h2>Eight dimensions of a perception</h2>
+    <h2 id="dimHead">Eight dimensions of a perception</h2>
     <div class="dimgrid" id="dims"></div>
-    <p class="note">A brand is one signal made of these eight. Two audiences can hold the same
+    <p class="sub">A brand is one signal made of these eight. Two audiences can hold the same
       overall opinion while reading those dimensions completely differently — <b>the same score
       hiding two different brands</b>. Toggle the audiences below to see it.</p>
+    <p class="sub valbreak"><b>Each dimension carries two readings.</b> One is <b>how strongly</b> it
+      registers — the <b>score</b>, 0&#8211;10 (the line's height). The other is <b>which way it
+      leans</b> — its <b>valence</b>:</p>
+    <div class="dimgrid">
+      <div class="dim"><span class="sw" style="background:var(--sub)"></span><b>&minus;1</b> &mdash; hostile / negative</div>
+      <div class="dim"><span class="sw" style="background:var(--mut)"></span><b>0</b> &mdash; neutral / mixed</div>
+      <div class="dim"><span class="sw" style="background:var(--resolved)"></span><b>+1</b> &mdash; favourable / positive</div>
+    </div>
+    <p class="sub">Strength is <b>not</b> approval: an audience can read a brand as intensely
+      <em>economic</em> and feel negative about it. On the spectrum strip the dot slides from
+      negative (left) to positive (right) along each line &mdash; a line sitting high with its dot
+      on the left is the dangerous one: an audience that cares a lot, and not in your favour.</p>
   </section>
 
   <section id="read">
     <p class="eyebrow">A real read</p>
-    <h2>Five cohorts, one brand</h2>
-    <p class="sub">Each cohort's inferred eight-dimension specification. Toggle cohorts to overlay
-      them; switch between bars and radar. The press cohorts read high and rich; owners and online
-      debaters read lower and re-weighted — same brand, different perceptions.</p>
+    <h2 id="cohHead">Five cohorts, one brand</h2>
+    <p class="sub">A <b>spectrum strip</b>: eight wavelength lanes, one per dimension. Each audience is a
+      line at its score (height = how strongly the dimension registers), the dot on the line is its
+      valence (left −1 negative … right +1 positive), and the band is the spread across audiences. No
+      radar — a spider chart's silhouette is an artifact of axis order, not the brand. Turn the
+      <b>detail dial</b> up to add sentiment, uncertainty and the noise floor; each step says what it
+      still hides. <a href="how-to-read.html">How to read this →</a></p>
     <div class="controls" id="chips"></div>
-    <div class="controls" style="margin-top:-6px">
-      <button class="modebtn on" id="m-bars">Bars</button>
-      <button class="modebtn" id="m-radar">Radar</button>
-    </div>
-    <div class="panel"><div class="chartwrap"><div class="fig" id="chart"></div></div></div>
+    <div class="dialrow"><span class="diallabel">Detail</span><span class="dial" id="dial"></span>
+      <span class="dialaud" id="dialaud"></span></div>
+    <div class="panel"><div class="chartwrap"><div class="fig" id="chart"></div></div>
+      <p class="chartcap" id="chartcap"></p>
+      <div class="legend" id="legend"></div></div>
   </section>
 
   <section id="distance">
@@ -262,8 +347,9 @@
           </span>
         </li>
         <li><b>Paste it into your AI</b> (Claude, ChatGPT, Gemini…) together with your material —
-          reviews, press, posts. The prompt carries everything the AI needs and pulls the format
-          itself; you don't attach anything. It hands back a ready file — or a note on what's missing.</li>
+          public reviews, press and posts, <b>or your own survey, poll, or panel results</b>. The
+          prompt carries everything the AI needs and pulls the format itself; you don't attach
+          anything. It hands back a ready file — or a note on what's missing.</li>
         <li><b>Bring it back here</b> — paste it in, drop the file, or paste a link.</li>
       </ol>
       <p class="sub" style="font-size:13px;margin:14px 0 0">Bring the result back — pick how:</p>
@@ -289,13 +375,14 @@
       </div>
       <div class="controls" style="margin-top:14px">
         <button class="modebtn on" id="gobtn" style="padding:10px 20px">See the read →</button>
-        <span class="note" style="margin:0"><span id="loadmsg" style="color:var(--sub)"></span></span>
+        <span class="note" style="margin:0"><span id="loadmsg" class="loadmsg"></span></span>
       </div>
     </div>
 
     <div class="explore">
-      <a class="xbtn" href="https://github.com/spectralbranding/brand-spectrometer" target="_blank" rel="noopener"><span>Open code</span>github.com/spectralbranding/brand-spectrometer</a>
-      <a class="xbtn" href="https://spectralbranding.substack.com/p/the-brand-spectrometer-is-open" target="_blank" rel="noopener"><span>How it works</span>The Brand Spectrometer Is Open</a>
+      <a class="xbtn" href="https://spectralbranding.substack.com/p/the-brand-spectrometer-is-open" target="_blank" rel="noopener"><span>Article</span>The Brand Spectrometer Is Open</a>
+      <a class="xbtn" href="https://github.com/spectralbranding/brand-spectrometer" target="_blank" rel="noopener"><span>Open code</span>GitHub repo</a>
+      <a class="xbtn" href="https://doi.org/10.5281/zenodo.20775963" target="_blank" rel="noopener"><span>Open science</span>Working paper</a>
     </div>
   </section>
 
@@ -311,16 +398,10 @@
 
 <!-- Embedded seed atlas (works offline; ?atlas= or upload overrides) -->
 <script type="application/json" id="seed">
-{"meta":{"brand":"An automotive launch (worked example)","atlas":"ferrari_luce","schema":"0.1","methodology":"0.1.0","window":"2025-09 → 2026-05","demo":true,"generation":"legacy","notes":"Legacy single-operator-noise-floor atlas."},
-"dims":[{"key":"semiotic","label":"Semiotic","desc":"signs, symbols, codes","color":"#e64a3b"},{"key":"narrative","label":"Narrative","desc":"the story it tells","color":"#e8842b"},{"key":"ideological","label":"Ideological","desc":"what it stands for","color":"#e8c531"},{"key":"experiential","label":"Experiential","desc":"what it feels like to use","color":"#7bc043"},{"key":"social","label":"Social","desc":"who you're seen as","color":"#2fb3a8"},{"key":"economic","label":"Economic","desc":"value, price, worth","color":"#3a8dde"},{"key":"cultural","label":"Cultural","desc":"its place in the world","color":"#7a5cd0"},{"key":"temporal","label":"Temporal","desc":"heritage & momentum","color":"#c44fa8"}],
-"cohorts":[{"id":"owners","label":"Owners","color":"#e8842b","vector":[2.3,3.1,3.5,5.2,2.9,3.0,2.4,4.0]},{"id":"debaters","label":"Online debaters","color":"#e8c531","vector":[3.5,4.6,5.4,3.2,5.8,3.9,5.7,3.9]},{"id":"chinese","label":"Chinese press","color":"#3a8dde","vector":[6.5,7.0,5.5,8.0,6.0,7.5,5.0,6.5]},{"id":"italian","label":"Italian press","color":"#2fb3a8","vector":[7.8,8.2,6.0,7.5,8.5,9.0,8.0,7.7]},{"id":"nipress","label":"Intl. press","color":"#1f9d57","vector":[8.4,7.8,5.6,9.0,8.1,9.2,7.2,8.6]}],
-"distances":[[0,0.0735,0.0227,0.0481,0.0346],[0.0735,0,0.0524,0.0285,0.0461],[0.0227,0.0524,0,0.0106,0.0047],[0.0481,0.0285,0.0106,0,0.0043],[0.0346,0.0461,0.0047,0.0043,0]],
-"per_pair_sn":[{"a":"owners","b":"debaters","distance":0.0735,"floor":0.0308,"sn":2.3864,"resolved":"resolved"},{"a":"debaters","b":"nipress","distance":0.0461,"floor":0.0213,"sn":2.1643,"resolved":"resolved"},{"a":"debaters","b":"chinese","distance":0.0524,"floor":0.0248,"sn":2.1129,"resolved":"resolved"},{"a":"owners","b":"italian","distance":0.0481,"floor":0.0308,"sn":1.5617,"resolved":"marginal"},{"a":"debaters","b":"italian","distance":0.0285,"floor":0.0213,"sn":1.338,"resolved":"marginal"},{"a":"owners","b":"nipress","distance":0.0346,"floor":0.0308,"sn":1.1234,"resolved":"marginal"},{"a":"italian","b":"nipress","distance":0.0043,"floor":0.0049,"sn":0.8776,"resolved":"sub-resolution"},{"a":"owners","b":"chinese","distance":0.0227,"floor":0.0308,"sn":0.737,"resolved":"sub-resolution"},{"a":"chinese","b":"italian","distance":0.0106,"floor":0.0248,"sn":0.4274,"resolved":"sub-resolution"},{"a":"chinese","b":"nipress","distance":0.0047,"floor":0.0248,"sn":0.1895,"resolved":"sub-resolution"}],
-"noise":{"operator":0.0265,"artifact":null,"coverage":null,"sn_aggregate":2.621},
-"metameric_degree":0.0325,
-"provenance":{"operators":["claude-opus-4-7","gpt-5.5-2026-04-23","claude-haiku-4-5-20251001","gpt-5.4-mini-2026-03-17","qwen3.7-max","deepseek-v4-flash"],"artifact_count":36,"cross_extractor_compliant":"5/5 cohorts","data_doi":null}}
+{"meta":{"brand":"An automotive launch (worked example)","atlas":"ferrari_luce","schema":"0.1","methodology":"0.1.0","window":"2025-09 \u2192 2026-05","demo":true,"generation":"legacy","notes":"Worked-example demo atlas. The eight-dimension scores and the signal-to-noise distance map are the real cross-operator measurement. The detail-dial channels beyond score (valence, per-dimension 95% CI, emission strength, and per-source reflections) are ILLUSTRATIVE demonstration values, not measured \u2014 a measured atlas populates them from the reflection re-derivation.","dial_channels_illustrative":["valence","valence_spread","ci_95","emission","reflections"]},"dims":[{"key":"semiotic","label":"Semiotic","desc":"signs, symbols, codes","color":"#e64a3b"},{"key":"narrative","label":"Narrative","desc":"the story it tells","color":"#e8842b"},{"key":"ideological","label":"Ideological","desc":"what it stands for","color":"#e8c531"},{"key":"experiential","label":"Experiential","desc":"what it feels like to use","color":"#7bc043"},{"key":"social","label":"Social","desc":"who you're seen as","color":"#2fb3a8"},{"key":"economic","label":"Economic","desc":"value, price, worth","color":"#3a8dde"},{"key":"cultural","label":"Cultural","desc":"its place in the world","color":"#7a5cd0"},{"key":"temporal","label":"Temporal","desc":"heritage & momentum","color":"#c44fa8"}],"cohorts":[{"id":"owners","label":"Owners","color":"#e8842b","vector":[2.3,3.1,3.5,5.2,2.9,3.0,2.4,4.0],"valence":[-0.72,-0.66,-0.15,-0.4,-0.21,-0.23,-0.55,-0.33],"valence_spread":[0.54,0.57,0.55,0.7,0.43,0.27,0.33,0.62],"ci_95":[[1.23,3.37],[1.85,4.35],[2.19,4.81],[3.65,6.75],[1.58,4.22],[1.61,4.39],[1.08,3.72],[2.54,5.46]],"emission":[0.54,0.57,0.59,0.62,0.55,0.52,0.44,0.55],"reflections":[[1.7,2.8,2.3,3.0,1.8,1.6],[2.7,4.0,2.2,2.6],[4.7,3.5,4.9,3.5,2.5],[4.5,4.6,6.8,5.4],[3.1,4.2,1.5,1.7,3.6],[1.5,3.0,2.9,2.7],[3.3,1.4,3.8,2.6,1.6],[5.1,5.3,3.7,4.6]]},{"id":"debaters","label":"Online debaters","color":"#e8c531","vector":[3.5,4.6,5.4,3.2,5.8,3.9,5.7,3.9],"valence":[-0.26,-0.33,0.29,-0.24,-0.08,-0.22,-0.15,-0.27],"valence_spread":[0.44,0.49,0.46,0.5,0.66,0.55,0.32,0.26],"ci_95":[[2.0,5.0],[3.12,6.08],[3.88,6.92],[1.98,4.42],[4.44,7.16],[2.51,5.29],[4.04,7.36],[2.56,5.24]],"emission":[0.55,0.65,0.66,0.56,0.71,0.63,0.68,0.54],"reflections":[[2.4,3.2,2.1,5.1,4.0,2.7],[5.3,4.9,4.1,6.0],[5.8,3.8,5.5,5.5,5.9],[3.9,4.0,2.0,2.7],[6.1,5.8,5.2,6.3,5.2],[3.6,4.9,2.4,3.9],[6.4,6.2,4.1,4.1],[3.0,3.0,5.3,4.9,5.2,5.0]]},{"id":"chinese","label":"Chinese press","color":"#3a8dde","vector":[6.5,7.0,5.5,8.0,6.0,7.5,5.0,6.5],"valence":[0.07,0.6,0.57,0.22,0.46,0.02,0.25,0.1],"valence_spread":[0.69,0.27,0.46,0.26,0.51,0.32,0.55,0.42],"ci_95":[[5.13,7.87],[5.82,8.18],[3.92,7.08],[6.77,9.23],[4.42,7.58],[6.25,8.75],[3.46,6.54],[5.16,7.84]],"emission":[0.69,0.76,0.65,0.81,0.76,0.84,0.69,0.79],"reflections":[[5.1,7.9,5.1,6.8,5.6],[6.8,7.9,8.2,7.3],[4.9,7.2,5.8,4.1],[8.6,8.2,6.9,8.9,7.1],[4.8,7.1,7.5,6.6],[7.8,7.8,6.6,6.8],[6.7,3.9,6.5,3.7,4.0,6.5],[6.8,5.9,5.2,7.7]]},{"id":"italian","label":"Italian press","color":"#2fb3a8","vector":[7.8,8.2,6.0,7.5,8.5,9.0,8.0,7.7],"valence":[0.61,0.27,0.72,0.28,0.74,0.22,0.89,0.72],"valence_spread":[0.58,0.64,0.5,0.45,0.42,0.4,0.61,0.68],"ci_95":[[6.72,8.88],[7.13,9.27],[4.63,7.37],[6.16,8.84],[7.39,9.61],[8.03,9.97],[6.77,9.23],[6.51,8.89]],"emission":[0.85,0.84,0.74,0.79,0.84,0.86,0.82,0.77],"reflections":[[8.3,8.2,6.8,8.6,9.0,7.2],[9.3,7.6,9.1,9.0],[5.7,5.1,4.7,5.6,4.5],[7.6,7.2,7.4,6.6,7.9],[9.7,9.5,8.6,7.9,8.3],[9.3,9.8,8.9,8.0],[8.8,8.6,6.9,9.3],[8.4,7.3,7.4,8.5]]},{"id":"nipress","label":"Intl. press","color":"#1f9d57","vector":[8.4,7.8,5.6,9.0,8.1,9.2,7.2,8.6],"valence":[0.15,0.45,0.29,0.68,0.53,0.71,0.76,0.46],"valence_spread":[0.69,0.5,0.29,0.39,0.46,0.58,0.7,0.28],"ci_95":[[7.38,9.42],[6.8,8.8],[4.16,7.04],[8.22,9.78],[7.12,9.08],[8.23,10.0],[5.97,8.43],[7.6,9.6]],"emission":[0.88,0.78,0.67,0.93,0.86,0.86,0.81,0.9],"reflections":[[8.1,9.2,8.3,8.3,9.3,7.3],[7.9,7.9,7.9,7.8,7.5,8.7],[6.4,6.6,6.2,6.6,4.2,6.3],[9.4,8.3,9.7,8.2,9.2],[7.1,9.1,8.4,9.1],[9.0,9.2,8.3,9.7,8.7,10.0],[8.1,7.3,8.3,7.1],[8.9,8.4,8.8,9.2,9.2,9.1]]}],"distances":[[0.0,0.0735,0.0227,0.0481,0.0346],[0.0735,0.0,0.0524,0.0285,0.0461],[0.0227,0.0524,0.0,0.0106,0.0047],[0.0481,0.0285,0.0106,0.0,0.0043],[0.0346,0.0461,0.0047,0.0043,0.0]],"per_pair_sn":[{"a":"owners","b":"debaters","distance":0.0735,"floor":0.0308,"sn":2.3864,"resolved":"resolved"},{"a":"debaters","b":"nipress","distance":0.0461,"floor":0.0213,"sn":2.1643,"resolved":"resolved"},{"a":"debaters","b":"chinese","distance":0.0524,"floor":0.0248,"sn":2.1129,"resolved":"resolved"},{"a":"owners","b":"italian","distance":0.0481,"floor":0.0308,"sn":1.5617,"resolved":"marginal"},{"a":"debaters","b":"italian","distance":0.0285,"floor":0.0213,"sn":1.338,"resolved":"marginal"},{"a":"owners","b":"nipress","distance":0.0346,"floor":0.0308,"sn":1.1234,"resolved":"marginal"},{"a":"italian","b":"nipress","distance":0.0043,"floor":0.0049,"sn":0.8776,"resolved":"sub-resolution"},{"a":"owners","b":"chinese","distance":0.0227,"floor":0.0308,"sn":0.737,"resolved":"sub-resolution"},{"a":"chinese","b":"italian","distance":0.0106,"floor":0.0248,"sn":0.4274,"resolved":"sub-resolution"},{"a":"chinese","b":"nipress","distance":0.0047,"floor":0.0248,"sn":0.1895,"resolved":"sub-resolution"}],"noise":{"operator":0.0265,"artifact":null,"coverage":null,"sn_aggregate":2.621},"metameric_degree":0.0325,"provenance":{"operators":["claude-opus-4-7","gpt-5.5-2026-04-23","claude-haiku-4-5-20251001","gpt-5.4-mini-2026-03-17","qwen3.7-max","deepseek-v4-flash"],"artifact_count":36,"cross_extractor_compliant":"5/5 cohorts","data_doi":null}}
 </script>
 
+<script src="spectrum_strip.js"></script>
 <script>
 const SVGNS="http://www.w3.org/2000/svg";
 const E=(t,a,txt)=>{const e=document.createElementNS(SVGNS,t);for(const k in a)e.setAttribute(k,a[k]);if(txt!=null)e.textContent=txt;return e;};
@@ -333,11 +414,46 @@ const RESOLV=["resolved","marginal","sub-resolution"];
 const safeResolved=r=>RESOLV.includes(r)?r:"sub-resolution";
 
 let D=null;                 // atlas data
-const S={sel:new Set(),hover:null,floor:false,mode:"bars"};
+const S={sel:new Set(),hover:null,floor:false,level:1,caps:[true,true,false,false,false]};
+
+// Which detail levels the loaded atlas can support (graceful degradation: a level is
+// inactive unless its data is present — never fabricated, never a broken view).
+const LVL_NAMES=["Headline","Compare","Sentiment","Resolve","Cloud"];
+const LVL_AUD=["CEO / CMO","brand lead","insights","analyst","researcher"];
+const LVL_CAP=["mean across audiences; hides spread, sentiment, uncertainty — turn the dial up",
+  "scores only — no sentiment or noise floor yet (see the distance map below for what's real)",
+  "now showing sentiment — height = strength, dot = valence; still no per-dimension uncertainty",
+  "now showing per-dimension uncertainty (95% CI); whether each gap is real is in the distance map below",
+  "the full distribution — emission strength and every signal source"];
+function computeCaps(){
+  const dn=(D.dims||[]).length;
+  const hasVal=(D.cohorts||[]).some(c=>Array.isArray(c.valence)&&c.valence.length===dn);
+  const hasCI=(D.cohorts||[]).some(c=>Array.isArray(c.ci_95)&&c.ci_95.length===dn);
+  const hasEmis=(D.cohorts||[]).some(c=>Array.isArray(c.emission)&&c.emission.length===dn);
+  S.caps=[true, (D.cohorts||[]).length>=1, hasVal, hasCI, hasEmis];
+}
 
 function cohIndex(id){return D.cohorts.findIndex(c=>c.id===id);}
 function coh(id){return D.cohorts.find(c=>c.id===id);}
 
+// Canonical descriptions for the eight standard dimensions. BYO atlases carry
+// only key/label/color (the prompt doesn't ask the AI to echo descriptions), so
+// the tool supplies the fixed wording itself, keyed by dimension key.
+// Canonical 8 dimensions: label/desc/color are HARDCODED here by key and override
+// whatever an uploaded atlas supplies, so a BYO atlas need only carry the keys (in any
+// order) — users cannot substitute dimension names, descriptions, or colours.
+const CANON_DIMS={
+  semiotic:    {label:"Semiotic",    desc:"signs, symbols, codes",        color:"#e64a3b"},
+  narrative:   {label:"Narrative",   desc:"the story it tells",           color:"#e8842b"},
+  ideological: {label:"Ideological", desc:"what it stands for",           color:"#e8c531"},
+  experiential:{label:"Experiential",desc:"what it feels like to use",    color:"#7bc043"},
+  social:      {label:"Social",      desc:"who you're seen as",           color:"#2fb3a8"},
+  economic:    {label:"Economic",    desc:"value, price, worth",          color:"#3a8dde"},
+  cultural:    {label:"Cultural",    desc:"its place in the world",       color:"#7a5cd0"},
+  temporal:    {label:"Temporal",    desc:"heritage & momentum",          color:"#c44fa8"}};
+const DIM_DESC=Object.fromEntries(Object.entries(CANON_DIMS).map(([k,v])=>[k,v.desc]));
+const NUMWORD=["zero","one","two","three","four","five","six","seven","eight","nine","ten","eleven","twelve"];
+function numWord(n){const w=NUMWORD[n]||String(n);return w.charAt(0).toUpperCase()+w.slice(1);}
 function init(data){
   D=data;
   S.sel=new Set(D.cohorts.map(c=>c.id)); S.hover=null; S.floor=false;
@@ -354,12 +470,17 @@ function init(data){
       ? '<span style="color:var(--resolved);font-weight:700">measurement-grade</span> <span style="color:var(--faint)">· carries a resolution floor</span>'
       : '<span style="color:var(--marginal);font-weight:700">illustrative</span> <span style="color:var(--faint)">· single-operator, no resolution floor</span>')
     +(D.meta.demo?' <span style="color:var(--faint)">· demo</span>':'');
-  renderDims(); renderChips(); renderChart(); drawHeat(); clearDetail(); renderTable(); renderProv();
+  $("#dimHead").textContent=numWord(D.dims.length)+" dimensions of a perception";
+  $("#cohHead").textContent=numWord(D.cohorts.length)+" cohorts, one brand";
+  computeCaps();
+  // land on Compare for a multi-cohort atlas, Headline for a single-cohort/BYO read
+  S.level=(D.cohorts.length>=2)?1:0;
+  renderDims(); renderChips(); renderDial(); renderChart(); drawHeat(); clearDetail(); renderTable(); renderProv();
 }
 
 function renderDims(){
   const h=D.dims.map(d=>`<div class="dim"><span class="sw" style="background:${safeColor(d.color)}"></span>
-    <span><b>${escHtml(d.label)}</b> <span class="what">— ${escHtml(d.desc)}</span></span></div>`).join("");
+    <span><b>${escHtml(d.label)}</b>${d.desc?` <span class="what">— ${escHtml(d.desc)}</span>`:""}</span></div>`).join("");
   $("#dims").innerHTML=h;
 }
 
@@ -389,7 +510,54 @@ function renderChips(){
 
 function activeCohorts(){return D.cohorts.filter(c=>S.sel.has(c.id));}
 
-function renderChart(){ S.mode==="radar"?drawRadar():drawBars(); }
+function renderChart(){ drawSpectrum(S.level); }
+
+function renderDial(){
+  const dial=$("#dial");
+  dial.innerHTML=LVL_NAMES.map((nm,i)=>{
+    const dis=!S.caps[i];
+    const cls="lvl"+(i===S.level?" on":"")+(dis?" dis":"");
+    const why=dis?(i===2?"needs valence data":i===3?"needs per-dimension CI":i===4?"needs emission / source data":"unavailable"):"";
+    return `<span class="${cls}" data-lvl="${i}"${why?` title="${escHtml(why)}"`:""}>${i} · ${escHtml(nm)}</span>`;
+  }).join("");
+  $("#dialaud").textContent="audience: "+LVL_AUD[S.level];
+  dial.querySelectorAll(".lvl").forEach(el=>{
+    el.onclick=()=>{const i=+el.dataset.lvl; if(!S.caps[i])return; S.level=i; renderDial(); renderChart();};
+  });
+}
+
+// The spectrum strip is rendered by the SHARED module (spectrum_strip.js) so the tool and
+// how-to-read.html never drift. This is a thin wrapper that feeds it the app's state.
+function drawSpectrum(level){
+  renderSpectrumStrip({
+    host:$("#chart"), captionEl:$("#chartcap"),
+    dims:D.dims, cohorts:activeCohorts(), level:level, hover:S.hover,
+    captionText:LVL_CAP[S.level],
+    onTip:(ev,html)=>{ if(html==null||ev==null) hideTip(); else tip(ev,html); }
+  });
+  drawLegend(level);
+}
+// Encoding key below the chart (cohorts themselves are the chips above, so they are NOT
+// repeated here — this explains only the visual channels each dial level adds).
+// hover explainers for each encoding (native title tooltips — interpret, don't just label)
+const LEG_TIP={
+  band:"The shaded band spans the lowest to the highest cohort on this dimension — the size of the disagreement across audiences.",
+  dot:"Strength (the line's height) is how loudly the dimension registers; valence is which way it leans. The dot slides left (hostile/negative) to right (favourable/positive). A high line with a left-sitting dot is the dangerous one: an audience that cares a lot, against you.",
+  ci:"The faint band around each line is the 95% confidence interval — how precisely the instrument pins that score. Wider = less certain.",
+  cloud:"At full detail valence is a distribution, not a point: the cloud is densest at the typical sentiment and stretches as sources disagree about how an audience feels.",
+  emis:"Thicker line = the brand emits more strongly on that dimension for that cohort (more salient across its sources).",
+  src:"Each faint dot is one signal source's reading — the raw spread the line summarizes."};
+function drawLegend(level){
+  const n=activeCohorts().length; let h="";
+  const item=(tip,inner)=>`<span class="lz" title="${escHtml(tip)}">${inner}</span>`;
+  if(level>=1 && n>=2) h+=item(LEG_TIP.band,'<span class="swk" style="background:#7a5cd0;opacity:.4"></span>spread band');
+  if(level>=2 && level<4) h+=item(LEG_TIP.dot,'<span class="vdotk" style="background:#9aa0b4"></span>dot = valence (−1 negative … +1 positive)');
+  if(level>=3) h+=item(LEG_TIP.ci,'<span class="swk" style="background:#888;opacity:.3"></span>95% CI halo');
+  if(level>=4) h+=item(LEG_TIP.cloud,'<span class="swk" style="background:#9aa0b4;opacity:.35;border-radius:8px"></span>valence cloud (sentiment distribution)')
+    +item(LEG_TIP.emis,'line weight = emission strength')
+    +item(LEG_TIP.src,'<span class="vdotk" style="background:#9aa0b4;width:5px;height:5px"></span>faint dots = signal sources');
+  $("#legend").innerHTML=h;
+}
 
 function drawBars(){
   const host=$("#chart"); host.innerHTML="";
@@ -412,32 +580,6 @@ function drawBars(){
       s.appendChild(r);
     });
     s.appendChild(E("text",{x:gx+(gw-8)/2,y:H-bot+16,"text-anchor":"middle","font-size":11,fill:"#cdd3e0","font-weight":600},d.label.slice(0,4)));
-  });
-  host.appendChild(s);
-}
-
-function drawRadar(){
-  const host=$("#chart"); host.innerHTML="";
-  const W=820,H=440,cx=W/2,cy=H/2+6,R=Math.min(W,H)/2-58,max=10;
-  const dims=D.dims,n=dims.length;
-  const s=E("svg",{viewBox:`0 0 ${W} ${H}`});
-  const ang=i=>(-Math.PI/2)+i*2*Math.PI/n;
-  const pt=(i,r)=>[cx+Math.cos(ang(i))*r,cy+Math.sin(ang(i))*r];
-  for(let g=2;g<=10;g+=2){const rr=R*g/max;
-    const pts=dims.map((_,i)=>pt(i,rr).map(v=>v.toFixed(1)).join(",")).join(" ");
-    s.appendChild(E("polygon",{points:pts,fill:"none",stroke:"#1f2430","stroke-width":1}));}
-  dims.forEach((d,i)=>{
-    const[ex,ey]=pt(i,R);
-    s.appendChild(E("line",{x1:cx,y1:cy,x2:ex,y2:ey,stroke:"#1f2430","stroke-width":1}));
-    const[lx,ly]=pt(i,R+22);
-    s.appendChild(E("text",{x:lx.toFixed(1),y:ly.toFixed(1),"text-anchor":Math.abs(lx-cx)<8?"middle":(lx>cx?"start":"end"),
-      "dominant-baseline":"middle","font-size":11,fill:"#cdd3e0"},d.label.slice(0,4)));
-  });
-  activeCohorts().forEach(c=>{
-    const dim=(S.hover&&S.hover!==c.id)?0.12:0.5;
-    const pts=c.vector.map((v,i)=>pt(i,R*v/max).map(x=>x.toFixed(1)).join(",")).join(" ");
-    s.appendChild(E("polygon",{points:pts,fill:c.color,"fill-opacity":dim*0.4,stroke:c.color,
-      "stroke-width":(S.hover===c.id)?3:1.8,"stroke-opacity":Math.max(dim,0.5)}));
   });
   host.appendChild(s);
 }
@@ -531,8 +673,6 @@ function tip(ev,html){tipEl.innerHTML=html;tipEl.style.opacity=1;
 function hideTip(){tipEl.style.opacity=0;}
 
 // controls
-$("#m-bars").onclick=()=>{S.mode="bars";$("#m-bars").classList.add("on");$("#m-radar").classList.remove("on");renderChart();};
-$("#m-radar").onclick=()=>{S.mode="radar";$("#m-radar").classList.add("on");$("#m-bars").classList.remove("on");renderChart();};
 $("#floor").onclick=()=>{S.floor=!S.floor;$("#floor").classList.toggle("on",S.floor);drawHeat();};
 
 // ---- validation gate (the pre-filter) ----
@@ -575,7 +715,11 @@ function ensureGeometry(o){
   // default colours if missing
   const PAL=["#e8842b","#e8c531","#3a8dde","#2fb3a8","#1f9d57","#7a5cd0","#c44fa8","#e64a3b"];
   o.cohorts.forEach((c,i)=>{if(!c.color)c.color=PAL[i%PAL.length];});
-  o.dims.forEach((d,i)=>{if(!d.color)d.color=PAL[i%PAL.length];});
+  // Canonical dims: HARDCODE label/desc/color by key (override any uploaded values so they
+  // cannot be substituted); fall back to PAL only for non-canonical custom keys.
+  o.dims.forEach((d,i)=>{const cd=d.key&&CANON_DIMS[d.key];
+    if(cd){d.label=cd.label;d.desc=cd.desc;d.color=cd.color;}
+    else{if(!d.color)d.color=PAL[i%PAL.length];if(!d.label)d.label=d.key||("dim"+(i+1));}});
   return o;
 }
 // ---- checksum: BSx-<nCohorts>-<nDims>-round(10 * sum of all vector entries) ----
@@ -584,16 +728,18 @@ function checksum(o){
   return `BSx-${o.cohorts.length}-${o.dims.length}-${Math.round(10*sum)}`;
 }
 function loadAtlas(obj){
+  coerceAtlas(obj);
   const errs=validate(obj);
   if(errs.length){ setMsg("Could not load: "+errs.slice(0,4).join("; ")); return; }
   ensureGeometry(obj);
   const cs=checksum(obj);
   if(obj.meta&&obj.meta.checksum&&obj.meta.checksum!==cs)
-    setMsg(`Loaded, but checksum mismatch (got ${obj.meta.checksum}, computed ${cs}) — data may have been edited or truncated.`);
-  else setMsg(obj!==SEED?`Loaded ${obj.meta.atlas} · checksum ${cs}`:"");
+    setMsg(`Loaded, but checksum mismatch (got ${obj.meta.checksum}, computed ${cs}) — data may have been edited or truncated.`,"warn");
+  else setMsg(obj!==SEED?`Loaded ${obj.meta.atlas} · checksum ${cs}`:"","ok");
   try{init(obj);}catch(e){console.error(e);setMsg("Render error: "+e.message);}
 }
-function setMsg(t){const m=$("#loadmsg");if(m)m.textContent=t?" "+t:"";}
+// kind: "ok" | "warn" | "info" | "err". Untagged non-empty messages are errors.
+function setMsg(t,kind){const m=$("#loadmsg");if(!m)return;m.textContent=t?" "+t:"";m.className="loadmsg"+(t?(" "+(kind||"err")):"");}
 
 // ---- URL normalization: Hugging Face / GitHub / raw ----
 function normalizeUrl(u){
@@ -607,13 +753,47 @@ function normalizeUrl(u){
   if(m) return `https://raw.githubusercontent.com/${m[1]}/${m[2]}/${m[3]}`;
   return u;
 }
+// Tolerant atlas parse. Chat UIs and LLM copy-paste routinely smarten quotes
+// (" " ' '), insert non-breaking spaces, or wrap the JSON in a ```json fence.
+// Strict parse first so valid JSON is never mutated; only normalize on failure.
+function parseAtlasText(t){
+  if(typeof t!=="string") return null;
+  const strict=s=>{ try{return JSON.parse(s);}catch(_){return undefined;} };
+  // 1) strict first - valid JSON is never mutated
+  let o=strict(t);
+  // 2) normalize the common chat/LLM copy-paste corruptions and retry
+  if(o===undefined){
+    let s=t.replace(/[​-‍﻿]/g,"")                     // zero-width chars + BOM
+           .replace(/[  -   　]/g," ")  // unicode spaces -> space
+           .replace(/[“”„‟″‶]/g,'"')   // smart double quotes -> "
+           .replace(/[‘’‚‛′‵]/g,"'")   // smart single quotes -> '
+           .trim();
+    const a=s.indexOf("{"), b=s.lastIndexOf("}");                    // unwrap prose / ```json fences```
+    if(a>=0&&b>a) s=s.slice(a,b+1);
+    s=s.replace(/,(\s*[}\]])/g,"$1");                                // tolerate trailing commas
+    o=strict(s);
+  }
+  // 3) unwrap a double-encoded JSON string ("{...}")
+  if(typeof o==="string"){ const o2=strict(o); if(o2&&typeof o2==="object") o=o2; }
+  return (o&&typeof o==="object")?o:null;
+}
+// Coerce the most common LLM type slips into the schema's expected types so a
+// substantively-correct atlas is not rejected on a formatting technicality.
+function coerceAtlas(o){
+  if(!o||typeof o!=="object") return o;
+  (Array.isArray(o.cohorts)?o.cohorts:[]).forEach(c=>{
+    if(c&&Array.isArray(c.vector)) c.vector=c.vector.map(v=>
+      (typeof v==="string"&&v.trim()!==""&&isFinite(+v))?+v:v);     // "7" -> 7
+  });
+  return o;
+}
 function loadUrl(raw){
   const url=normalizeUrl(raw);
-  setMsg("fetching…");
+  setMsg("fetching…","info");
   fetch(url).then(r=>r.ok?r.text():Promise.reject(new Error("HTTP "+r.status)))
     .then(t=>{
       if(t.length>MAX_BYTES){setMsg(`That atlas is over 2 MB — refusing to load.`);return;}
-      let o; try{o=JSON.parse(t);}catch(_){setMsg("That URL didn't return valid JSON.");return;}
+      const o=parseAtlasText(t); if(o===null){setMsg("That URL didn't return valid JSON.");return;}
       loadAtlas(o);
     })
     .catch(err=>setMsg(`Couldn't fetch that URL (${err.message}). The host must allow cross-origin requests (Hugging Face and raw.githubusercontent.com do).`));
@@ -640,12 +820,14 @@ $("#url").addEventListener("keydown",e=>{if(e.key==="Enter"){const v=e.target.va
 const PROMPT=`You are a data-formatting operator for the Brand Spectrometer. The required output format is specified in full below — nothing is attached, you have everything you need here. (If you can open links, you may also fetch the exact format from https://meter.spectralbranding.com/atlas.schema.json and a filled example from https://meter.spectralbranding.com/atlas_template.json, but this prompt is self-contained.) Convert the raw data I provide into a single JSON object that strictly conforms to it.
 
 RULES
-- Output ONLY the JSON object (or the ERROR object below). No prose, no markdown.
-- Use these eight dimensions in order as \`dims\` (keys/labels/colors verbatim): semiotic "Semiotic" #e64a3b; narrative "Narrative" #e8842b; ideological "Ideological" #e8c531; experiential "Experiential" #7bc043; social "Social" #2fb3a8; economic "Economic" #3a8dde; cultural "Cultural" #7a5cd0; temporal "Temporal" #c44fa8.
-- Group the raw data into the audience cohorts it implies (>=2). Give each an id, short label, distinct hex color, and a \`vector\` of eight numbers (0-10) scoring how STRONGLY each dimension registers for that cohort (size of the meaning, NOT approval).
+- Output the JSON object (or the ERROR object below) wrapped in a single \`\`\`json code block, and nothing else — no prose before or after. (A code block keeps quotes straight so it pastes back cleanly.)
+- Use these eight dimension KEYS in this exact order as \`dims\`, and provide ONLY the keys — the tool supplies the labels, descriptions, and colours: semiotic, narrative, ideological, experiential, social, economic, cultural, temporal. Emit \`dims\` as [{"key":"semiotic"},{"key":"narrative"},…] in that order.
+- Group the raw data into the audience cohorts it implies (>=2). Give each an \`id\`, a short \`label\`, and a \`vector\` of eight numbers (0-10) scoring how STRONGLY each dimension registers for that cohort (size of the meaning, NOT approval), in the dimension order above. Do NOT set a cohort colour — the tool assigns one.
+- RECOMMENDED: also add \`valence\` — eight numbers (-1..+1), same dim order, the SENTIMENT of each dimension for that cohort: -1 hostile/negative, 0 neutral, +1 favourable. This is DISTINCT from \`vector\` (strength, not approval) and lights up the tool's Sentiment view. Omit only if the raw data gives no read on sentiment.
+- Do NOT invent \`ci_95\` (uncertainty intervals) or \`reflections\` (per-source readings) — those come from the multi-run pipeline, not a single read; omit them.
 - Do NOT compute \`distances\` — omit it; the tool computes geometry from the vectors.
 - Fill \`meta\` (brand, atlas slug, window, generation:"byo", a short notes line). No brand logos/wordmarks.
-- Compute \`meta.checksum\` = "BSx-" + (cohort count) + "-8-" + round(10 * sum of every number across all vectors).
+- Compute \`meta.checksum\` = "BSx-" + (cohort count) + "-8-" + round(10 * sum of every number across all cohort \`vector\` arrays ONLY — not valence).
 - GATING: if the data cannot support >=2 cohorts or ground the eight dimensions, do NOT invent data. Output exactly: {"ERROR":"reason","missing":["what evidence is needed"]}
 
 Everything you need is specified above — nothing is attached. The raw data follows.`;
@@ -669,7 +851,7 @@ document.querySelectorAll(".iotab").forEach(t=>t.onclick=()=>setPane(t.dataset.p
 function renderPasted(){
   const v=$("#paste").value.trim(); if(!v){setMsg("Paste your AI's answer first.");return;}
   if(v.length>MAX_BYTES){setMsg("That atlas is over 2 MB.");return;}
-  let o; try{o=JSON.parse(v);}catch(_){setMsg("That isn't valid JSON — paste the atlas object your AI returned.");return;}
+  const o=parseAtlasText(v); if(o===null){setMsg("That isn't valid JSON — paste the atlas object your AI returned.");return;}
   loadAtlas(o);
 }
 $("#gobtn").onclick=()=>{
@@ -680,7 +862,7 @@ $("#gobtn").onclick=()=>{
 function readFile(f){
   if(f.size>MAX_BYTES){setMsg(`That file is ${(f.size/1048576).toFixed(1)} MB — the limit is 2 MB. A standard atlas is only a few KB.`);return;}
   const r=new FileReader();
-  r.onload=()=>{let o;try{o=JSON.parse(r.result);}catch(_){setMsg("That file isn't valid JSON.");return;}loadAtlas(o);};
+  r.onload=()=>{const o=parseAtlasText(r.result); if(o===null){setMsg("That file isn't valid JSON.");return;} loadAtlas(o);};
   r.readAsText(f);
 }
 window.addEventListener("resize",()=>{if(D){renderChart();drawHeat();}});

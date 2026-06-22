@@ -1,0 +1,199 @@
+reflection_id: non-italian-press::non-italian-press_07::primary::retest1
+cohort_id: non-italian-press
+artifact_id: non-italian-press_07
+operator_label: primary
+retest_rep: 1
+renderer_operator_id: gpt-5.5-2026-04-23
+renderer_family: openai
+extractor_operator_id: claude-haiku-4-5-20251001
+extractor_family: anthropic
+source_type: press_article
+outlet: BusinessDay NG
+language: en
+published_date: '2026-06-02'
+url: https://businessday.ng/transport/article/ferrari-shares-rebound-to-pre-launch-levels-after-luce-concerns/
+inferred_spec:
+  semiotic:
+    score: 7.8
+    ci_95_lower: 6.2
+    ci_95_upper: 9.1
+  narrative:
+    score: 7.5
+    ci_95_lower: 5.9
+    ci_95_upper: 8.8
+  ideological:
+    score: 6.9
+    ci_95_lower: 5.1
+    ci_95_upper: 8.4
+  experiential:
+    score: 7.4
+    ci_95_lower: 5.9
+    ci_95_upper: 8.6
+  social:
+    score: 6.7
+    ci_95_lower: 4.8
+    ci_95_upper: 8.2
+  economic:
+    score: 8.4
+    ci_95_lower: 7.1
+    ci_95_upper: 9.3
+  cultural:
+    score: 7.1
+    ci_95_lower: 5.3
+    ci_95_upper: 8.5
+  temporal:
+    score: 6.8
+    ci_95_lower: 5.2
+    ci_95_upper: 8.1
+vector:
+- 7.8
+- 7.5
+- 6.9
+- 7.4
+- 6.7
+- 8.4
+- 7.1
+- 6.8
+rendering: "## Analytical narrative — cohort-side Tier-4 implicit-spec inference\n\
+  \nUsing **implicit-spec inference** via **structural decomposition** of the supplied\
+  \ public artifact, the non-Italian global-press cohort would plausibly read the\
+  \ Luce launch less as a pure product-review event and more as a combined market,\
+  \ innovation, and brand-transition story. As visible to this cohort, the Tier-4\
+  \ product specification inferred from the excerpt is a high-price electric Ferrari\
+  \ that is being framed through three overlapping lenses: whether electrification\
+  \ can remain compatible with Ferrari-coded performance, whether an unusually practical\
+  \ five-seat EV can still sit inside the luxury-supercar symbolic field, and whether\
+  \ investor concern around the EV transition is temporary or structurally meaningful.\n\
+  \nThe most salient inferred Tier-4 spec is that the Luce is presented, in this cohort’s\
+  \ observable coverage, as an electric vehicle that must compensate for the symbolic\
+  \ risk of losing combustion-era Ferrari cues by over-indexing on measurable performance.\
+  \ The excerpt attributes to Enrico Galliera specifications including “four electric\
+  \ motors, one per wheel,” “more than 1,000 horsepower,” “a top speed above 310 kph,”\
+  \ and “increased agility” despite a weight “more than 2.2 tons” [non-italian-press_07].\
+  \ From the cohort’s vantage, these figures likely function as reassurance devices:\
+  \ the implicit product spec appears to require that electrification be translated\
+  \ into numerical superiority and dynamic control rather than treated mainly as environmental\
+  \ compliance. The one-motor-per-wheel architecture, as reported, allows the press-template\
+  \ reading to see the EV system as a performance technology rather than merely a\
+  \ propulsion substitution.\n\nA second inferred spec is that the Luce is being read\
+  \ as a controlled expansion of Ferrari’s usable form factor. The artifact describes\
+  \ the car as a “five-seater EV” with “comfortable seats,” “high-end tech,” and a\
+  \ “600-liter boot” [non-italian-press_07]. For general-news and business outlets,\
+  \ these details likely make the product legible as more than a niche halo car: it\
+  \ appears to offer family-passenger capacity, luggage utility, and comfort signals\
+  \ more typical of grand-touring or luxury-crossover discourse than of an uncompromising\
+  \ two-seat supercar. However, this practicality is not inferred as mass-market accessibility,\
+  \ because the reported $640,000 price strongly maintains a hyper-luxury boundary\
+  \ [non-italian-press_07]. The resulting implicit spec, as visible to this cohort,\
+  \ is “practicality without democratization”: usable space and comfort may be part\
+  \ of the product brief, but exclusivity remains heavily encoded through price.\n\
+  \nDesign is also inferred as a major specification axis, though the artifact provides\
+  \ fewer concrete design details than performance and market data. The reported involvement\
+  \ of Jony Ive and Marc Newson, combined with Flavio Manzoni’s comment that an electric\
+  \ Ferrari with “a new design is polarising,” gives the cohort a visible basis to\
+  \ read the Luce as a design-led departure rather than merely an electrified continuation\
+  \ [non-italian-press_07]. The implicit Tier-4 spec here appears to involve deliberate\
+  \ aesthetic risk: the product is inferred to need recognizability as innovation,\
+  \ even if early reception is divided. Because the excerpt offers no deep description\
+  \ of exterior proportions, interior interface design, materials, or styling vocabulary,\
+  \ confidence around the exact design spec remains moderate rather than high.\n\n\
+  The cohort also plausibly reads the Luce through investor-confidence and transition-risk\
+  \ frames. The excerpt foregrounds Ferrari shares falling 5.26 percent after the\
+  \ unveiling, then nearly recovering to pre-launch levels by June 1, and interprets\
+  \ this as “renewed confidence in the luxury automaker’s long-term strategy” [non-italian-press_07].\
+  \ In this public-press reading, the product is not just a car; it is a test of whether\
+  \ a luxury performance brand can introduce a fully electric model without triggering\
+  \ durable market doubt. The recovery of share price is visible as a Tier-3 corporate-stewardship\
+  \ signal that softens the perceived risk, while the initial decline remains a signal\
+  \ that the market viewed the launch as strategically sensitive.\n\nThe cohort’s\
+  \ inferred sustainability or electrification spec is present but not dominant. The\
+  \ Luce is described as the company’s “first fully electric vehicle,” with range\
+  \ “over 500 kilometers,” while the excerpt also reports that Ferrari will “continue\
+  \ to offer petrol and hybrid cars” alongside its all-electric offering [non-italian-press_07].\
+  \ As visible here, electrification appears to be specified as portfolio expansion\
+  \ rather than full identity replacement. The product is inferred to serve as a bridge\
+  \ into EV legitimacy while preserving optionality around petrol and hybrid vehicles.\
+  \ For this cohort, that likely reduces the perceived rupture with heritage but also\
+  \ limits the extent to which the launch can be read as a full sustainability repositioning.\n\
+  \nOverall, the non-Italian global-press template plausibly reconstructs the Luce’s\
+  \ implicit Tier-4 spec as: an ultra-expensive, design-forward, first-electric Ferrari\
+  \ that must be fast enough, technologically advanced enough, and exclusive enough\
+  \ to make electrification credible inside a performance-luxury frame, while also\
+  \ introducing unusually high practicality and comfort for the brand’s symbolic category.\
+  \ Because the supplied artifact is thin and market-oriented, the inference is strongest\
+  \ on performance, price, propulsion, and investor reaction, and weaker on detailed\
+  \ design, manufacturing process, user experience, and long-term platform strategy.\n\
+  \n```yaml\nsbt_dimensions:\n  heritage_continuity:\n    score: 6.40\n    ci_95_lower:\
+  \ 4.60\n    ci_95_upper: 7.80\n    rationale: \"Inferred from observable artifacts\
+  \ as a partial continuity spec: the excerpt reports Ferrari continuing petrol and\
+  \ hybrid cars alongside the all-electric Luce, which makes the EV appear as portfolio\
+  \ expansion rather than full replacement. The polarisation around an electric Ferrari\
+  \ suggests heritage fit remains contested [non-italian-press_07].\"\n  performance_supremacy:\n\
+  \    score: 8.70\n    ci_95_lower: 7.40\n    ci_95_upper: 9.40\n    rationale: \"\
+  As visible to this cohort, the reported four motors, one per wheel, more than 1,000\
+  \ horsepower, top speed above 310 kph, and claimed agility despite weight over 2.2\
+  \ tons strongly support an inferred spec of EV performance reassurance [non-italian-press_07].\"\
+  \n  technological_innovation:\n    score: 8.30\n    ci_95_lower: 6.90\n    ci_95_upper:\
+  \ 9.20\n    rationale: \"The cohort can infer a high innovation spec from the first\
+  \ fully electric Ferrari framing, four-motor architecture, high-end tech, and Manzoni’s\
+  \ quoted view that critics are part of the innovation process. The CI remains wide\
+  \ because the artifact gives limited detail on battery, software, charging, or platform\
+  \ design [non-italian-press_07].\"\n  luxury_exclusivity:\n    score: 8.60\n   \
+  \ ci_95_lower: 7.20\n    ci_95_upper: 9.40\n    rationale: \"The reported $640,000\
+  \ price, high-end tech, design-name association with Jony Ive and Marc Newson, and\
+  \ limited luxury-automaker framing make exclusivity highly visible to this cohort,\
+  \ though no production-volume data are provided [non-italian-press_07].\"\n  design_distinctiveness:\n\
+  \    score: 7.10\n    ci_95_lower: 5.30\n    ci_95_upper: 8.50\n    rationale: \"\
+  The artifact reports a new design, polarised response, and involvement of Jony Ive\
+  \ and Marc Newson, supporting an inferred design-led departure. Confidence is moderate\
+  \ because the excerpt does not describe the actual design language in detail [non-italian-press_07].\"\
+  \n  everyday_practicality:\n    score: 7.40\n    ci_95_lower: 5.90\n    ci_95_upper:\
+  \ 8.60\n    rationale: \"The five-seat layout, comfortable seats, and 600-liter\
+  \ boot visibly support an inferred practicality spec unusual for a high-performance\
+  \ luxury EV. The CI remains moderately wide because the artifact lacks cabin, usability,\
+  \ charging, and real-world packaging evidence [non-italian-press_07].\"\n  sustainability_transition:\n\
+  \    score: 5.80\n    ci_95_lower: 4.00\n    ci_95_upper: 7.30\n    rationale: \"\
+  The first fully electric vehicle framing and range over 500 kilometers support an\
+  \ inferred electrification-transition signal, but the simultaneous continuation\
+  \ of petrol and hybrid cars makes the sustainability spec appear incremental rather\
+  \ than total, as visible to this cohort [non-italian-press_07].\"\n  market_confidence:\n\
+  \    score: 6.70\n    ci_95_lower: 4.80\n    ci_95_upper: 8.20\n    rationale: \"\
+  The article foregrounds a 5.26 percent post-launch share-price drop followed by\
+  \ near-recovery to pre-launch levels, allowing the cohort to infer partial restoration\
+  \ of investor confidence. The CI is wide because the same artifact contains both\
+  \ criticism/concern and recovery signals [non-italian-press_07].\"\n\ninferred_tier_3_signals:\n\
+  \  - \"As visible to this cohort, share-price movement around the launch is an observable\
+  \ investor-confidence signal: a reported 5.26 percent decline after unveiling followed\
+  \ by near-return to pre-launch levels by June 1 [non-italian-press_07].\"\n  - \"\
+  The excerpt’s framing of renewed confidence in long-term strategy is an observable\
+  \ corporate-stewardship signal, though it is press interpretation rather than evidence\
+  \ of non-public strategy [non-italian-press_07].\"\n  - \"The reported continuation\
+  \ of petrol and hybrid cars alongside the all-electric Luce is an observable portfolio-governance\
+  \ signal, suggesting phased transition rather than single-path electrification as\
+  \ visible to this cohort [non-italian-press_07].\"\n  - \"The quoted executive commentary\
+  \ from Flavio Manzoni and Enrico Galliera gives the cohort visible leadership-accountability\
+  \ signals around design polarisation and performance justification [non-italian-press_07].\"\
+  \n\ninferred_tier_5_process_couplings:\n  - \"The four-motor, one-per-wheel architecture\
+  \ is an observable platform or drivetrain-process coupling that links EV hardware\
+  \ directly to the claimed performance and agility spec [non-italian-press_07].\"\
+  \n  - \"The reported involvement of Jony Ive and Marc Newson is an observable design-process\
+  \ coupling, suggesting the launch is read through external or high-profile design\
+  \ authorship as visible to this cohort [non-italian-press_07].\"\n  - \"The five-seat\
+  \ layout and 600-liter boot are observable packaging and product-architecture couplings\
+  \ that connect body format to everyday usability claims [non-italian-press_07].\"\
+  \n  - \"The reported Q4 2026 delivery timing is an observable production-readiness\
+  \ or launch-process coupling, though the artifact does not provide manufacturing,\
+  \ supplier, or capacity details [non-italian-press_07].\"\n  - \"The >500 km range\
+  \ claim is an observable battery/system-integration coupling, but the excerpt does\
+  \ not disclose battery chemistry, pack size, charging curve, or supply-chain structure\
+  \ [non-italian-press_07].\"\n```\n\nThe cohort’s internal divergence is inferred\
+  \ to be meaningful, and the CIs reflect that uncertainty. Performance, luxury exclusivity,\
+  \ and technological innovation receive narrower and higher intervals because the\
+  \ artifact provides concrete numbers and price signals. Market confidence, heritage\
+  \ continuity, sustainability transition, and design distinctiveness carry wider\
+  \ intervals because the same public excerpt contains opposing cues: initial investor\
+  \ concern versus share recovery, EV novelty versus continued petrol/hybrid offerings,\
+  \ and design ambition versus polarised reception. As visible to this cohort, the\
+  \ launch is therefore plausibly read as both a credible innovation story and a strategic-risk\
+  \ story, rather than as a settled consensus."
+seed: 20260620
