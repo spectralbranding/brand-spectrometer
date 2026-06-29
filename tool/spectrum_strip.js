@@ -45,6 +45,10 @@
     var hasCI = cohorts.some(function (c) { return Array.isArray(c.ci_95) && c.ci_95.length === n; });
     var hasEmis = cohorts.some(function (c) { return Array.isArray(c.emission) && c.emission.length === n; });
     var hasVspread = cohorts.some(function (c) { return Array.isArray(c.valence_spread) && c.valence_spread.length === n; });
+    // valence_resolved: the per-dimension floor gate (METHODOLOGY §5). When present and
+    // false, the valence is sub-resolution — below its operator noise floor — and is shown
+    // as a greyed neutral marker ("can't tell"), never a confident signed dot.
+    var NEUTRAL = "#5a6273";
 
     var s = '<svg viewBox="0 0 ' + W + ' ' + H + '" role="img" aria-label="Brand spectrum strip">';
     var g;
@@ -79,9 +83,10 @@
       var rows = level >= 1 ? cohorts.map(function (c) {
         return { c: c, score: c.vector[di], val: (hasVal && c.valence) ? c.valence[di] : null,
                  vsp: (hasVspread && c.valence_spread) ? c.valence_spread[di] : null,
+                 vres: (Array.isArray(c.valence_resolved) && c.valence_resolved.length === n) ? c.valence_resolved[di] : null,
                  emis: (hasEmis && c.emission) ? c.emission[di] : null, ci: (hasCI && c.ci_95) ? c.ci_95[di] : null,
                  reflections: (Array.isArray(c.reflections) && c.reflections[di]) ? c.reflections[di] : null, cons: false };
-      }) : [{ c: { label: "consensus", color: "#cfd4e2" }, score: cen, val: null, vsp: null, emis: null, ci: null, reflections: null, cons: true }];
+      }) : [{ c: { label: "consensus", color: "#cfd4e2" }, score: cen, val: null, vsp: null, vres: null, emis: null, ci: null, reflections: null, cons: true }];
       rows.forEach(function (r) {
         var cy = y(r.score), cc = safeColor(r.c.color);
         var dimmed = (hover && !r.cons && hover !== r.c.id) ? 0.2 : 1;
@@ -101,8 +106,21 @@
         s += '<line class="cohline" x1="' + xL(lx).toFixed(1) + '" y1="' + cy.toFixed(1) + '" x2="' + xR(lx).toFixed(1) + '" y2="' + cy.toFixed(1)
           + '" stroke="' + cc + '" stroke-width="' + w.toFixed(1) + '" opacity="' + op.toFixed(2) + '" data-tip="' + escHtml(r.c.label) + ' · ' + escHtml(d.label) + ': ' + r.score.toFixed(1) + '"/>';
         if (level >= 2 && r.val != null) {
+          // Floor gate: a valence with valence_resolved === false is sub-resolution
+          // (below its noise floor). Show it as a greyed hollow marker pinned at neutral
+          // (0), never a confident signed dot — "can't tell which way this leans."
+          if (r.vres === false) {
+            var vc = vx(lx, 0);
+            var stip = escHtml(r.c.label) + ' · ' + escHtml(d.label)
+              + ' valence: sub-resolution — below the operator noise floor, direction can’t be told';
+            s += '<circle class="vdot vsub" cx="' + vc.toFixed(1) + '" cy="' + cy.toFixed(1) + '" r="3" fill="none" stroke="' + NEUTRAL + '" stroke-width="1.4" stroke-dasharray="2 2" opacity="' + (0.75 * dimmed).toFixed(2) + '" data-tip="' + stip + '"/>';
+          } else {
           var vxp = vx(lx, r.val);
-          var vtip = escHtml(r.c.label) + ' · ' + escHtml(d.label) + ' valence: ' + (r.val > 0 ? "+" : "") + r.val.toFixed(2);
+          // Net contribution = score x valence (DERIVED convenience, never a third axis):
+          // how much this dimension pulls the cohort's overall lean, signed.
+          var net = (r.score * r.val) / 10;
+          var vtip = escHtml(r.c.label) + ' · ' + escHtml(d.label) + ' valence: ' + (r.val > 0 ? "+" : "") + r.val.toFixed(2)
+            + ' · net contribution ' + (net > 0 ? "+" : "") + net.toFixed(2) + ' (strength×valence)';
           if (level >= 4) {
             // valence shown as a horizontal distribution "cloud", densest at the valence
             // point and stretched along the line by its spread (overlap across cohorts is fine)
@@ -115,6 +133,7 @@
             s += '<circle class="vcore" cx="' + vxp.toFixed(1) + '" cy="' + cy.toFixed(1) + '" r="2" fill="' + cc + '" opacity="' + (0.6 * dimmed).toFixed(2) + '" data-tip="' + vtip + ' (peak)"/>';
           } else {
             s += '<circle class="vdot" cx="' + vxp.toFixed(1) + '" cy="' + cy.toFixed(1) + '" r="3.2" fill="' + cc + '" opacity="' + dimmed + '" data-tip="' + vtip + '"/>';
+          }
           }
         }
       });

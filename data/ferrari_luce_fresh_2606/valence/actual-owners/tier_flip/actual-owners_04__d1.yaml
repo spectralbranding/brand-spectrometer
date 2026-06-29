@@ -1,0 +1,41 @@
+valence_id: actual-owners::actual-owners_04::tier_flip::d1
+cohort_id: actual-owners
+artifact_id: actual-owners_04
+operator_label: tier_flip
+valence_extractor_label: d1
+valence_extractor_provider: openai
+valence_extractor_operator_id: gpt-5.4-mini-2026-03-17
+valence:
+  semiotic:
+    value: -1.0
+    ci_95_lower: -1.0
+    ci_95_upper: -0.7
+  narrative:
+    value: -0.9
+    ci_95_lower: -1.0
+    ci_95_upper: -0.6
+  ideological:
+    value: -1.0
+    ci_95_lower: -1.0
+    ci_95_upper: -0.7
+  experiential:
+    value: -0.8
+    ci_95_lower: -1.0
+    ci_95_upper: -0.4
+  social:
+    value: -0.9
+    ci_95_lower: -1.0
+    ci_95_upper: -0.6
+  economic:
+    value: -0.8
+    ci_95_lower: -1.0
+    ci_95_upper: -0.4
+  cultural:
+    value: -1.0
+    ci_95_lower: -1.0
+    ci_95_upper: -0.7
+  temporal:
+    value: -0.7
+    ci_95_lower: -1.0
+    ci_95_upper: -0.3
+seed: 20260620

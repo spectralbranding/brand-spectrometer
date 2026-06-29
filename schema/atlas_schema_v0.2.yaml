@@ -1,0 +1,394 @@
+# =====================================================================
+# Brand Spectrometer Schema v0.2
+# =====================================================================
+#
+# Purpose: declarative schema for a cohort-indexed atlas of implicit
+# Tier-4 brand specifications, inferred by structural decomposition of
+# publicly observable artifacts across multiple observer cohorts.
+#
+# WHAT CHANGED FROM v0.1 (additive, backward-compatible):
+#   - Each inferred_spec dimension MAY now carry an OPTIONAL `valence`
+#     block: value in [-1, +1], 95% CI, and within-cohort `spread`.
+#     The valence is a SIGNED reading (which way the dimension leans for
+#     the cohort), distinct from `score` (STRENGTH — how loudly the
+#     dimension registers, valence-agnostic). The `score` block is
+#     UNCHANGED from v0.1.
+#   - `variance` MAY now carry a `valence_operator_floor` sibling to the
+#     existing operator floor: the operator-heterogeneity noise floor on
+#     valence (METHODOLOGY §5). A per-dimension valence is reported only
+#     when it clears this floor; below it the cohort reads "neutral /
+#     can't tell," NOT a signed finding.
+#   - NET SIGNED CONTRIBUTION (score x valence) is DERIVED, NOT STORED.
+#     It is a convenience projection (length x lean), never a third axis
+#     and never a schema field (mirrors the signed-profile-8d explorable:
+#     "net contribution is a convenience, not a third axis").
+#
+# BACKWARD COMPATIBILITY: every v0.1 atlas is a valid v0.2 atlas. The
+# valence block and valence_operator_floor are OPTIONAL and GATED ON
+# PRESENCE (same additive pattern as the v0.1 `sampling_frame` coverage
+# block). An atlas declaring `schema_version: "0.1"` is validated under
+# the v0.1 rules; one declaring `"0.2"` is validated under these rules.
+#
+# Theoretical anchors:
+#   - 2026ah Brand-as-Tier-4 (DOI 10.5281/zenodo.19930157):
+#       brand IS at Tier 4 (Product specification surface).
+#       NEVER Tier 3 (Business Entity).
+#   - 2026ag Six-Tier Ontology (DOI 10.5281/zenodo.19895813):
+#       tier sequence Owner Intent / Business Model / Business Entity /
+#       Product / Process / Organization.
+#   - 2026v R15 Dimensional Collapse (DOI 10.5281/zenodo.19422427):
+#       cohort-variant metameric observation is the measurement,
+#       not noise around a true value.
+#   - 2026a SBT (cloud-valence + brand-conviction constructs):
+#       the per-dimension `valence` realises the SBT cloud-valence
+#       direction; within-cohort `spread` / cross-cohort valence spread
+#       realises the brand-conviction polarisation construct.
+#   - 2026ao Paper A operator-substrate (DOI 10.5281/zenodo.20409683):
+#       operator role above human-vs-AI instance.
+#   - 2026ap Paper B rendering-equivalence (DOI 10.5281/zenodo.20409701):
+#       cross-operator extraction discipline (renderer model B
+#       differs from extractor model C; extractor never sees source spine).
+#
+# Licenses:
+#   - Code: MIT (see ../LICENSE)
+#   - Data: CC BY 4.0 (see ../LICENSE-data)
+#
+# Schema version: 0.2
+# =====================================================================
+
+schema_version: "0.2"
+
+# ---------------------------------------------------------------------
+# Atlas-level metadata
+# ---------------------------------------------------------------------
+
+# Human-readable brand name as used by the brand itself in public copy.
+# Trademark assets (logos, fonts, proprietary brand-asset usage) are
+# NEVER reproduced in any atlas artifact; the brand-name string is
+# nominative only, for structural reference.
+brand_name: "<string>"
+
+# Semver of THIS atlas instance for a given brand.
+# Increment major when the cohort set or methodology changes
+# substantively; minor when artifacts are added; patch for fixes.
+atlas_version: "<semver e.g. 0.2.0>"
+
+# Date range that the atlas claims to cover. ISO 8601 dates required.
+# A point-in-time atlas uses identical start and end values.
+# Temporal drift is a primary finding, not a defect: any atlas covering
+# more than ~6 months must report drift in the `variance` block below.
+sample_date:
+  start: "<YYYY-MM-DD>"
+  end: "<YYYY-MM-DD>"
+
+# Semver of the methodology document (METHODOLOGY.md) under which the
+# atlas was constructed. Reproducibility requires pinning. A valence-
+# bearing atlas pins a methodology version that documents the valence
+# extraction protocol and the valence noise floor (METHODOLOGY §3, §5).
+methodology_version: "<semver e.g. 0.2.0>"
+
+# ---------------------------------------------------------------------
+# Cohort-indexed inferred specifications
+# ---------------------------------------------------------------------
+#
+# `cohorts` is a MAP keyed by cohort_id (a short slug, e.g.
+# `brand-debaters`). Each value is the inferred-spec record produced
+# from that cohort's observable artifact subset.
+#
+# Validation rule (enforced by validate_atlas.py):
+#   - At least 5 cohorts MUST be present. A single-cohort atlas is
+#     disallowed: it would collapse cohort-variant metameric observation
+#     into a false-precision single spec, contradicting 2026v R15.
+#
+# The 8 SBT dimensions appear under inferred_spec in this EXACT order
+# (HARD-LOCKED per the brand-profile canonical):
+#     semiotic, narrative, ideological, experiential,
+#     social, economic, cultural, temporal
+#
+
+cohorts:
+
+  <cohort_id>:
+
+    # Human-readable label for the cohort. Plain English; what a
+    # practitioner reader will recognise.
+    cohort_label: "<string>"
+
+    # Numeric estimate of the cohort population, plus source for the
+    # estimate (URL, methodology note, or sampling-frame reference).
+    cohort_size_estimate:
+      value: <integer>
+      source: "<string>"
+
+    # List of artifact_id strings referencing entries in
+    # provenance.artifact_inventory below. Each cohort MUST reference
+    # at least 3 artifacts (enforced by validate_atlas.py).
+    artifact_subset_observed:
+      - "<artifact_id>"
+      - "<artifact_id>"
+      - "<artifact_id>"
+
+    # OPTIONAL per-cohort coverage metric (Phase 0.3). Reports how much
+    # of the DECLARED collection frame entered the spec, beside the noise
+    # floors in the variance block. coverage_fraction is NOT census
+    # coverage of the true (unknowable) observable universe; it is
+    # sampled_n / declared_size for the named collection_method.
+    sampling_frame:
+      collection_method: "<e.g. ai_search_discovery | supplied_corpus>"
+      declared_size: <integer>
+      sampled_n: <integer>
+      coverage_fraction: <float in [0, 1] or null>
+      frame_basis: "<string: what declared_size counts; W2 caveat>"
+
+    # Inferred Tier-4 product-spec block on 8 SBT dimensions.
+    # All 8 dimensions MUST be present.
+    #
+    # SCORE SEMANTICS (UNCHANGED from v0.1): each `score` is a STRENGTH
+    # reading — the salience / intensity with which the dimension
+    # registers for this cohort — a non-negative float in [0, 10] with a
+    # two-sided 95% CI. It is VALENCE-AGNOSTIC: a high score means the
+    # dimension is strongly present in the cohort's reconstruction, NOT
+    # that the cohort regards it positively.
+    #
+    # VALENCE SEMANTICS (NEW in v0.2, OPTIONAL): the `valence` block
+    # carries the SIGNED direction of the perception for this dimension
+    # and cohort — cloud-valence in the sense of Zharnikov 2026a:
+    #   value        in [-1, +1]  (-1 hostile/negative, 0 neutral,
+    #                              +1 favourable/positive)
+    #   ci_95_lower  in [-1, +1]
+    #   ci_95_upper  in [-1, +1]   (lower <= value <= upper)
+    #   spread       >= 0          (within-cohort dispersion of valence
+    #                              across that cohort's reflections; the
+    #                              brand-conviction polarisation signal —
+    #                              high spread = the cohort is split, not
+    #                              uniformly neutral)
+    # Valence is NOT approval and NOT a re-scaling of score: a high score
+    # with a left-sitting (negative) valence is the dangerous read — an
+    # audience that cares a lot, against the brand. Strength and valence
+    # are orthogonal channels (strength on score; sign on valence).
+    #
+    # NOISE-FLOOR RULE (METHODOLOGY §5): a per-dimension valence is
+    # reportable as a signed reading ONLY when |value| clears the
+    # variance.valence_operator_floor for the atlas. Below the floor, the
+    # reading is sub-resolution ("neutral / can't tell"); a consuming
+    # surface (e.g. the spectrum strip) MUST gate it — render it greyed /
+    # neutral, never as a confident lean. Carrying a sub-resolution
+    # valence in the atlas is permitted (it records what was extracted);
+    # PRESENTING it as a finding is not.
+    #
+    # The `valence` block is OPTIONAL per dimension. An atlas may carry
+    # valence on all, some, or no dimensions. A dimension with `score`
+    # but no `valence` block is valid (strength measured, sign not read).
+    inferred_spec:
+      semiotic:
+        score: <float 0-10>
+        ci_95_lower: <float 0-10>
+        ci_95_upper: <float 0-10>
+        valence:                       # OPTIONAL
+          value: <float -1..+1>
+          ci_95_lower: <float -1..+1>
+          ci_95_upper: <float -1..+1>
+          spread: <float >= 0>
+      narrative:
+        score: <float 0-10>
+        ci_95_lower: <float 0-10>
+        ci_95_upper: <float 0-10>
+        # valence: { ... }   # OPTIONAL — omit when sign is not read
+      ideological:
+        score: <float 0-10>
+        ci_95_lower: <float 0-10>
+        ci_95_upper: <float 0-10>
+      experiential:
+        score: <float 0-10>
+        ci_95_lower: <float 0-10>
+        ci_95_upper: <float 0-10>
+      social:
+        score: <float 0-10>
+        ci_95_lower: <float 0-10>
+        ci_95_upper: <float 0-10>
+      economic:
+        score: <float 0-10>
+        ci_95_lower: <float 0-10>
+        ci_95_upper: <float 0-10>
+      cultural:
+        score: <float 0-10>
+        ci_95_lower: <float 0-10>
+        ci_95_upper: <float 0-10>
+      temporal:
+        score: <float 0-10>
+        ci_95_lower: <float 0-10>
+        ci_95_upper: <float 0-10>
+
+    # Observable Tier-3 (Business Entity) signals surfaced by this
+    # cohort's artifacts. Tier 3 is the legal-entity / IP / trademark
+    # / saleability layer per 2026ag; it is NOT brand. Empty list
+    # permitted; null is not.
+    inferred_tier_3_signals:
+      - "<string>"
+
+    # Observable Tier-5 (Process) couplings surfaced by this cohort
+    # (e.g., production process, supplier mentions, manufacturing
+    # location, fulfilment cadence). Tier 5 is process per 2026ag.
+    inferred_tier_5_process_couplings:
+      - "<string>"
+
+    # Cross-operator extraction discipline per 2026ap Paper B:
+    # the model that RENDERS prose from artifacts (operator B) MUST
+    # differ from the model that EXTRACTS structured spec from that
+    # prose (operator C). Validator enforces inequality per cohort.
+    #
+    # VALENCE CROSS-FAMILY DISCIPLINE (v0.2): when a cohort carries
+    # valence, the valence extractor SHOULD be from a distinct model
+    # family from the strength extractor (operator C), to bound co-bias
+    # the same way renderer != extractor does (METHODOLOGY §3). The
+    # extractor operator id is recorded in the llm_call manifest;
+    # `valence_extractor_operator_id` below names it for the atlas.
+    renderer_operator_id: "<string e.g. claude-opus-4-7>"
+    extractor_operator_id: "<string e.g. gpt-4o-2024-11-20>"
+    # OPTIONAL; required-if-valence-present (validator gates on presence):
+    valence_extractor_operator_id: "<string e.g. qwen3.7-max>"
+
+    # Free-text caveats: cohort-specific selection-bias notes,
+    # language coverage limits, temporal-window irregularities,
+    # operator-failure incidents, etc.
+    notes: "<string>"
+
+# ---------------------------------------------------------------------
+# Variance — primary output per R15 metameric framing
+# ---------------------------------------------------------------------
+#
+# Cross-cohort variance IS the measurement; report it as such.
+
+variance:
+
+  # Per-dimension sigma across cohort spec vectors (STRENGTH). Compute as
+  # the sample standard deviation of the cohort score-vector for each of
+  # the 8 dimensions. All 8 keys MUST be present.
+  cross_cohort_sigma:
+    semiotic: <float >= 0>
+    narrative: <float >= 0>
+    ideological: <float >= 0>
+    experiential: <float >= 0>
+    social: <float >= 0>
+    economic: <float >= 0>
+    cultural: <float >= 0>
+    temporal: <float >= 0>
+
+  # Composite metameric_degree in [0, 1].
+  #     metameric_degree = 1 - mean_pairwise_cosine_similarity
+  # over all C(N, 2) unordered pairs of cohort 8-dim STRENGTH vectors.
+  # (Rationale in SCHEMA_DESIGN_NOTES.md §4.) Valence does not enter the
+  # metameric_degree: metamerism is a strength-pattern construct.
+  metameric_degree: <float in [0, 1]>
+
+  # OPTIONAL valence operator-heterogeneity noise floor (NEW in v0.2).
+  # The wobble in extracted per-dimension valence when the valence
+  # extractor is swapped across the operator alt-pairs already run for
+  # strength (METHODOLOGY §5). It is the resolution limit on the signed
+  # reading: a per-dimension valence with |value| below this floor is
+  # sub-resolution and MUST NOT be presented as a signed finding.
+  #
+  # Scalar form (a single atlas-wide floor) OR per-dimension map (all 8
+  # SBT dimensions) are both accepted; per-dimension is preferred when
+  # the swap data supports it. Required-if any cohort carries valence
+  # (validator gates on presence of valence anywhere in the atlas).
+  valence_operator_floor: <float >= 0>          # scalar form, OR:
+  # valence_operator_floor:                      # per-dimension form
+  #   semiotic: <float >= 0>
+  #   narrative: <float >= 0>
+  #   ideological: <float >= 0>
+  #   experiential: <float >= 0>
+  #   social: <float >= 0>
+  #   economic: <float >= 0>
+  #   cultural: <float >= 0>
+  #   temporal: <float >= 0>
+
+  # Time window the variance figures characterise. Drift across multiple
+  # windows is a primary finding and must be reported when the atlas
+  # spans more than ~6 months.
+  temporal_drift_window:
+    start: "<YYYY-MM-DD>"
+    end: "<YYYY-MM-DD>"
+
+# ---------------------------------------------------------------------
+# Provenance — artifact inventory + LLM-call manifest
+# ---------------------------------------------------------------------
+#
+# Reproducibility substrate per PUBLIC_MIRROR_STANDARD.
+
+provenance:
+
+  # Flat list of artifacts. Each artifact has a unique artifact_id
+  # referenced by cohort.artifact_subset_observed entries above.
+  # Validation rule: every artifact_id referenced under cohorts MUST
+  # exist here (no dangling refs).
+  artifact_inventory:
+
+    - artifact_id: "<string e.g. art_001>"
+      url: "<URL>"
+      retrieval_date: "<YYYY-MM-DD>"
+      # Controlled vocabulary; extend the validator's allowed list when
+      # adding a new source_type. Allowed values:
+      #   forum_post / press_article / social_post /
+      #   auction_record / video_review / official_press_release /
+      #   opinion_column
+      source_type: "<one of the allowed values>"
+      observer_cohort_association: "<cohort_id>"
+      language: "<e.g. en, it, zh>"
+      sha256: "<hex string>"
+      archive_url_optional: "<URL or null>"
+
+  # Relative path (from this atlas file) to the JSONL manifest of all
+  # LLM/model API calls used to render and extract spec (strength AND,
+  # when present, valence) from cohort artifacts. The valence extraction
+  # calls are logged in the same manifest with their operator ids.
+  llm_call_manifest_path: "<relative path e.g. ../logs/<brand>_llm_calls.jsonl>"
+
+  # Relative path to the prompt purity protocol document for this atlas.
+  # Renderer prompts and extractor prompts (strength and valence) MUST
+  # live in separate files; extractor prompts MUST NOT carry source-spec
+  # identifiers from renderer outputs.
+  prompt_purity_protocol_path: "<relative path e.g. ../PROMPT_PURITY_PROTOCOL.md>"
+
+# =====================================================================
+# Validation rules summary (enforced by validate_atlas.py)
+# =====================================================================
+#
+# A v0.2 atlas is validated under ALL v0.1 rules (1-11 below) PLUS the
+# additive valence rules (12-15). A v0.1 atlas is validated under rules
+# 1-11 only; the valence rules are skipped when no valence is present.
+#
+# 1.  schema_version MUST be "0.1" or "0.2".
+# 2.  At least 5 cohorts MUST be present under `cohorts`.
+# 3.  Each cohort MUST reference at least 3 artifact_ids.
+# 4.  Each cohort's renderer_operator_id MUST differ from its
+#     extractor_operator_id (cross-operator discipline per 2026ap).
+# 5.  Each cohort's inferred_spec MUST contain all 8 SBT dimensions
+#     in the canonical order, with score, ci_95_lower, ci_95_upper
+#     all floats in [0, 10] and lower <= score <= upper.
+# 6.  variance.cross_cohort_sigma MUST contain all 8 SBT dimensions
+#     as floats >= 0.
+# 7.  variance.metameric_degree MUST be a float in [0, 1].
+# 8.  variance.temporal_drift_window.start/end MUST be ISO 8601 dates.
+# 9.  provenance.artifact_inventory MUST be non-empty and every
+#     artifact_id referenced from any cohort MUST exist in it.
+# 10. provenance.llm_call_manifest_path MUST be a non-empty string.
+# 11. Each artifact source_type MUST be one of the allowed values.
+#
+# --- v0.2 additive valence rules (gated on presence) ---
+#
+# 12. When an inferred_spec dimension carries a `valence` block, it MUST
+#     contain value, ci_95_lower, ci_95_upper, spread; value and both CI
+#     bounds in [-1, +1]; spread >= 0; ci_95_lower <= value <= ci_95_upper.
+# 13. If ANY cohort carries any valence block, variance.valence_operator_floor
+#     MUST be present — either a scalar float >= 0, or a map of all 8 SBT
+#     dimensions to floats >= 0.
+# 14. If a cohort carries any valence block, that cohort MUST declare a
+#     non-empty valence_extractor_operator_id (cross-family discipline;
+#     it SHOULD differ from extractor_operator_id — advisory warning, not
+#     a hard error, since family membership is not machine-checkable).
+# 15. NET CONTRIBUTION (score x valence) is NEVER stored as a field; the
+#     validator rejects any `net_contribution` / `signed_score` key under
+#     inferred_spec dimensions (it is a derived projection only).
+#
+# =====================================================================

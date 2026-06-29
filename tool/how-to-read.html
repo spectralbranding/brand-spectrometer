@@ -29,41 +29,16 @@
   "about": [ "brand perception", "spectral brand theory", "data visualization", "measurement uncertainty" ]
 }
 </script>
-<link rel="icon" type="image/svg+xml" href="/favicon.svg" />
-<link rel="alternate icon" href="/favicon.ico" />
+<link rel="icon" type="image/svg+xml" href="/favicon-meter.svg" />
+<link rel="stylesheet" href="/meter-base.css?v=20260623" />
 <style>
-:root{
-  --bg:#0a0b10; --bg2:#11131c; --panel:#141824; --ink:#eef0f6; --mut:#9aa0b4;
-  --faint:#5a6273; --line:#262a3a;
-  --grad:linear-gradient(90deg,#e64a3b,#e8842b,#e8c531,#7bc043,#2fb3a8,#3a8dde,#7a5cd0,#c44fa8);
-  --resolved:#4ec3a8; --marginal:#e8c531; --sub:#ff7a6e;
-}
-*{box-sizing:border-box}
-html{scroll-behavior:smooth}
-body{margin:0;background:radial-gradient(1200px 700px at 72% -8%,#161c2c 0%,var(--bg) 55%) fixed;
-  color:var(--ink);font-family:system-ui,-apple-system,"Segoe UI",Roboto,sans-serif;line-height:1.55;-webkit-font-smoothing:antialiased}
-.wrap{max-width:1080px;margin:0 auto;padding:0 24px}
-.spectrum-strip{height:6px;background:var(--grad)}
-.navtop{position:sticky;top:0;z-index:20;background:rgba(10,11,16,.82);backdrop-filter:blur(8px);border-bottom:1px solid var(--line)}
-.navtop .wrap{display:flex;align-items:center;gap:22px;height:3.4rem}
-.navtop .brand{font-weight:300;font-size:.8rem;text-transform:uppercase;letter-spacing:.12em;color:var(--mut)}
-.navtop a{color:var(--mut);text-decoration:none;font-size:.85rem;border-bottom:0}
-.navtop a:hover{color:var(--ink)}
-.navtop .home{color:var(--ink)}
-.navtop .spacer{margin-left:auto}
-.navtop .brand a.grad{color:transparent}
 .demohint{color:var(--faint);font-weight:400}
 section{padding:40px 0;border-bottom:1px solid var(--line)}
 section:last-child{border-bottom:0}
-.eyebrow{text-transform:uppercase;letter-spacing:.16em;font-size:11px;font-weight:700;color:#7fb6f0;margin:0 0 12px}
 h1{font-family:"Iowan Old Style",Palatino,Georgia,serif;font-size:clamp(28px,4.5vw,44px);line-height:1.06;margin:0 0 14px;font-weight:650}
 h2{font-family:"Iowan Old Style",Palatino,Georgia,serif;font-size:clamp(21px,3vw,30px);line-height:1.12;margin:0 0 12px;font-weight:600}
-.grad{background:var(--grad);-webkit-background-clip:text;background-clip:text;color:transparent}
 .lead{font-size:clamp(16px,1.8vw,20px);max-width:42em;color:#dfe3ee}
-p{margin:.6em 0;max-width:46em}
-b{color:var(--ink)} a{color:#9fc6ff;text-decoration:none;border-bottom:1px solid #3a567e}
-a:hover{border-color:#9fc6ff}
-.panel{background:var(--panel);border:1px solid var(--line);border-radius:16px;padding:20px 22px}
+p{margin:.6em 0}
 .dialrow{display:flex;align-items:center;gap:10px;flex-wrap:wrap;margin:6px 0 14px}
 .diallabel{font-size:11px;text-transform:uppercase;letter-spacing:.14em;color:var(--faint);font-weight:700}
 .dial{display:inline-flex;gap:6px;flex-wrap:wrap}
@@ -77,9 +52,6 @@ a:hover{border-color:#9fc6ff}
 svg{display:block;width:100%;height:auto} svg text{font-family:inherit;fill:var(--ink)}
 #chart svg .band,#chart svg .cohline,#chart svg .vdot,#chart svg .cihalo,#chart svg .vaxis{transition:opacity .4s ease}
 .chartcap{margin:12px 2px 0;font-size:12.5px;color:var(--marginal);border-left:2px solid rgba(232,197,49,.4);padding-left:10px}
-.tip{position:fixed;pointer-events:none;background:#020308;border:1px solid var(--line);border-radius:8px;padding:7px 10px;font-size:12px;color:var(--ink);opacity:0;transition:opacity .12s;z-index:50;max-width:240px}
-.legend{display:flex;flex-wrap:wrap;gap:12px 18px;font-size:12.5px;color:var(--mut);margin-top:14px}
-.legend .lz{display:inline-flex;align-items:center;gap:7px;cursor:help}
 .swk{width:20px;height:10px;border-radius:3px;display:inline-block}
 .dot{width:9px;height:9px;border-radius:50%;display:inline-block}
 .cols{display:grid;grid-template-columns:1fr 1fr;gap:20px;margin-top:10px}
@@ -91,10 +63,14 @@ svg{display:block;width:100%;height:auto} svg text{font-family:inherit;fill:var(
 <nav class="navtop"><div class="wrap">
   <span class="brand"><a class="home" href="https://spectralbranding.com">Brand</a> <a class="grad" href="/">Spectrometer</a></span>
   <span class="spacer"></span>
-  <a href="/how-to-read">How to read</a>
-  <a href="/faq">FAQ</a>
-  <a href="/#load">Load an atlas ↑</a>
+  <button class="nav-toggle" aria-expanded="false" aria-label="Toggle navigation" type="button"><span></span><span></span><span></span></button>
+  <div class="navlinks">
+    <a href="/how-to-read">How to read</a>
+    <a href="/faq">FAQ</a>
+    <a href="https://consult.orgschema.com">Consult ↗</a>
+  </div>
 </div></nav>
+<script>(function(){var t=document.querySelector('.navtop .nav-toggle'),n=document.querySelector('.navtop .navlinks');if(!t||!n)return;function c(){t.setAttribute('aria-expanded','false');n.classList.remove('open');}t.addEventListener('click',function(){var e=t.getAttribute('aria-expanded')==='true';t.setAttribute('aria-expanded',e?'false':'true');n.classList.toggle('open',!e);});n.querySelectorAll('a').forEach(function(a){a.addEventListener('click',c);});document.addEventListener('keydown',function(e){if(e.key==='Escape')c();});})();</script>
 
 <div class="wrap">
 
@@ -179,6 +155,45 @@ svg{display:block;width:100%;height:auto} svg text{font-family:inherit;fill:var(
   anyone who reads stars.</p>
 </section>
 
+<section id="glossary">
+  <p class="eyebrow">The words on your readout</p>
+  <h2>A <span class="grad">measurement</span> glossary</h2>
+  <p>Plain-language definitions for the terms the instrument puts in front of you — framed by what
+  they mean <i>on your readout</i>, not in the theory. For the full conceptual glossary, see the
+  <a href="https://spectralbranding.com/glossary">Spectral Brand Theory glossary</a>.</p>
+  <div class="cols">
+    <p><b>Reflection.</b> One reading off one public signal — a single artifact (a review, a post, a
+    press piece) read once, across all eight dimensions at once. It is the instrument's raw unit; an
+    audience's line is built by aggregating many reflections, never by profiling any person.</p>
+    <p><b>Cohort (audience).</b> The group of signals that stay together across all eight filters —
+    a pattern in the full picture, not a demographic segment. You set how finely to group them.</p>
+    <p><b>Atlas.</b> The instrument's full saved output for one brand and one dated window: every
+    audience line, its intervals, the noise floors, and the list of signals behind it. A published
+    atlas re-derives byte-for-byte from open code and data.</p>
+    <p><b>Spread band.</b> The shaded band from the lowest to the highest audience on a dimension —
+    the size of the disagreement between audiences.</p>
+    <p><b>Valence.</b> Which way an audience leans on a dimension: the dot slides from −1 (negative,
+    left) to +1 (positive, right). Strength is the line's height; valence is the dot.</p>
+    <p><b>Noise floor.</b> How far a reading would move for reasons other than the audience —
+    measured two ways: the <b>operator floor</b> (read the same signals with a different model pair)
+    and the <b>source floor</b> (drop some signals and resample). A difference only counts if it
+    clears the larger floor.</p>
+    <p><b>Signal-to-noise (resolution).</b> An audience gap divided by the noise floor. Above 2 it is
+    <b>resolved</b>; 1–2 is <b>marginal</b>; below 1 is <b>sub-resolution</b> — reported as "can't
+    tell," never as a finding.</p>
+    <p><b>Metameric degree.</b> How similar two audiences are in <i>shape</i> across the eight bands.
+    Two audiences can share a shape yet still differ in magnitude — which a distribution-level test
+    can still resolve.</p>
+    <p><b>Distribution-level separation.</b> Comparing two audiences as whole clouds, not just their
+    averages — it recovers magnitude differences a shape-only reading misses. A pair is called apart
+    only when three checks agree: a corrected permutation test, signal-to-noise above 1, and
+    above-chance classification.</p>
+  </div>
+  <p class="note">Emission unit vs measurement unit: a brand <i>emits</i> <b>signals</b>; the
+  instrument <i>records</i> <b>reflections</b> (a signal read through one artifact). They are
+  distinct — see the <a href="https://spectralbranding.com/glossary">full glossary</a> for both.</p>
+</section>
+
 <section>
   <p class="eyebrow">What it deliberately does not show</p>
   <h2>The honest footer</h2>
@@ -223,7 +238,7 @@ const LEG_TIP={
   src:"Each faint dot is one signal source's reading — the raw spread the line summarizes."};
 function legend(level){
   // encoding key only — cohorts are the chips above the chart, not repeated here
-  let h=""; const item=(t,inner)=>`<span class="lz" title="${t}">${inner}</span>`;
+  let h=""; const item=(t,inner)=>`<span class="lz" data-tip="${t}" aria-label="${t}">${inner}</span>`;
   if(level>=1) h+=item(LEG_TIP.band,`<span class="swk" style="background:#7a5cd0;opacity:.4"></span>spread band`);
   if(level>=2 && level<4) h+=item(LEG_TIP.dot,`<span class="dot" style="background:#9aa0b4"></span>dot = valence (−1 negative … +1 positive)`);
   if(level>=3) h+=item(LEG_TIP.ci,`<span class="swk" style="background:#888;opacity:.3"></span>95% CI halo`);
@@ -232,6 +247,12 @@ function legend(level){
     +item(LEG_TIP.src,`<span class="dot" style="background:#9aa0b4;width:6px;height:6px"></span>faint dots = signal sources`);
   $("#legend").innerHTML=h;
 }
+// Show the explainer in the styled tooltip on hover. Text lives in data-tip (NOT title, which would
+// also raise the browser's own native tooltip → a double box); aria-label keeps it accessible.
+// Delegated on #legend (persists across re-renders).
+$("#legend").addEventListener("mousemove",e=>{const lz=e.target.closest&&e.target.closest(".lz");
+  const t=lz&&lz.getAttribute("data-tip"); if(t) onTip(e,t); else onTip(null);});
+$("#legend").addEventListener("mouseleave",()=>onTip(null));
 let SEL=new Set();
 function renderChips(){
   $("#chips").innerHTML=COH.map(c=>`<span class="chip ${SEL.has(c.id)?'':'off'}" data-id="${c.id}"><span class="cdot" style="background:${c.color}"></span>${c.label}</span>`).join("");

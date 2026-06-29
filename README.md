@@ -84,9 +84,12 @@ sanitized stub (derived variance statistics only — no raw artifact text).
 ```
 reproduce.sh   key-free orchestrator that re-derives the methods-paper headline numbers
 tool/          the in-browser renderer + assets + a demo atlas
-schema/        atlas_schema_v0.1.yaml — the atlas data format
+schema/        atlas_schema_v0.1.yaml + atlas_schema_v0.2.yaml — the atlas data format
+               (v0.2 adds the optional signed-valence channel + valence operator floor)
 code/          the offline reproduction battery + validate_atlas.py (format validator)
 data/          ferrari_luce_fresh_2606 — the published worked-example atlas the battery reads
+               (atlas.yaml carries the floored signed-valence channel; valence/ holds the
+               per-reflection valence + the per-dimension operator floor)
 docs/          METHODOLOGY.md, SCHEMA_DESIGN_NOTES.md, TRADEMARK_NOTICE.md
 ```
 

@@ -1,0 +1,41 @@
+valence_id: chinese-cohort::chinese-cohort_03::chinese_variants::d1
+cohort_id: chinese-cohort
+artifact_id: chinese-cohort_03
+operator_label: chinese_variants
+valence_extractor_label: d1
+valence_extractor_provider: qwen
+valence_extractor_operator_id: qwen3.7-max
+valence:
+  semiotic:
+    value: 0.9
+    ci_95_lower: 0.8
+    ci_95_upper: 1.0
+  narrative:
+    value: 0.8
+    ci_95_lower: 0.6
+    ci_95_upper: 0.9
+  ideological:
+    value: 0.7
+    ci_95_lower: 0.5
+    ci_95_upper: 0.9
+  experiential:
+    value: 0.8
+    ci_95_lower: 0.6
+    ci_95_upper: 0.9
+  social:
+    value: 0.7
+    ci_95_lower: 0.5
+    ci_95_upper: 0.8
+  economic:
+    value: -0.4
+    ci_95_lower: -0.7
+    ci_95_upper: -0.1
+  cultural:
+    value: -0.1
+    ci_95_lower: -0.4
+    ci_95_upper: 0.2
+  temporal:
+    value: 0.6
+    ci_95_lower: 0.4
+    ci_95_upper: 0.8
+seed: 20260620

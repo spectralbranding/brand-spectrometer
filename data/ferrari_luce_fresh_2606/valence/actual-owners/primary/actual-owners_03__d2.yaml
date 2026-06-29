@@ -1,0 +1,41 @@
+valence_id: actual-owners::actual-owners_03::primary::d2
+cohort_id: actual-owners
+artifact_id: actual-owners_03
+operator_label: primary
+valence_extractor_label: d2
+valence_extractor_provider: deepseek
+valence_extractor_operator_id: deepseek-v4-flash
+valence:
+  semiotic:
+    value: -0.4
+    ci_95_lower: -0.9
+    ci_95_upper: 0.1
+  narrative:
+    value: -0.4
+    ci_95_lower: -0.8
+    ci_95_upper: 0.0
+  ideological:
+    value: -0.5
+    ci_95_lower: -0.9
+    ci_95_upper: 0.0
+  experiential:
+    value: -0.6
+    ci_95_lower: -1.0
+    ci_95_upper: -0.1
+  social:
+    value: 0.3
+    ci_95_lower: 0.0
+    ci_95_upper: 0.8
+  economic:
+    value: -0.3
+    ci_95_lower: -0.8
+    ci_95_upper: 0.2
+  cultural:
+    value: -0.4
+    ci_95_lower: -0.9
+    ci_95_upper: 0.1
+  temporal:
+    value: -0.2
+    ci_95_lower: -0.7
+    ci_95_upper: 0.3
+seed: 20260620

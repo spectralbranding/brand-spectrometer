@@ -1,0 +1,41 @@
+valence_id: italian-press::italian-press_05::primary::d1
+cohort_id: italian-press
+artifact_id: italian-press_05
+operator_label: primary
+valence_extractor_label: d1
+valence_extractor_provider: anthropic
+valence_extractor_operator_id: claude-haiku-4-5-20251001
+valence:
+  semiotic:
+    value: -0.55
+    ci_95_lower: -0.85
+    ci_95_upper: -0.15
+  narrative:
+    value: -0.48
+    ci_95_lower: -0.78
+    ci_95_upper: -0.08
+  ideological:
+    value: -0.62
+    ci_95_lower: -0.88
+    ci_95_upper: -0.22
+  experiential:
+    value: -0.51
+    ci_95_lower: -0.8
+    ci_95_upper: -0.12
+  social:
+    value: -0.58
+    ci_95_lower: -0.82
+    ci_95_upper: -0.28
+  economic:
+    value: 0.15
+    ci_95_lower: -0.18
+    ci_95_upper: 0.58
+  cultural:
+    value: -0.64
+    ci_95_lower: -0.88
+    ci_95_upper: -0.32
+  temporal:
+    value: -0.35
+    ci_95_lower: -0.68
+    ci_95_upper: 0.12
+seed: 20260620

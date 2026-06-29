@@ -117,6 +117,19 @@ cohorts:
     # Inferred Tier-4 product-spec block on 8 SBT dimensions.
     # Scores are floats in [0, 10] with two-sided 95% confidence
     # intervals. All 8 dimensions MUST be present.
+    #
+    # SCORE SEMANTICS (v0.1): each `score` is a STRENGTH reading — the
+    # salience / intensity with which the dimension registers for this
+    # cohort — on a non-negative scale. It is VALENCE-AGNOSTIC: a high
+    # score means the dimension is strongly present in the cohort's
+    # reconstruction, NOT that the cohort regards it positively. A
+    # strongly disliked and a strongly admired attribute can share a
+    # score. The score does not encode cloud-valence (the positive /
+    # negative / ambivalent direction of the perception, an SBT construct
+    # owned by Zharnikov 2026a) nor brand conviction (within-cohort
+    # valence polarisation); no field in this v0.1 schema is a valence.
+    # A first-class, noise-floored valence field is a planned additive
+    # v0.2 extension (see METHODOLOGY §5).
     inferred_spec:
       semiotic:
         score: <float 0-10>
@@ -258,7 +271,8 @@ provenance:
       # when adding a new source_type.
       # Allowed values:
       #   forum_post / press_article / social_post /
-      #   auction_record / video_review / official_press_release
+      #   auction_record / video_review / official_press_release /
+      #   opinion_column
       source_type: "<one of the allowed values>"
 
       # Which cohort_id this artifact is associated with. An artifact

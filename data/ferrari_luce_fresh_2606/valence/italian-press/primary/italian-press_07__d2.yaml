@@ -1,0 +1,41 @@
+valence_id: italian-press::italian-press_07::primary::d2
+cohort_id: italian-press
+artifact_id: italian-press_07
+operator_label: primary
+valence_extractor_label: d2
+valence_extractor_provider: deepseek
+valence_extractor_operator_id: deepseek-v4-flash
+valence:
+  semiotic:
+    value: 0.0
+    ci_95_lower: -1.0
+    ci_95_upper: 1.0
+  narrative:
+    value: 0.0
+    ci_95_lower: -1.0
+    ci_95_upper: 1.0
+  ideological:
+    value: 0.0
+    ci_95_lower: -1.0
+    ci_95_upper: 1.0
+  experiential:
+    value: 0.0
+    ci_95_lower: -1.0
+    ci_95_upper: 1.0
+  social:
+    value: 0.0
+    ci_95_lower: -1.0
+    ci_95_upper: 1.0
+  economic:
+    value: 0.0
+    ci_95_lower: -1.0
+    ci_95_upper: 1.0
+  cultural:
+    value: 0.0
+    ci_95_lower: -1.0
+    ci_95_upper: 1.0
+  temporal:
+    value: 0.0
+    ci_95_lower: -1.0
+    ci_95_upper: 1.0
+seed: 20260620

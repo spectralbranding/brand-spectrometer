@@ -1,0 +1,289 @@
+atlas: ferrari_luce
+schema_target: '0.2'
+methodology_version: 0.2.0
+seed: 20260620
+valence_operator_floor:
+  semiotic: 0.1405
+  narrative: 0.1746
+  ideological: 0.1538
+  experiential: 0.1046
+  social: 0.134
+  economic: 0.1022
+  cultural: 0.1209
+  temporal: 0.1173
+cohorts:
+  actual-owners:
+    valence_extractor_operator_id: gpt-5.4-mini-2026-03-17
+    valence_swap_operator_id: deepseek-v4-flash
+    n_reflections: 6
+    n_heterogeneity_configs: 4
+    valence:
+      semiotic:
+        value: -0.5417
+        ci_95_lower: -1.0
+        ci_95_upper: -0.0468
+        spread: 0.6184
+      narrative:
+        value: -0.3333
+        ci_95_lower: -0.799
+        ci_95_upper: 0.1323
+        spread: 0.582
+      ideological:
+        value: -0.5
+        ci_95_lower: -0.8036
+        ci_95_upper: -0.1964
+        spread: 0.3795
+      experiential:
+        value: -0.525
+        ci_95_lower: -0.7647
+        ci_95_upper: -0.2853
+        spread: 0.2996
+      social:
+        value: 0.0083
+        ci_95_lower: -0.6585
+        ci_95_upper: 0.6751
+        spread: 0.8333
+      economic:
+        value: -0.2917
+        ci_95_lower: -0.7626
+        ci_95_upper: 0.1793
+        spread: 0.5886
+      cultural:
+        value: -0.5917
+        ci_95_lower: -0.9534
+        ci_95_upper: -0.2299
+        spread: 0.4521
+      temporal:
+        value: -0.1833
+        ci_95_lower: -0.6538
+        ci_95_upper: 0.2871
+        spread: 0.5879
+    per_cohort_floor:
+      semiotic: 0.2059
+      narrative: 0.1848
+      ideological: 0.1096
+      experiential: 0.0702
+      social: 0.2265
+      economic: 0.0354
+      cultural: 0.0636
+      temporal: 0.1586
+  brand-debaters:
+    valence_extractor_operator_id: claude-haiku-4-5-20251001
+    valence_swap_operator_id: deepseek-v4-flash
+    n_reflections: 7
+    n_heterogeneity_configs: 4
+    valence:
+      semiotic:
+        value: -0.2357
+        ci_95_lower: -0.3787
+        ci_95_upper: -0.0927
+        spread: 0.193
+      narrative:
+        value: -0.25
+        ci_95_lower: -0.4469
+        ci_95_upper: -0.0531
+        spread: 0.2658
+      ideological:
+        value: -0.33
+        ci_95_lower: -0.4237
+        ci_95_upper: -0.2363
+        spread: 0.1265
+      experiential:
+        value: -0.0357
+        ci_95_lower: -0.1057
+        ci_95_upper: 0.0343
+        spread: 0.0945
+      social:
+        value: -0.26
+        ci_95_lower: -0.4513
+        ci_95_upper: -0.0687
+        spread: 0.2583
+      economic:
+        value: 0.0614
+        ci_95_lower: -0.1236
+        ci_95_upper: 0.2465
+        spread: 0.2498
+      cultural:
+        value: -0.3829
+        ci_95_lower: -0.4625
+        ci_95_upper: -0.3032
+        spread: 0.1075
+      temporal:
+        value: -0.1186
+        ci_95_lower: -0.3238
+        ci_95_upper: 0.0867
+        spread: 0.277
+    per_cohort_floor:
+      semiotic: 0.0656
+      narrative: 0.0656
+      ideological: 0.0877
+      experiential: 0.0944
+      social: 0.1572
+      economic: 0.0842
+      cultural: 0.1416
+      temporal: 0.1063
+  chinese-cohort:
+    valence_extractor_operator_id: qwen3.7-max
+    valence_swap_operator_id: qwen-plus
+    n_reflections: 8
+    n_heterogeneity_configs: 4
+    valence:
+      semiotic:
+        value: -0.3125
+        ci_95_lower: -0.6725
+        ci_95_upper: 0.0475
+        spread: 0.5194
+      narrative:
+        value: -0.2562
+        ci_95_lower: -0.6734
+        ci_95_upper: 0.1609
+        spread: 0.602
+      ideological:
+        value: -0.0063
+        ci_95_lower: -0.3796
+        ci_95_upper: 0.3671
+        spread: 0.5388
+      experiential:
+        value: 0.1875
+        ci_95_lower: -0.3087
+        ci_95_upper: 0.6837
+        spread: 0.716
+      social:
+        value: 0.0688
+        ci_95_lower: -0.4547
+        ci_95_upper: 0.5922
+        spread: 0.7554
+      economic:
+        value: -0.1625
+        ci_95_lower: -0.6236
+        ci_95_upper: 0.2986
+        spread: 0.6653
+      cultural:
+        value: -0.3625
+        ci_95_lower: -0.6345
+        ci_95_upper: -0.0905
+        spread: 0.3926
+      temporal:
+        value: -0.0688
+        ci_95_lower: -0.5019
+        ci_95_upper: 0.3644
+        spread: 0.625
+    per_cohort_floor:
+      semiotic: 0.1046
+      narrative: 0.2373
+      ideological: 0.1595
+      experiential: 0.1946
+      social: 0.1199
+      economic: 0.1709
+      cultural: 0.119
+      temporal: 0.1504
+  italian-press:
+    valence_extractor_operator_id: claude-haiku-4-5-20251001
+    valence_swap_operator_id: deepseek-v4-flash
+    n_reflections: 8
+    n_heterogeneity_configs: 4
+    valence:
+      semiotic:
+        value: -0.1875
+        ci_95_lower: -0.4208
+        ci_95_upper: 0.0458
+        spread: 0.3367
+      narrative:
+        value: -0.2
+        ci_95_lower: -0.4082
+        ci_95_upper: 0.0082
+        spread: 0.3004
+      ideological:
+        value: -0.2025
+        ci_95_lower: -0.4943
+        ci_95_upper: 0.0893
+        spread: 0.4211
+      experiential:
+        value: -0.1325
+        ci_95_lower: -0.2857
+        ci_95_upper: 0.0207
+        spread: 0.2211
+      social:
+        value: -0.1388
+        ci_95_lower: -0.4287
+        ci_95_upper: 0.1512
+        spread: 0.4184
+      economic:
+        value: -0.1063
+        ci_95_lower: -0.3112
+        ci_95_upper: 0.0987
+        spread: 0.2957
+      cultural:
+        value: -0.1887
+        ci_95_lower: -0.5422
+        ci_95_upper: 0.1647
+        spread: 0.5101
+      temporal:
+        value: -0.0375
+        ci_95_lower: -0.2271
+        ci_95_upper: 0.1521
+        spread: 0.2735
+    per_cohort_floor:
+      semiotic: 0.0891
+      narrative: 0.1562
+      ideological: 0.1309
+      experiential: 0.0446
+      social: 0.055
+      economic: 0.1543
+      cultural: 0.0575
+      temporal: 0.1265
+  non-italian-press:
+    valence_extractor_operator_id: gpt-5.4-mini-2026-03-17
+    valence_swap_operator_id: deepseek-v4-flash
+    n_reflections: 7
+    n_heterogeneity_configs: 4
+    valence:
+      semiotic:
+        value: 0.2714
+        ci_95_lower: -0.1766
+        ci_95_upper: 0.7194
+        spread: 0.6047
+      narrative:
+        value: 0.5071
+        ci_95_lower: 0.2784
+        ci_95_upper: 0.7359
+        spread: 0.3088
+      ideological:
+        value: 0.1714
+        ci_95_lower: -0.1178
+        ci_95_upper: 0.4606
+        spread: 0.3904
+      experiential:
+        value: 0.1857
+        ci_95_lower: -0.115
+        ci_95_upper: 0.4864
+        spread: 0.4059
+      social:
+        value: 0.15
+        ci_95_lower: -0.0833
+        ci_95_upper: 0.3833
+        spread: 0.3149
+      economic:
+        value: 0.4429
+        ci_95_lower: 0.1261
+        ci_95_upper: 0.7596
+        spread: 0.4276
+      cultural:
+        value: 0.0214
+        ci_95_lower: -0.3206
+        ci_95_upper: 0.3635
+        spread: 0.4618
+      temporal:
+        value: 0.2786
+        ci_95_lower: 0.0627
+        ci_95_upper: 0.4944
+        spread: 0.2913
+    per_cohort_floor:
+      semiotic: 0.2372
+      narrative: 0.2291
+      ideological: 0.2816
+      experiential: 0.119
+      social: 0.1113
+      economic: 0.0661
+      cultural: 0.2226
+      temporal: 0.0446

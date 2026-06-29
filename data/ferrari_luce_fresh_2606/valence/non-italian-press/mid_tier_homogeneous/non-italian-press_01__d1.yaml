@@ -1,0 +1,41 @@
+valence_id: non-italian-press::non-italian-press_01::mid_tier_homogeneous::d1
+cohort_id: non-italian-press
+artifact_id: non-italian-press_01
+operator_label: mid_tier_homogeneous
+valence_extractor_label: d1
+valence_extractor_provider: openai
+valence_extractor_operator_id: gpt-5.4-mini-2026-03-17
+valence:
+  semiotic:
+    value: 0.6
+    ci_95_lower: 0.2
+    ci_95_upper: 0.8
+  narrative:
+    value: 0.8
+    ci_95_lower: 0.5
+    ci_95_upper: 0.95
+  ideological:
+    value: 0.4
+    ci_95_lower: 0.1
+    ci_95_upper: 0.7
+  experiential:
+    value: 0.0
+    ci_95_lower: -0.4
+    ci_95_upper: 0.4
+  social:
+    value: 0.5
+    ci_95_lower: 0.1
+    ci_95_upper: 0.8
+  economic:
+    value: 0.2
+    ci_95_lower: -0.1
+    ci_95_upper: 0.5
+  cultural:
+    value: 0.3
+    ci_95_lower: 0.0
+    ci_95_upper: 0.6
+  temporal:
+    value: 0.0
+    ci_95_lower: -0.4
+    ci_95_upper: 0.4
+seed: 20260620

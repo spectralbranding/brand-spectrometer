@@ -1,0 +1,41 @@
+valence_id: brand-debaters::brand-debaters_05::mid_tier_homogeneous::d1
+cohort_id: brand-debaters
+artifact_id: brand-debaters_05
+operator_label: mid_tier_homogeneous
+valence_extractor_label: d1
+valence_extractor_provider: anthropic
+valence_extractor_operator_id: claude-haiku-4-5-20251001
+valence:
+  semiotic:
+    value: 0.15
+    ci_95_lower: -0.35
+    ci_95_upper: 0.65
+  narrative:
+    value: -0.1
+    ci_95_lower: -0.55
+    ci_95_upper: 0.35
+  ideological:
+    value: -0.25
+    ci_95_lower: -0.7
+    ci_95_upper: 0.2
+  experiential:
+    value: 0.0
+    ci_95_lower: -0.5
+    ci_95_upper: 0.5
+  social:
+    value: 0.35
+    ci_95_lower: -0.1
+    ci_95_upper: 0.75
+  economic:
+    value: 0.2
+    ci_95_lower: -0.25
+    ci_95_upper: 0.65
+  cultural:
+    value: -0.2
+    ci_95_lower: -0.65
+    ci_95_upper: 0.25
+  temporal:
+    value: 0.1
+    ci_95_lower: -0.4
+    ci_95_upper: 0.6
+seed: 20260620
