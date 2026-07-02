@@ -35,8 +35,9 @@ h1{font-family:"Iowan Old Style",Palatino,Georgia,serif;font-size:clamp(28px,4.5
 h2{font-family:"Iowan Old Style",Palatino,Georgia,serif;font-size:clamp(21px,3vw,30px);line-height:1.12;margin:0 0 12px;font-weight:600}
 .lead{font-size:clamp(16px,1.8vw,20px);max-width:42em;color:#dfe3ee}
 p{margin:.6em 0}
-.cols{display:grid;grid-template-columns:1fr 1fr;gap:20px;margin-top:10px}
-@media(max-width:640px){.cols{grid-template-columns:1fr}}
+.terms{max-width:46em;margin-top:6px}
+.terms p{margin:.9em 0}
+.grouphead{font-family:'Space Grotesk',system-ui,sans-serif;font-size:12px;letter-spacing:.09em;text-transform:uppercase;color:var(--mut);font-weight:600;margin:26px 0 2px}
 .note{color:var(--mut);font-size:.95em;border-left:2px solid var(--line);padding-left:1em;margin-top:1.1em}
 .foot{color:var(--faint);font-size:12px;padding:30px 0 60px}
 </style></head><body>
@@ -57,12 +58,13 @@ p{margin:.6em 0}
 <div class="wrap">
 
 <section id="glossary">
-  <p class="eyebrow">The words on your readout</p>
-  <h1>A <span class="grad">measurement</span> glossary</h1>
+  <p class="eyebrow">Brand Spectrometer · measurement vocabulary</p>
+  <h1>The <span class="grad">words</span> on your readout</h1>
   <p class="lead">Plain-language definitions for the terms the instrument puts in front of you — framed by what
   they mean <i>on your readout</i>, not in the theory. For the full conceptual glossary, see the
   <a href="https://spectralbranding.com/glossary">Spectral Brand Theory glossary</a>.</p>
-  <div class="cols">
+  <div class="terms">
+    <div class="grouphead">The reading</div>
     <p><b>Reflection.</b> One reading off one public signal — a single artifact (a review, a post, a
     press piece) read once, across all eight dimensions at once. It is the instrument's raw unit; an
     audience's line is built by aggregating many reflections, never by profiling any person.</p>
@@ -71,10 +73,12 @@ p{margin:.6em 0}
     <p><b>Atlas.</b> The instrument's full saved output for one brand and one dated window: every
     audience line, its intervals, the noise floors, and the list of signals behind it. A published
     atlas re-derives byte-for-byte from open code and data.</p>
+    <div class="grouphead">The display</div>
     <p><b>Spread band.</b> The shaded band from the lowest to the highest audience on a dimension —
     the size of the disagreement between audiences.</p>
     <p><b>Valence.</b> Which way an audience leans on a dimension: the dot slides from −1 (negative,
     left) to +1 (positive, right). Strength is the line's height; valence is the dot.</p>
+    <div class="grouphead">The floors</div>
     <p><b>Noise floor.</b> How far a reading would move for reasons other than the audience —
     measured two ways: the <b>operator floor</b> (read the same signals with a different model pair)
     and the <b>source floor</b> (drop some signals and resample). A difference only counts if it
@@ -91,6 +95,7 @@ p{margin:.6em 0}
     together with the version floor measured for that era. Epoch-stamped readings let a later reader
     ask "did the brand move, or did the model change?" — and get a measured answer instead of a
     guess.</p>
+    <div class="grouphead">Across audiences</div>
     <p><b>Metameric degree.</b> How similar two audiences are in <i>shape</i> across the eight bands.
     Two audiences can share a shape yet still differ in magnitude — which a distribution-level test
     can still resolve.</p>
