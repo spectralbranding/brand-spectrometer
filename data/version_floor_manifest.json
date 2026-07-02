@@ -1,0 +1,73 @@
+{
+  "manifest_format_version": "1.0",
+  "epoch": {
+    "id": "VE-1",
+    "date": "2026-07-02"
+  },
+  "source": {
+    "instrument": "PRISM-T version-floor instrument (Zharnikov 2026ba)",
+    "doi": "10.5281/zenodo.21128779",
+    "prompt_version": "prism-t/v1.0.0",
+    "metric": "cosine",
+    "snr_k": 2.0,
+    "n_brands": 40,
+    "panel": "sealed pinned panel, 160 artifacts, SHA-256 manifest, sealed 2026-07-02"
+  },
+  "measured_under": {
+    "renderers": [
+      "claude-opus-4-1-20250805",
+      "claude-opus-4-5-20251101",
+      "claude-opus-4-6",
+      "claude-opus-4-7",
+      "claude-opus-4-8",
+      "gpt-4o-2024-11-20",
+      "gpt-5-2025-08-07",
+      "gpt-5.5-2026-04-23",
+      "qwen3-max-2025-09-23",
+      "qwen3.5-plus-2026-02-15",
+      "qwen3.7-max-2026-06-08"
+    ],
+    "extractors": [
+      "gpt-5.4-mini-2026-03-17",
+      "claude-haiku-4-5-20251001",
+      "deepseek-v4-flash"
+    ],
+    "excluded_exploratory": [
+      {
+        "renderer": "deepseek-v4-pro",
+        "extractor": "qwen3.6-flash-2026-04-16",
+        "reason": "mechanical 3x-median concordance exclusion (leave-one-out discordance 0.556 vs median-of-others 0.0055); collected and reported as exploratory observer only"
+      }
+    ]
+  },
+  "operator_floor_at_epoch": {
+    "mean": 0.007762638357369789,
+    "median": 0.00585755522519793,
+    "max": 0.020564263372956693
+  },
+  "version_floor": [
+    {
+      "ladder": "anthropic-opus",
+      "extractor": "gpt-5.4-mini-2026-03-17",
+      "metric": "cosine",
+      "mean": 0.012390809834328192,
+      "median": 0.009428232238900547
+    },
+    {
+      "ladder": "openai-gpt",
+      "extractor": "claude-haiku-4-5-20251001",
+      "metric": "cosine",
+      "mean": 0.004940984507799992,
+      "median": 0.0038736998392862043
+    },
+    {
+      "ladder": "alibaba-qwen",
+      "extractor": "deepseek-v4-flash",
+      "metric": "cosine",
+      "mean": 0.011145032004744732,
+      "median": 0.009372155203964061
+    }
+  ],
+  "staleness_rule": "A configured operator model-version string absent from measured_under means the version floor was not measured under that version: the run report must say 'version floor stale -- re-read the sealed panel' and a sealed-panel re-read (VE-2 procedure) is due before longitudinal claims are epoch-stamped against this manifest.",
+  "reread_trigger": "Any laddered family ships a new model version (VE-2 trigger). The re-read uses the sealed pinned panel as-is; no atlas is invalidated by staleness -- only across-epoch drift attribution is gated."
+}

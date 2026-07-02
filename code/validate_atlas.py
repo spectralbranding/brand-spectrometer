@@ -5,7 +5,7 @@
 # ]
 # ///
 """
-validate_atlas.py — Brand Spectrometer schema v0.1 / v0.2 validator.
+validate_atlas.py — Brand Spectrometer schema v0.1 / v0.2 / v0.3 validator.
 
 Run:
     uv run python validate_atlas.py <atlas.yaml>
@@ -15,12 +15,14 @@ Exit codes:
     1  on validation failure (errors printed to stderr)
     2  on invocation error (missing file, malformed YAML)
 
-Validation rules (per atlas_schema_v0.{1,2}.yaml end-of-file summaries).
+Validation rules (per atlas_schema_v0.{1,2,3}.yaml end-of-file summaries).
 A v0.1 atlas is checked under rules 1-11; a v0.2 atlas adds the
 additive valence rules 12-15, which are gated on presence (an atlas with
-no valence anywhere is checked under 1-11 even at schema_version 0.2):
+no valence anywhere is checked under 1-11 even at schema_version 0.2);
+a v0.3 atlas adds the additive model_epoch rules 16-18, gated the same
+way (an atlas without a model_epoch block is unaffected):
 
-    1.  schema_version in {"0.1", "0.2"}
+    1.  schema_version in {"0.1", "0.2", "0.3"}
     2.  >= 5 cohorts under `cohorts`
     3.  each cohort references >= 3 artifact_ids
     4.  renderer_operator_id != extractor_operator_id per cohort
@@ -46,6 +48,15 @@ no valence anywhere is checked under 1-11 even at schema_version 0.2):
     15. (v0.2) net contribution (score x valence) is NEVER stored: a
         `net_contribution` / `signed_score` key under any inferred_spec
         dimension is an error (derived projection only)
+    16. (v0.3) a `model_epoch` block, when present, carries a non-empty
+        epoch_id, an ISO 8601 epoch_date, a non-empty
+        version_floor_source, and measured_under.renderers/extractors
+        as non-empty lists of non-empty strings
+    17. (v0.3) model_epoch.version_floor is a non-empty list whose
+        entries carry a non-empty `ladder` and numeric mean/median
+        >= 0; operator_floor_at_epoch, when present, carries numeric
+        floats >= 0
+    18. (v0.3) model_epoch.stale, when present, is a boolean
 
 The validator is intentionally strict; the schema YAML is the
 authoritative reference.
@@ -84,7 +95,7 @@ ALLOWED_SOURCE_TYPES: frozenset[str] = frozenset(
 
 MIN_COHORTS: int = 5
 MIN_ARTIFACTS_PER_COHORT: int = 3
-SUPPORTED_SCHEMA_VERSIONS: frozenset[str] = frozenset({"0.1", "0.2"})
+SUPPORTED_SCHEMA_VERSIONS: frozenset[str] = frozenset({"0.1", "0.2", "0.3"})
 
 # Keys forbidden under an inferred_spec dimension: net contribution
 # (score x valence) is a DERIVED projection, never a stored field
@@ -274,9 +285,102 @@ def _check_valence_operator_floor(floor: object, errors: list[str]) -> None:
     )
 
 
+def _check_model_epoch(block: object, errors: list[str]) -> None:
+    """Validate an OPTIONAL top-level model_epoch block (v0.3 rules 16-18).
+
+    Gated on presence: an atlas without the block is unaffected. Numeric
+    null placeholders are permitted (skeleton-friendly, like the score
+    block); structural fields (epoch_id, source, measured_under lists,
+    ladder names) are not nullable — an epoch stamp without them is
+    meaningless.
+    """
+    if not isinstance(block, dict):
+        errors.append("`model_epoch` must be a mapping")
+        return
+
+    # Rule 16 — identity + source + measured_under.
+    eid = block.get("epoch_id")
+    if not isinstance(eid, str) or not eid:
+        errors.append("model_epoch.epoch_id must be a non-empty string")
+    if not _is_iso8601_date(block.get("epoch_date")):
+        errors.append(
+            f"model_epoch.epoch_date = {block.get('epoch_date')!r} "
+            f"is not a valid ISO 8601 date"
+        )
+    src = block.get("version_floor_source")
+    if not isinstance(src, str) or not src:
+        errors.append("model_epoch.version_floor_source must be a non-empty string")
+    mu = block.get("measured_under")
+    if not isinstance(mu, dict):
+        errors.append("model_epoch.measured_under must be a mapping")
+    else:
+        for role in ("renderers", "extractors"):
+            lst = mu.get(role)
+            if (
+                not isinstance(lst, list)
+                or not lst
+                or not all(isinstance(s, str) and s for s in lst)
+            ):
+                errors.append(
+                    f"model_epoch.measured_under.{role} must be a non-empty "
+                    f"list of non-empty model-version strings"
+                )
+
+    # Rule 17 — version floor entries + optional operator floor copy.
+    vf = block.get("version_floor")
+    if not isinstance(vf, list) or not vf:
+        errors.append("model_epoch.version_floor must be a non-empty list")
+    else:
+        for i, entry in enumerate(vf):
+            if not isinstance(entry, dict):
+                errors.append(f"model_epoch.version_floor[{i}] must be a mapping")
+                continue
+            ladder = entry.get("ladder")
+            if not isinstance(ladder, str) or not ladder:
+                errors.append(
+                    f"model_epoch.version_floor[{i}].ladder must be a "
+                    f"non-empty string"
+                )
+            for key in ("mean", "median"):
+                val = entry.get(key)
+                if val is None:
+                    continue
+                if not isinstance(val, (int, float)) or isinstance(val, bool):
+                    errors.append(
+                        f"model_epoch.version_floor[{i}].{key} must be numeric"
+                    )
+                elif float(val) < 0:
+                    errors.append(f"model_epoch.version_floor[{i}].{key} must be >= 0")
+    of = block.get("operator_floor_at_epoch")
+    if of is not None:
+        if not isinstance(of, dict):
+            errors.append("model_epoch.operator_floor_at_epoch must be a mapping")
+        else:
+            for key, val in of.items():
+                if val is None:
+                    continue
+                if not isinstance(val, (int, float)) or isinstance(val, bool):
+                    errors.append(
+                        f"model_epoch.operator_floor_at_epoch.{key} must be numeric"
+                    )
+                elif float(val) < 0:
+                    errors.append(
+                        f"model_epoch.operator_floor_at_epoch.{key} must be >= 0"
+                    )
+
+    # Rule 18 — stale flag is boolean when present.
+    stale = block.get("stale")
+    if stale is not None and not isinstance(stale, bool):
+        errors.append("model_epoch.stale must be a boolean when present")
+
+
 def validate(atlas: dict) -> None:
     """Validate the loaded atlas dict; raise ValidationError on failure."""
     errors: list[str] = []
+
+    # v0.3 rules 16-18 — model_epoch block, gated on presence.
+    if "model_epoch" in atlas:
+        _check_model_epoch(atlas["model_epoch"], errors)
 
     # Tracks whether ANY cohort carried a valence block (gates v0.2
     # rules 13/14, which are skipped for valence-free atlases).
@@ -515,6 +619,14 @@ def _summary(atlas: dict) -> str:
     lines.append(f"Atlas version    : {av}")
     lines.append(f"Methodology      : {mv}")
     lines.append(f"Cohort count     : {len(cohorts)}")
+    me = atlas.get("model_epoch")
+    if isinstance(me, dict):
+        stale = me.get("stale")
+        stale_note = " [version floor STALE]" if stale else ""
+        lines.append(
+            f"Model epoch      : {me.get('epoch_id')} "
+            f"({me.get('epoch_date')}){stale_note}"
+        )
     lines.append("")
     lines.append("Per-cohort summary:")
     lines.append(

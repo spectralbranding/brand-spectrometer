@@ -1,8 +1,10 @@
-# Methodology — Brand Spectrometer v0.1 / v0.2
+# Methodology — Brand Spectrometer v0.1 / v0.2 / v0.3
 
-*Companion to `schema/atlas_schema_v0.1.yaml` (v0.1) and `schema/atlas_schema_v0.2.yaml` (v0.2, additive valence) and `SCHEMA_DESIGN_NOTES.md`. Methodology version: 0.2.0.*
+*Companion to `schema/atlas_schema_v0.1.yaml` (v0.1), `schema/atlas_schema_v0.2.yaml` (v0.2, additive valence), and `schema/atlas_schema_v0.3.yaml` (v0.3, additive model epochs) and `SCHEMA_DESIGN_NOTES.md`. Methodology version: 0.3.0.*
 
 *The strength-only protocol (a v0.1 atlas, scores without valence) is unchanged and remains valid; an atlas pinning `methodology_version: 0.2.0` additionally follows the valence extraction protocol (§3) and the valence noise floor (§5). Sections flagged "(v0.2 additive)" apply only to valence-bearing atlases.*
+
+*Methodology 0.3.0 adds run-protocol verification equipment from the PRISM instrument family, none of which forks the reading instrument itself: the pre-flight operator concordance screen with the mechanical exclusion rule (§3, from Zharnikov 2026az), the pre-run version check plus epoch-stamped readings against a measured version floor (§3 and §6, from Zharnikov 2026ba). Sections flagged "(v0.3 additive)" apply to runs performed under methodology 0.3.0 and later; every published v0.1/v0.2 atlas remains valid as-is.*
 
 ## 0. Preamble and Ground-Truth-Absence Acknowledgment
 
@@ -104,6 +106,14 @@ Future extension: as native models for Russian, Arabic, Japanese, Korean, and ot
 ### Model-version pinning
 
 Operator IDs are exact model-version strings (e.g., `claude-opus-4-7`, `claude-haiku-4-5-20251001`, `gpt-5.5-2026-04-23`, `gpt-5.4-mini-2026-03-17`, `qwen3.7-max`, `deepseek-v4-flash`), never family labels alone. Pinning is required for reproducibility: a re-run six months later against a silently-updated model is a different experiment, and the manifest must allow that distinction to be detected.
+
+### Pre-flight operator concordance (v0.3 additive)
+
+Before any campaign, every configured operator reads the same small pilot stimulus set, and each operator's leave-one-out vector concordance (mean cosine distance between its reading and the mean of the other operators' readings, per stimulus) is scored. The mechanical exclusion rule, fixed ex ante by PRISM-M (Zharnikov 2026az, DOI 10.5281/zenodo.21125785) and replicated in three campaigns since: an operator whose discordance score exceeds 3x the median score of the remaining operators is excluded from every noise floor and every pooled vector, and retained only as a reported exploratory observer. The decision is mechanical — the rule is invoked, never judged case-by-case. Rationale: a single systematically discordant operator inflates every floor it enters and silently destroys the instrument's resolution; the pre-flight screen is the cheap check that prevents it. Run via `code/preflight.py concordance` (which invokes `prism_core.concordance`, the PRISM instrument-family base library — the same code path the PRISM campaigns use). Published atlases predating methodology 0.3.0 are unaffected; the rule applies to runs going forward.
+
+### Pre-run version check (v0.3 additive)
+
+Model-version pinning (above) makes a version change *detectable*; the version check makes it *actionable before spending*. Before a campaign, the configured operator model-version strings are compared against the versions the sealed-panel version floor was last measured under (`data/version_floor_manifest.json`, regenerated at each sealed-panel re-read; measurement source: PRISM-T, Zharnikov 2026ba, DOI 10.5281/zenodo.21128779). Any configured version absent from that manifest means the version floor is not current for this run: the run report must carry the line "version floor stale — re-read the sealed panel." The re-read itself is cheap (the sealed pinned panel is re-read under the new version; tens of dollars of API calls) and is triggered whenever a laddered model family ships a new version. Staleness never invalidates a reading — it gates ACROSS-EPOCH drift attribution only (§6). Run via `code/preflight.py version-floor`.
 
 ### LLM-call logging
 
@@ -228,6 +238,17 @@ The recommended cadence is at least one atlas per major brand event — product 
 
 When two snapshots use different methodology versions, drift figures are reported only for dimensions where the methodology change does not materially affect the score (e.g., new artifact-source-type vocabulary on a cohort whose existing artifacts do not use the new type). Methodology changes that would materially affect scores invalidate cross-snapshot drift measurement until both snapshots are rebuilt under the same methodology version.
 
+### Version epochs and the two-panel logic (v0.3 additive)
+
+Cross-snapshot drift (above) assumes the instrument held still between snapshots. It does not hold still by default: the operators are model versions, and vendors ship new ones. Methodology 0.3.0 therefore distinguishes two panels and two floors (measurement source: PRISM-T, Zharnikov 2026ba):
+
+- *The live panel* — the atlas itself: fresh artifacts, read at collection time. This is the measurement.
+- *The sealed panel* — a frozen, byte-identical artifact set (SHA-256 manifest), re-read across model versions. It never enters an atlas; it exists solely to measure how much readings move when ONLY the model version changes. That movement is the *version floor* — the across-time counterpart of the within-epoch operator floor.
+
+The nesting rule for longitudinal claims is **operator ⊆ version**: the operator floor is measured *within* a version epoch (contemporaneous operator pairs), so it cannot see version drift; the version floor brackets *across* epochs. A delta between two atlases taken at different epochs is attributable to the brand only if it clears BOTH floors — a delta above the operator floor but within the version floor may be instrument drift, not brand movement.
+
+An atlas built under methodology 0.3.0 MAY carry the optional `model_epoch` block (schema v0.3): the epoch identifier and date, the exact model-version strings the sealed-panel floor was measured under, the per-ladder version floor at that epoch, and a `stale` flag from the pre-run version check (§3). Epoch-stamping is what lets a longitudinal consumer ask the right question of an across-epoch delta — "does this clear the version floor?" — instead of the too-weak "does this clear the operator floor?". The sealed-panel re-read procedure and its trigger (any laddered family ships a new version) are described in §3; existing v0.1/v0.2 atlases remain valid and simply carry no epoch stamp.
+
 ## 7. Limitations (Eight-Weakness Inventory)
 
 This section quotes the eight-weakness inventory verbatim from `memory/project_tier_4_reverse_engineering_hype_and_tool_2026-05-29.md` lines 42-51. The inventory is the audit substrate: every claim made by an atlas built under this methodology must remain compatible with these eight named weaknesses. Each weakness is followed by a one-sentence mitigation note pointing to the relevant §1-§6 protocol element and a one-sentence residual-risk acknowledgment. The mitigations are partial; the residuals remain. Section preamble: NO ground truth is assumed to exist; the tool measures observer-side reconstructions; metameric variance IS the measurement.
@@ -290,4 +311,4 @@ The atlas YAML, all prompt files, the llm_call manifest, and `TRADEMARK_NOTICE.m
 
 ---
 
-*Methodology version 0.1.0 — 2026-05-29. Companion to `schema/atlas_schema_v0.1.yaml`, `SCHEMA_DESIGN_NOTES.md`, `TRADEMARK_NOTICE.md`. Internal companion: `TRADEMARK_RESEARCH_MEMO.md` (not mirrored).*
+*Methodology version 0.3.0 — 2026-07-02 (0.1.0 2026-05-29; 0.2.0 valence 2026-06-29; 0.3.0 pre-flight concordance + version epochs 2026-07-02). Companion to `schema/atlas_schema_v0.1.yaml` / `v0.2` / `v0.3`, `SCHEMA_DESIGN_NOTES.md`, `TRADEMARK_NOTICE.md`. Internal companion: `TRADEMARK_RESEARCH_MEMO.md` (not mirrored).*

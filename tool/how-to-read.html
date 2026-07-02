@@ -66,6 +66,7 @@ svg{display:block;width:100%;height:auto} svg text{font-family:inherit;fill:var(
   <button class="nav-toggle" aria-expanded="false" aria-label="Toggle navigation" type="button"><span></span><span></span><span></span></button>
   <div class="navlinks">
     <a href="/how-to-read">How to read</a>
+    <a href="/glossary">Glossary</a>
     <a href="/faq">FAQ</a>
     <a href="https://consult.orgschema.com">Consult ↗</a>
   </div>
@@ -158,40 +159,8 @@ svg{display:block;width:100%;height:auto} svg text{font-family:inherit;fill:var(
 <section id="glossary">
   <p class="eyebrow">The words on your readout</p>
   <h2>A <span class="grad">measurement</span> glossary</h2>
-  <p>Plain-language definitions for the terms the instrument puts in front of you — framed by what
-  they mean <i>on your readout</i>, not in the theory. For the full conceptual glossary, see the
-  <a href="https://spectralbranding.com/glossary">Spectral Brand Theory glossary</a>.</p>
-  <div class="cols">
-    <p><b>Reflection.</b> One reading off one public signal — a single artifact (a review, a post, a
-    press piece) read once, across all eight dimensions at once. It is the instrument's raw unit; an
-    audience's line is built by aggregating many reflections, never by profiling any person.</p>
-    <p><b>Cohort (audience).</b> The group of signals that stay together across all eight filters —
-    a pattern in the full picture, not a demographic segment. You set how finely to group them.</p>
-    <p><b>Atlas.</b> The instrument's full saved output for one brand and one dated window: every
-    audience line, its intervals, the noise floors, and the list of signals behind it. A published
-    atlas re-derives byte-for-byte from open code and data.</p>
-    <p><b>Spread band.</b> The shaded band from the lowest to the highest audience on a dimension —
-    the size of the disagreement between audiences.</p>
-    <p><b>Valence.</b> Which way an audience leans on a dimension: the dot slides from −1 (negative,
-    left) to +1 (positive, right). Strength is the line's height; valence is the dot.</p>
-    <p><b>Noise floor.</b> How far a reading would move for reasons other than the audience —
-    measured two ways: the <b>operator floor</b> (read the same signals with a different model pair)
-    and the <b>source floor</b> (drop some signals and resample). A difference only counts if it
-    clears the larger floor.</p>
-    <p><b>Signal-to-noise (resolution).</b> An audience gap divided by the noise floor. Above 2 it is
-    <b>resolved</b>; 1–2 is <b>marginal</b>; below 1 is <b>sub-resolution</b> — reported as "can't
-    tell," never as a finding.</p>
-    <p><b>Metameric degree.</b> How similar two audiences are in <i>shape</i> across the eight bands.
-    Two audiences can share a shape yet still differ in magnitude — which a distribution-level test
-    can still resolve.</p>
-    <p><b>Distribution-level separation.</b> Comparing two audiences as whole clouds, not just their
-    averages — it recovers magnitude differences a shape-only reading misses. A pair is called apart
-    only when three checks agree: a corrected permutation test, signal-to-noise above 1, and
-    above-chance classification.</p>
-  </div>
-  <p class="note">Emission unit vs measurement unit: a brand <i>emits</i> <b>signals</b>; the
-  instrument <i>records</i> <b>reflections</b> (a signal read through one artifact). They are
-  distinct — see the <a href="https://spectralbranding.com/glossary">full glossary</a> for both.</p>
+  <p>Reflection, cohort, atlas, spread band, valence, noise floor, version floor, and the rest now
+  live on their own page: <a href="/glossary">the full measurement glossary →</a></p>
 </section>
 
 <section>
@@ -201,15 +170,21 @@ svg{display:block;width:100%;height:auto} svg text{font-family:inherit;fill:var(
   audiences. Anything below the noise floor is reported as <b>unresolved, not zero</b>: the
   instrument tells you when it can't tell two audiences apart, instead of inventing a difference.
   It measures audiences, never individuals.</p>
+  <p>The same honesty runs across time: the AI models doing the reading are part of the instrument,
+  so dated readings are also checked against a measured <b>version floor</b> — how much readings move
+  when only the model version changes. <a href="/faq#updates">If the model vendor ships an update,
+  your reading says so</a> instead of silently changing.</p>
   <p style="margin-top:18px"><a href="spectrometer.html">← Back to the tool</a></p>
 </section>
 
 </div>
 <div id="tip" class="tip"></div>
 <div class="wrap foot">Measurement instrument for how a brand is perceived — not a verdict on what it
-"is." Code open-source (MIT); theory CC BY 4.0. No brand assets reproduced (nominative use). Valence,
-CI and emission in this guide use an illustrative atlas so every level renders.</div>
+"is." Code open-source (MIT); theory CC BY 4.0. No brand assets reproduced (nominative use). Valence
+here is the real, floored measurement (a hollow grey dot means below the noise floor); the CI and
+emission channels are illustrative so every level still renders.</div>
 
+<script src="spectrum_meta.js"></script>
 <script src="spectrum_strip.js"></script>
 <script>
 const $=s=>document.querySelector(s);
@@ -217,25 +192,15 @@ const $=s=>document.querySelector(s);
 // Fetched from /data/ferrari_luce.json (its detail-dial channels are illustrative — see footer).
 let DIMS=[], COH=[];
 
-const LVLS=[{n:-1,nm:"One number",aud:"the old way"},{n:0,nm:"Headline",aud:"CEO / CMO"},{n:1,nm:"Compare",aud:"brand lead"},
- {n:2,nm:"Sentiment",aud:"insights"},{n:3,nm:"Resolve",aud:"analyst"},{n:4,nm:"Cloud",aud:"researcher"}];
-const CAP={"-1":"one number — the average across every dimension and audience; it hides everything below. Turn the dial up...",
- "0":"eight dimensions now — still no audiences, sentiment or noise floor",
- "1":"audiences and their spread — scores only so far",
- "2":"sentiment too: height = strength, the dot = valence (−1 left … +1 right)",
- "3":"uncertainty (the 95% CI halo) and the noise floor — what can and can't be resolved",
- "4":"the full distribution — emission strength (line weight) and every signal source"};
+// Level ladder + captions come from the shared settings module (spectrum_meta.js) so this
+// guide and the tool can't drift. The guide uses the whole ladder incl. the -1 prelude.
+const LVLS=SPECTRUM_META.levels.map(l=>({n:l.n,nm:l.name,aud:l.audience}));
+const CAP=Object.fromEntries(SPECTRUM_META.levels.map(l=>[String(l.n),l.caption]));
 let LEVEL=-1, demo=true, demoTimer=null;
 const tipEl=$("#tip");
 function onTip(ev,html){ if(html==null||ev==null){tipEl.style.opacity=0;return;} tipEl.innerHTML=html;
   tipEl.style.opacity=1; tipEl.style.left=(ev.clientX+14)+"px"; tipEl.style.top=(ev.clientY-10)+"px"; }
-const LEG_TIP={
-  band:"The shaded band spans the lowest to the highest cohort on this dimension — the size of the disagreement across audiences.",
-  dot:"Strength (the line's height) is how loudly the dimension registers; valence is which way it leans. The dot slides left (hostile/negative) to right (favourable/positive). A high line with a left-sitting dot is the dangerous one: an audience that cares a lot, against you.",
-  ci:"The faint band around each line is the 95% confidence interval — how precisely the instrument pins that score. Wider = less certain.",
-  cloud:"At full detail valence is a distribution, not a point: the cloud is densest at the typical sentiment and stretches as sources disagree about how an audience feels.",
-  emis:"Thicker line = the brand emits more strongly on that dimension for that cohort (more salient across its sources).",
-  src:"Each faint dot is one signal source's reading — the raw spread the line summarizes."};
+const LEG_TIP=SPECTRUM_META.legendTips;
 function legend(level){
   // encoding key only — cohorts are the chips above the chart, not repeated here
   let h=""; const item=(t,inner)=>`<span class="lz" data-tip="${t}" aria-label="${t}">${inner}</span>`;

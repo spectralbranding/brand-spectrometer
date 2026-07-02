@@ -95,6 +95,39 @@ def _base_v02_with_valence() -> dict:
     return atlas
 
 
+def _model_epoch_block() -> dict:
+    """Valid v0.3 model_epoch block (VE-1-shaped)."""
+    return {
+        "epoch_id": "VE-1",
+        "epoch_date": "2026-07-02",
+        "version_floor_source": "10.5281/zenodo.21128779",
+        "measured_under": {
+            "renderers": ["claude-opus-4-8", "gpt-5.5-2026-04-23"],
+            "extractors": ["gpt-5.4-mini-2026-03-17"],
+        },
+        "version_floor": [
+            {
+                "ladder": "anthropic-opus",
+                "metric": "cosine",
+                "mean": 0.0124,
+                "median": 0.0094,
+            }
+        ],
+        "operator_floor_at_epoch": {"mean": 0.0078, "median": 0.0059},
+        "stale": False,
+    }
+
+
+def _base_v03_with_epoch() -> dict:
+    """Valid v0.3 atlas: v0.1 core + model_epoch block."""
+    atlas = _base_v01()
+    atlas["schema_version"] = "0.3"
+    atlas["atlas_version"] = "0.3.0"
+    atlas["methodology_version"] = "0.3.0"
+    atlas["model_epoch"] = _model_epoch_block()
+    return atlas
+
+
 def expect_pass(name: str, atlas: dict, results: list) -> None:
     try:
         validate(atlas)
@@ -144,7 +177,7 @@ def main() -> int:
 
     # Rule 1 — unsupported version.
     bad_ver = _base_v01()
-    bad_ver["schema_version"] = "0.3"
+    bad_ver["schema_version"] = "0.4"
     expect_fail("rule 1 unsupported version", bad_ver, results, "schema_version")
 
     # Rule 12 — valence value out of [-1, +1].
@@ -199,6 +232,60 @@ def main() -> int:
     net = _base_v02_with_valence()
     net["cohorts"]["cohort_0"]["inferred_spec"]["semiotic"]["net_contribution"] = 1.5
     expect_fail("rule 15 stored net_contribution", net, results, "net_contribution")
+
+    # --- v0.3 model_epoch rules (16-18, gated on presence) ---
+
+    expect_pass("v0.3 epoch-stamped atlas", _base_v03_with_epoch(), results)
+
+    # v0.3 schema without a model_epoch block -> rules 16-18 skipped.
+    v03_noepoch = _base_v01()
+    v03_noepoch["schema_version"] = "0.3"
+    expect_pass("v0.3 schema, no model_epoch", v03_noepoch, results)
+
+    # Older schema versions remain valid (backward compatibility).
+    expect_pass(
+        "v0.2 valence atlas unaffected by v0.3", _base_v02_with_valence(), results
+    )
+
+    # Rule 16 — empty epoch_id.
+    bad_id = _base_v03_with_epoch()
+    bad_id["model_epoch"]["epoch_id"] = ""
+    expect_fail("rule 16 empty epoch_id", bad_id, results, "epoch_id")
+
+    # Rule 16 — malformed epoch_date.
+    bad_date = _base_v03_with_epoch()
+    bad_date["model_epoch"]["epoch_date"] = "July 2026"
+    expect_fail("rule 16 bad epoch_date", bad_date, results, "epoch_date")
+
+    # Rule 16 — missing version_floor_source.
+    no_src = _base_v03_with_epoch()
+    no_src["model_epoch"].pop("version_floor_source")
+    expect_fail("rule 16 missing source", no_src, results, "version_floor_source")
+
+    # Rule 16 — empty measured_under.renderers.
+    no_rend = _base_v03_with_epoch()
+    no_rend["model_epoch"]["measured_under"]["renderers"] = []
+    expect_fail("rule 16 empty renderers", no_rend, results, "renderers")
+
+    # Rule 17 — empty version_floor list.
+    no_vf = _base_v03_with_epoch()
+    no_vf["model_epoch"]["version_floor"] = []
+    expect_fail("rule 17 empty version_floor", no_vf, results, "version_floor")
+
+    # Rule 17 — negative floor.
+    neg_vf = _base_v03_with_epoch()
+    neg_vf["model_epoch"]["version_floor"][0]["mean"] = -0.01
+    expect_fail("rule 17 negative version_floor mean", neg_vf, results, ">= 0")
+
+    # Rule 17 — missing ladder name.
+    no_ladder = _base_v03_with_epoch()
+    no_ladder["model_epoch"]["version_floor"][0].pop("ladder")
+    expect_fail("rule 17 missing ladder", no_ladder, results, "ladder")
+
+    # Rule 18 — non-boolean stale.
+    bad_stale = _base_v03_with_epoch()
+    bad_stale["model_epoch"]["stale"] = "yes"
+    expect_fail("rule 18 non-boolean stale", bad_stale, results, "stale")
 
     # Report.
     ok = sum(1 for _, p, _ in results if p)

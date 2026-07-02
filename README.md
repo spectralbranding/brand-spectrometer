@@ -84,9 +84,14 @@ sanitized stub (derived variance statistics only — no raw artifact text).
 ```
 reproduce.sh   key-free orchestrator that re-derives the methods-paper headline numbers
 tool/          the in-browser renderer + assets + a demo atlas
-schema/        atlas_schema_v0.1.yaml + atlas_schema_v0.2.yaml — the atlas data format
-               (v0.2 adds the optional signed-valence channel + valence operator floor)
+schema/        atlas_schema_v0.1.yaml + v0.2 + v0.3 — the atlas data format
+               (v0.2 adds the optional signed-valence channel + valence operator floor;
+               v0.3 adds the optional model_epoch block — epoch-stamped readings
+               against a measured version floor, PRISM-T, DOI 10.5281/zenodo.21128779)
 code/          the offline reproduction battery + validate_atlas.py (format validator)
+               + preflight.py (pre-run checks: operator concordance via the PRISM-M
+               mechanical exclusion rule, DOI 10.5281/zenodo.21125785; version-floor
+               staleness against data/version_floor_manifest.json)
 data/          ferrari_luce_fresh_2606 — the published worked-example atlas the battery reads
                (atlas.yaml carries the floored signed-valence channel; valence/ holds the
                per-reflection valence + the per-dimension operator floor)

@@ -1,0 +1,180 @@
+# =====================================================================
+# Brand Spectrometer Schema v0.3
+# =====================================================================
+#
+# Purpose: declarative schema for a cohort-indexed atlas of implicit
+# Tier-4 brand specifications, inferred by structural decomposition of
+# publicly observable artifacts across multiple observer cohorts.
+#
+# WHAT CHANGED FROM v0.2 (additive, backward-compatible):
+#   - The atlas MAY now carry an OPTIONAL top-level `model_epoch` block:
+#     the reading is EPOCH-STAMPED against the model-version epoch it was
+#     taken at, together with the VERSION FLOOR measured at that epoch
+#     (Zharnikov 2026ba, PRISM-T: the across-time counterpart of the
+#     operator noise floor). A longitudinal consumer can then ask whether
+#     an across-epoch delta clears the version floor, not just the
+#     operator floor ("operator ⊆ version" nesting, METHODOLOGY §6).
+#   - Nothing else changes. The v0.2 valence channel and the v0.1 score
+#     channel are UNCHANGED.
+#
+# BACKWARD COMPATIBILITY: every v0.1 and v0.2 atlas is a valid v0.3
+# atlas. The model_epoch block is OPTIONAL and GATED ON PRESENCE (same
+# additive pattern as the v0.2 valence block and the v0.1 sampling_frame
+# coverage block). An atlas declaring `schema_version: "0.1"` or `"0.2"`
+# is validated under its own rules; one declaring `"0.3"` adds the
+# model_epoch rules below when the block is present.
+#
+# Theoretical anchors (v0.3 additions on top of the v0.2 list):
+#   - 2026ba PRISM-T version floor (DOI 10.5281/zenodo.21128779):
+#       readings are taken at a model-version epoch; the sealed-panel
+#       version floor is the resolution limit on across-epoch deltas.
+#   - 2026az PRISM-M metameric collapse (DOI 10.5281/zenodo.21125785):
+#       the pre-flight operator concordance screen + mechanical
+#       exclusion rule that guards every floor (METHODOLOGY §3).
+#   (v0.2 anchors unchanged: 2026ah Brand-as-Tier-4; 2026ag Six-Tier
+#   Ontology; 2026v R15 Dimensional Collapse; 2026a SBT; 2026ao Paper A
+#   operator-substrate; 2026ap Paper B rendering-equivalence.)
+#
+# Licenses:
+#   - Code: MIT (see ../LICENSE)
+#   - Data: CC BY 4.0 (see ../LICENSE-data)
+#
+# Schema version: 0.3
+# =====================================================================
+
+schema_version: "0.3"
+
+# ---------------------------------------------------------------------
+# Atlas-level metadata
+# ---------------------------------------------------------------------
+# brand_name / atlas_version / sample_date / methodology_version are
+# UNCHANGED from v0.2 (see atlas_schema_v0.2.yaml for the full field
+# commentary; it remains authoritative for every v0.1/v0.2 field).
+
+brand_name: "<string>"
+atlas_version: "<semver e.g. 0.3.0>"
+sample_date:
+  start: "<YYYY-MM-DD>"
+  end: "<YYYY-MM-DD>"
+methodology_version: "<semver e.g. 0.3.0>"
+
+# ---------------------------------------------------------------------
+# Model epoch — epoch-stamped readings + version floor (NEW in v0.3)
+# ---------------------------------------------------------------------
+#
+# OPTIONAL. An atlas carrying this block declares WHICH model-version
+# epoch its readings were taken at and what the measured VERSION FLOOR
+# was at that epoch. Semantics (METHODOLOGY §6, "operator ⊆ version"):
+#
+#   - The OPERATOR floor (within-epoch, contemporaneous operator pairs)
+#     is the resolution limit on a single reading. It is already carried
+#     implicitly by the per-cohort CIs and the variance block.
+#   - The VERSION floor (across versions, sealed pinned panel re-read;
+#     Zharnikov 2026ba) is the resolution limit on an ACROSS-EPOCH
+#     delta: two atlases for the same brand at different epochs differ
+#     attributably only where the delta clears the version floor of the
+#     covering epoch, not just the operator floor.
+#
+# The block records what was measured, under which exact model-version
+# strings, and from which source measurement. `stale: true` means the
+# run's configured operators included version strings the sealed-panel
+# floor was NOT measured under (pre-run version check, code/preflight.py
+# version-floor); the reading itself remains valid — only across-epoch
+# drift attribution is gated until the sealed panel is re-read (VE-2).
+#
+# Values for a given epoch come from data/version_floor_manifest.json
+# (regenerated at each sealed-panel re-read), never hand-invented.
+
+model_epoch:
+  # Epoch identifier + the date the sealed panel was last read.
+  epoch_id: "<string e.g. VE-1>"
+  epoch_date: "<YYYY-MM-DD>"
+
+  # Source of the version-floor measurement (DOI or URL).
+  version_floor_source: "<e.g. 10.5281/zenodo.21128779>"
+
+  # Exact model-version strings the sealed-panel floor was measured
+  # under. A configured operator outside these lists = stale floor.
+  measured_under:
+    renderers:
+      - "<model-version string e.g. claude-opus-4-8>"
+    extractors:
+      - "<model-version string e.g. gpt-5.4-mini-2026-03-17>"
+
+  # Per-ladder version floor at this epoch (the measured resolution
+  # limit on across-epoch deltas). metric names the distance used.
+  version_floor:
+    - ladder: "<family-ladder id e.g. anthropic-opus>"
+      metric: "cosine"
+      mean: <float >= 0>
+      median: <float >= 0>
+
+  # OPTIONAL convenience copy of the operator floor measured at the
+  # same epoch (same metric), so a consumer sees both floors together.
+  operator_floor_at_epoch:
+    mean: <float >= 0>
+    median: <float >= 0>
+
+  # TRUE when the pre-run version check found configured operator
+  # versions outside measured_under (run report carries "version floor
+  # stale -- re-read the sealed panel").
+  stale: <bool>
+
+# ---------------------------------------------------------------------
+# Cohort-indexed inferred specifications — UNCHANGED from v0.2
+# ---------------------------------------------------------------------
+# See atlas_schema_v0.2.yaml: cohorts map, 8-dimension inferred_spec in
+# the canonical order (semiotic, narrative, ideological, experiential,
+# social, economic, cultural, temporal), score + optional valence
+# blocks, cross-operator discipline fields, sampling_frame, notes.
+
+cohorts:
+  <cohort_id>:
+    # ... exactly as specified in atlas_schema_v0.2.yaml ...
+    cohort_label: "<string>"
+
+# ---------------------------------------------------------------------
+# Variance — UNCHANGED from v0.2
+# ---------------------------------------------------------------------
+# cross_cohort_sigma (8 dims), metameric_degree, optional
+# valence_operator_floor, temporal_drift_window — see v0.2.
+
+variance:
+  metameric_degree: <float in [0, 1]>
+
+# ---------------------------------------------------------------------
+# Provenance — UNCHANGED from v0.2
+# ---------------------------------------------------------------------
+# artifact_inventory, llm_call_manifest_path, prompt_purity_protocol_path
+# — see v0.2.
+
+provenance:
+  llm_call_manifest_path: "<relative path>"
+
+# =====================================================================
+# Validation rules summary (enforced by validate_atlas.py)
+# =====================================================================
+#
+# A v0.3 atlas is validated under ALL v0.1 rules (1-11) PLUS the v0.2
+# valence rules (12-15, gated on presence) PLUS the additive model_epoch
+# rules (16-18, gated on presence). Rules 2-15 are stated in
+# atlas_schema_v0.2.yaml and are unchanged.
+#
+# 1.  schema_version MUST be "0.1", "0.2", or "0.3".
+#
+# --- v0.3 additive model_epoch rules (gated on presence) ---
+#
+# 16. When `model_epoch` is present it MUST carry: a non-empty epoch_id;
+#     an ISO 8601 epoch_date; a non-empty version_floor_source; and a
+#     measured_under block with non-empty `renderers` and `extractors`
+#     lists of non-empty strings.
+# 17. model_epoch.version_floor MUST be a non-empty list; each entry
+#     MUST carry a non-empty `ladder` and numeric mean/median >= 0
+#     (metric optional, defaults to the atlas's distance convention).
+#     operator_floor_at_epoch, when present, carries numeric floats
+#     >= 0.
+# 18. model_epoch.stale, when present, MUST be a boolean. (Staleness
+#     never invalidates the atlas; it gates across-epoch drift
+#     attribution only.)
+#
+# =====================================================================
