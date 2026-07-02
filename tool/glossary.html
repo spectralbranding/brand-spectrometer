@@ -35,8 +35,10 @@ h1{font-family:"Iowan Old Style",Palatino,Georgia,serif;font-size:clamp(28px,4.5
 h2{font-family:"Iowan Old Style",Palatino,Georgia,serif;font-size:clamp(21px,3vw,30px);line-height:1.12;margin:0 0 12px;font-weight:600}
 .lead{font-size:clamp(16px,1.8vw,20px);max-width:42em;color:#dfe3ee}
 p{margin:.6em 0}
-.terms{max-width:46em;margin-top:6px}
-.terms p{margin:.9em 0}
+.terms{margin-top:6px}
+.term{margin:.9em 0 1.1em}
+.term .tl{font-family:"Iowan Old Style",Palatino,Georgia,serif;font-size:18px;font-weight:650;line-height:1.25}
+.term .def{margin:4px 0 0;line-height:1.5;color:#dfe3ee}
 .grouphead{font-family:'Space Grotesk',system-ui,sans-serif;font-size:12px;letter-spacing:.09em;text-transform:uppercase;color:var(--mut);font-weight:600;margin:26px 0 2px}
 .note{color:var(--mut);font-size:.95em;border-left:2px solid var(--line);padding-left:1em;margin-top:1.1em}
 .foot{color:var(--faint);font-size:12px;padding:30px 0 60px}
@@ -65,44 +67,55 @@ p{margin:.6em 0}
   <a href="https://spectralbranding.com/glossary">Spectral Brand Theory glossary</a>.</p>
   <div class="terms">
     <div class="grouphead">The reading</div>
-    <p><b>Reflection.</b> One reading off one public signal — a single artifact (a review, a post, a
+    <div class="term"><div class="tl">Reflection</div>
+    <p class="def">One reading off one public signal — a single artifact (a review, a post, a
     press piece) read once, across all eight dimensions at once. It is the instrument's raw unit; an
-    audience's line is built by aggregating many reflections, never by profiling any person.</p>
-    <p><b>Cohort (audience).</b> The group of signals that stay together across all eight filters —
-    a pattern in the full picture, not a demographic segment. You set how finely to group them.</p>
-    <p><b>Atlas.</b> The instrument's full saved output for one brand and one dated window: every
+    audience's line is built by aggregating many reflections, never by profiling any person.</p></div>
+    <div class="term"><div class="tl">Cohort (audience)</div>
+    <p class="def">The group of signals that stay together across all eight filters —
+    a pattern in the full picture, not a demographic segment. You set how finely to group them.</p></div>
+    <div class="term"><div class="tl">Atlas</div>
+    <p class="def">The instrument's full saved output for one brand and one dated window: every
     audience line, its intervals, the noise floors, and the list of signals behind it. A published
-    atlas re-derives byte-for-byte from open code and data.</p>
+    atlas re-derives byte-for-byte from open code and data.</p></div>
     <div class="grouphead">The display</div>
-    <p><b>Spread band.</b> The shaded band from the lowest to the highest audience on a dimension —
-    the size of the disagreement between audiences.</p>
-    <p><b>Valence.</b> Which way an audience leans on a dimension: the dot slides from −1 (negative,
-    left) to +1 (positive, right). Strength is the line's height; valence is the dot.</p>
+    <div class="term"><div class="tl">Spread band</div>
+    <p class="def">The shaded band from the lowest to the highest audience on a dimension —
+    the size of the disagreement between audiences.</p></div>
+    <div class="term"><div class="tl">Valence</div>
+    <p class="def">Which way an audience leans on a dimension: the dot slides from −1 (negative,
+    left) to +1 (positive, right). Strength is the line's height; valence is the dot.</p></div>
     <div class="grouphead">The floors</div>
-    <p><b>Noise floor.</b> How far a reading would move for reasons other than the audience —
+    <div class="term"><div class="tl">Noise floor</div>
+    <p class="def">How far a reading would move for reasons other than the audience —
     measured two ways: the <b>operator floor</b> (read the same signals with a different model pair)
     and the <b>source floor</b> (drop some signals and resample). A difference only counts if it
-    clears the larger floor.</p>
-    <p><b>Signal-to-noise (resolution).</b> An audience gap divided by the noise floor. Above 2 it is
+    clears the larger floor.</p></div>
+    <div class="term"><div class="tl">Signal-to-noise (resolution)</div>
+    <p class="def">An audience gap divided by the noise floor. Above 2 it is
     <b>resolved</b>; 1–2 is <b>marginal</b>; below 1 is <b>sub-resolution</b> — reported as "can't
-    tell," never as a finding.</p>
-    <p><b>Version floor.</b> The across-time cousin of the operator floor: how far readings move when
+    tell," never as a finding.</p></div>
+    <div class="term"><div class="tl">Version floor</div>
+    <p class="def">The across-time cousin of the operator floor: how far readings move when
     only the <i>model version</i> changes. Measured by re-reading a frozen, byte-identical panel of
     signals across model versions (<a href="https://doi.org/10.5281/zenodo.21128779" target="_blank"
     rel="noopener">the PRISM-T measurement</a>). A change between two dated readings counts as brand
-    movement only if it clears this floor too, not just the operator floor.</p>
-    <p><b>Model epoch.</b> The stamp that says <i>which model-version era</i> a reading was taken in,
+    movement only if it clears this floor too, not just the operator floor.</p></div>
+    <div class="term"><div class="tl">Model epoch</div>
+    <p class="def">The stamp that says <i>which model-version era</i> a reading was taken in,
     together with the version floor measured for that era. Epoch-stamped readings let a later reader
     ask "did the brand move, or did the model change?" — and get a measured answer instead of a
-    guess.</p>
+    guess.</p></div>
     <div class="grouphead">Across audiences</div>
-    <p><b>Metameric degree.</b> How similar two audiences are in <i>shape</i> across the eight bands.
+    <div class="term"><div class="tl">Metameric degree</div>
+    <p class="def">How similar two audiences are in <i>shape</i> across the eight bands.
     Two audiences can share a shape yet still differ in magnitude — which a distribution-level test
-    can still resolve.</p>
-    <p><b>Distribution-level separation.</b> Comparing two audiences as whole clouds, not just their
+    can still resolve.</p></div>
+    <div class="term"><div class="tl">Distribution-level separation</div>
+    <p class="def">Comparing two audiences as whole clouds, not just their
     averages — it recovers magnitude differences a shape-only reading misses. A pair is called apart
     only when three checks agree: a corrected permutation test, signal-to-noise above 1, and
-    above-chance classification.</p>
+    above-chance classification.</p></div>
   </div>
   <p class="note">Emission unit vs measurement unit: a brand <i>emits</i> <b>signals</b>; the
   instrument <i>records</i> <b>reflections</b> (a signal read through one artifact). They are
