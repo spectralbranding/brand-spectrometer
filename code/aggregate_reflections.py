@@ -43,8 +43,8 @@ against the existing atlas.yaml. The existing atlas.yaml is left untouched.
 
 Run:
     uv run --with pyyaml --with numpy python \
-        research/brand-spectrometer/code/aggregate_reflections.py \
-        --atlas research/brand-spectrometer/atlases/ferrari_luce_fresh_2606 \
+        code/aggregate_reflections.py \
+        --atlas data/ferrari_luce_fresh_2606 \
         --draws 20000 --seed 20260621
 """
 

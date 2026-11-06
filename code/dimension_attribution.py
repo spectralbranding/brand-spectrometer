@@ -27,8 +27,8 @@ Offline, deterministic, no network.
 
 Run:
     uv run --with pyyaml --with numpy python \
-        research/brand-spectrometer/code/dimension_attribution.py \
-        --atlas research/brand-spectrometer/atlases/ferrari_luce_fresh_2606 \
+        code/dimension_attribution.py \
+        --atlas data/ferrari_luce_fresh_2606 \
         --grain host --focal actual-owners --perms 9999 --seed 20260621
 """
 

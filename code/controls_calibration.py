@@ -35,8 +35,8 @@ computed exactly as in cohort_separability.py. Offline, deterministic, no networ
 
 Run:
     uv run --with pyyaml --with numpy python \
-        research/brand-spectrometer/code/controls_calibration.py \
-        --atlas research/brand-spectrometer/atlases/ferrari_luce_fresh_2606 \
+        code/controls_calibration.py \
+        --atlas data/ferrari_luce_fresh_2606 \
         --grain host --splits 500 --perms 999 --draws 4000 --seed 20260621
 """
 
