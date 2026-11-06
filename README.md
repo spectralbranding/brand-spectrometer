@@ -58,7 +58,7 @@ in [`docs/METHODOLOGY.md`](docs/METHODOLOGY.md).
 
 The published methods paper (2026; see §8) reports its headline measurement properties from one
 published worked-example atlas — the Ferrari *Luce* fresh-window read. This repository bundles that
-atlas and the eight offline battery scripts that compute every headline number, so the paper is
+atlas and the nine offline scripts that compute every headline number, so the paper is
 reproducible **with no API keys and no network access** — only `numpy` and `pyyaml`.
 
 ```bash
@@ -74,6 +74,10 @@ fixed seed (`20260621`) and prints the headline numbers, including:
   ideological, experiential, economic, cultural, and temporal dimensions (Holm-corrected
   permutation *p* < .05).
 - **Reliability battery** (V2 cross-operator / V3 split-half / V5 reproducibility): pass.
+- **Name density** (actual-owners vs non-italian-press, brand mentions per 1,000 words):
+  difference 2.12, permutation *p* = .755, so the resolved pair does not differ in how often it
+  names the brand. Computed from per-artifact counts in `name_density_rows.csv`; the excerpt text
+  the counts come from is not redistributed.
 
 The battery reads only the offline reflection records (model-produced 8-vectors and their public
 provenance metadata); the renders re-derive deterministically. The bundled `atlas.yaml` is a

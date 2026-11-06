@@ -12,7 +12,7 @@
 #   - Otherwise install the two deps yourself: `pip install numpy pyyaml`
 #     then set USE_UV=0 (e.g. `USE_UV=0 bash reproduce.sh`).
 #
-# WHAT IT DOES: replays the eight offline battery scripts in code/ against the
+# WHAT IT DOES: replays the nine offline scripts in code/ against the
 # bundled published fresh-window atlas (data/ferrari_luce_fresh_2606/), at the
 # canonical grain=host and fixed seed=20260621, then prints the headline
 # numbers. It regenerates the *_host.json outputs in the bundled data dir
@@ -26,6 +26,8 @@
 #   - Dimension attribution actual-owners vs pooled press: large Cohen's d on
 #     semiotic / ideological / experiential, Holm-corrected permutation p < .05
 #   - V2/V3/V5 reliability battery: pass (battery_from_reflections_host.json)
+#   - Name density, actual-owners vs non-italian-press: |diff| 2.12 per 1,000
+#     words, permutation p = .755 (name_density.json)
 # =============================================================================
 set -euo pipefail
 
@@ -88,6 +90,11 @@ run "battery_from_reflections (V2/V3/V5 reliability battery)" \
 run "retest_reliability (V1 test-retest vs operator floor)" \
   retest_reliability.py --atlas "$ATLAS" --grain "$GRAIN"
 
+# 9. Name-mention density (no LLM): do the resolved pair's cohorts differ in how often
+#    they name the brand? Counts only; the excerpts stay in the acquisition layer.
+run "name_density (brand mentions per 1,000 words, resolved pair)" \
+  name_density.py --atlas "$ATLAS"
+
 echo ""
 echo "============================================================"
 echo " HEADLINE NUMBERS"
@@ -124,7 +131,11 @@ print("Reliability battery:")
 print(f"   V2 cross-operator pass : {bat.get('V2_cross_operator', {}).get('pass')}")
 print(f"   V3 split-half pass     : {bat.get('V3_split_half', {}).get('pass')}")
 print(f"   V5 deterministic       : {bat.get('V5_reproducibility', {}).get('deterministic')}")
+
+nd = json.loads((Path(sys.argv[1]) / "name_density.json").read_text())["resolved_pair"]
+print(f"Name density, resolved pair (|diff| per 1k words, p)   : "
+      f"{nd['abs_mean_difference_per_1k']}  p={nd['permutation_p']}")
 PYEOF
 
 echo ""
-echo "Done. Regenerated *_host.json live in: $ATLAS/reflections/"
+echo "Done. Regenerated *_host.json live in: $ATLAS/reflections/ (name_density.json in $ATLAS/)"
