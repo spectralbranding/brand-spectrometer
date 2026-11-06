@@ -5,7 +5,7 @@
 """Tests for validate_atlas.py — schema v0.1 backward-compat + v0.2 valence rules.
 
 Run:
-    uv run python research/brand-spectrometer/code/tests/test_validate_atlas.py
+    uv run python code/tests/test_validate_atlas.py
 
 Exit 0 if all assertions hold; 1 otherwise. No pytest dependency (the
 brand-spectrometer code/ dir has no pytest harness) — this is a plain

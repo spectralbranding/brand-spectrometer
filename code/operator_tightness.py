@@ -24,8 +24,8 @@ new model families.
 
 Run:
     uv run --with pyyaml --with numpy python \
-        research/brand-spectrometer/code/operator_tightness.py \
-        --atlas research/brand-spectrometer/atlases/ferrari_luce_fresh_2606 \
+        code/operator_tightness.py \
+        --atlas data/ferrari_luce_fresh_2606 \
         --grain host
 """
 

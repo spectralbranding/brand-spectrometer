@@ -42,8 +42,8 @@ METHOD (empirical, offline, seeded)
 
 Run:
     uv run --with pyyaml --with numpy python \
-        research/brand-spectrometer/code/resolution_scaling.py \
-        --atlas research/brand-spectrometer/atlases/ferrari_luce_fresh_2606 \
+        code/resolution_scaling.py \
+        --atlas data/ferrari_luce_fresh_2606 \
         --grain host --draws 4000 --seed 20260621
 """
 

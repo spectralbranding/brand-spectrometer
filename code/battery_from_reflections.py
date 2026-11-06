@@ -40,8 +40,8 @@ V1 (test-retest) is NOT recomputed: the reflections are single deterministic ren
 
 Run:
     uv run --with pyyaml --with numpy python \
-        research/brand-spectrometer/code/battery_from_reflections.py \
-        --atlas research/brand-spectrometer/atlases/ferrari_luce_fresh_2606 \
+        code/battery_from_reflections.py \
+        --atlas data/ferrari_luce_fresh_2606 \
         --grain host --seed 20260621
 """
 

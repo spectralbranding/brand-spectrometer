@@ -117,7 +117,7 @@ Model-version pinning (above) makes a version change *detectable*; the version c
 
 ### LLM-call logging
 
-All renderer, extractor, and orchestrator calls are logged via `llm_call_logger.py` (the fleet utility promoted Session 175). The logger writes a JSONL row per call with fields `log_format_version / phase / operation / operator / model_version / timestamp_utc / system_prompt / user_prompt / parameters / request_id / endpoint / sdk_version / response / response_metadata / tokens / latency_seconds / cost_usd_est / errors / retries / git_sha_caller / python_env_hash / human_in_loop / reconstructed_post_hoc` and applies API-key redaction at write time. Logs land at `<atlas-mirror>/logs/llm_calls.jsonl` per `PUBLIC_MIRROR_STANDARD.md`; the path is recorded in the atlas YAML's `provenance.llm_call_manifest_path` field. See §9 for a noted logger-extension dependency.
+All renderer, extractor, and orchestrator calls are logged via `llm_call_logger.py` (a shared logging utility). The logger writes a JSONL row per call with fields `log_format_version / phase / operation / operator / model_version / timestamp_utc / system_prompt / user_prompt / parameters / request_id / endpoint / sdk_version / response / response_metadata / tokens / latency_seconds / cost_usd_est / errors / retries / git_sha_caller / python_env_hash / human_in_loop / reconstructed_post_hoc` and applies API-key redaction at write time. Logs land at `<atlas-mirror>/logs/llm_calls.jsonl` per `PUBLIC_MIRROR_STANDARD.md`; the path is recorded in the atlas YAML's `provenance.llm_call_manifest_path` field. See §9 for a noted logger-extension dependency.
 
 ### Valence extraction protocol (v0.2 additive)
 
@@ -158,7 +158,7 @@ Every prompt file is SHA-256 hashed at experiment-run time; the hash is recorded
 
 ### Publication
 
-All prompt files are published in the public mirror at Zenodo upload per `feedback_publish_all_experiment_prompts.md`. The prompt files are part of the experimental apparatus, not auxiliary documentation: a reviewer must be able to inspect the exact prompt sent to each operator for each cohort.
+All prompt files are published in the public mirror at Zenodo upload by project policy. The prompt files are part of the experimental apparatus, not auxiliary documentation: a reviewer must be able to inspect the exact prompt sent to each operator for each cohort.
 
 ## 5. Variance Reporting (Primary Output)
 
@@ -251,7 +251,7 @@ An atlas built under methodology 0.3.0 MAY carry the optional `model_epoch` bloc
 
 ## 7. Limitations (Eight-Weakness Inventory)
 
-This section quotes the eight-weakness inventory verbatim from `memory/project_tier_4_reverse_engineering_hype_and_tool_2026-05-29.md` lines 42-51. The inventory is the audit substrate: every claim made by an atlas built under this methodology must remain compatible with these eight named weaknesses. Each weakness is followed by a one-sentence mitigation note pointing to the relevant §1-§6 protocol element and a one-sentence residual-risk acknowledgment. The mitigations are partial; the residuals remain. Section preamble: NO ground truth is assumed to exist; the tool measures observer-side reconstructions; metameric variance IS the measurement.
+This section quotes the eight-weakness inventory verbatim from the author's internal design notes (2026-05-29). The inventory is the audit substrate: every claim made by an atlas built under this methodology must remain compatible with these eight named weaknesses. Each weakness is followed by a one-sentence mitigation note pointing to the relevant §1-§6 protocol element and a one-sentence residual-risk acknowledgment. The mitigations are partial; the residuals remain. Section preamble: NO ground truth is assumed to exist; the tool measures observer-side reconstructions; metameric variance IS the measurement.
 
 ### Verbatim weakness inventory
 
@@ -299,13 +299,13 @@ Every LLM call records its `seed` parameter in the `parameters` field of the llm
 
 ### Public-mirror discipline
 
-The atlas YAML, all prompt files, the llm_call manifest, and `TRADEMARK_NOTICE.md` are published in the public mirror at Zenodo upload per `PUBLIC_MIRROR_STANDARD.md`. Public-facing references to these artifacts cite them by GitHub URL, not by internal repo path, per `feedback_transparency_docs_must_be_public.md`. Internal-only artifacts (PENDING_UPDATES, session-completion docs, internal audit memos, the `TRADEMARK_RESEARCH_MEMO.md`) stay in the private working repository and are not mirrored.
+The atlas YAML, all prompt files, the llm_call manifest, and `TRADEMARK_NOTICE.md` are published in the public mirror at Zenodo upload per `PUBLIC_MIRROR_STANDARD.md`. Public-facing references to these artifacts cite them by GitHub URL, not by internal repo path. Internal-only artifacts (PENDING_UPDATES, session-completion docs, internal audit memos, the `TRADEMARK_RESEARCH_MEMO.md`) stay in the private working repository and are not mirrored.
 
 ## 9. Open Questions for Orchestrator Review
 
 1. **Logger operator_role extension.** RESOLVED 2026-05-29: `llm_call_logger.py` v1.1 (commit `baabca20`) adds an `operator_role: str | None = None` field on `_CallLogger`, the `log_call()` + `log_call_post_hoc()` signatures, and the JSONL row schema. Valid values are `"renderer"`, `"extractor"`, `"orchestrator"`. Phase 1.3 cohort sub-agents pass the field explicitly; reproducibility audits can verify cross-operator discipline from the manifest alone via row-level `operator_role` filtering.
 
-2. **Cross-cohort artifact-overlap rule.** RESOLVED 2026-05-29 per user direction: option (a) for storage + (b) for rendering — same artifact stored once in `provenance.artifact_inventory`, referenced by `artifact_id` from each cohort's `artifact_subset_observed` list; renderer is re-run per cohort against that cohort's slice of artifact IDs because each cohort reads the artifact through a different interpretive lens. Variance figures include the overlap by design; no separate include/exclude variant required.
+2. **Cross-cohort artifact-overlap rule.** RESOLVED 2026-05-29 by author decision: option (a) for storage + (b) for rendering — same artifact stored once in `provenance.artifact_inventory`, referenced by `artifact_id` from each cohort's `artifact_subset_observed` list; renderer is re-run per cohort against that cohort's slice of artifact IDs because each cohort reads the artifact through a different interpretive lens. Variance figures include the overlap by design; no separate include/exclude variant required.
 
 3. **Versioning convention.** Three semvers coexist in the schema: `atlas_version` (this atlas-instance for this brand), `methodology_version` (this METHODOLOGY.md), and `schema_version` (atlas_schema YAML). The interaction rules need clarification: does a methodology-version bump force an atlas-version major bump for all derived atlases? Does a schema-version bump invalidate cross-snapshot drift comparison (per §6 last paragraph) by definition, or only when it changes scoring semantics? Recommend: write a short SEMVER_RULES section in `SCHEMA_DESIGN_NOTES.md` v0.2 covering all three.
 

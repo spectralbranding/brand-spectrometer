@@ -32,8 +32,8 @@ null from the mean metric, and a positive must survive the permutation p.
 
 Run:
     uv run --with pyyaml --with numpy python \
-        research/brand-spectrometer/code/cohort_separability.py \
-        --atlas research/brand-spectrometer/atlases/ferrari_luce_fresh_2606 \
+        code/cohort_separability.py \
+        --atlas data/ferrari_luce_fresh_2606 \
         --grain host --perms 9999 --seed 20260621
 """
 

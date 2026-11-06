@@ -18,8 +18,8 @@ rep_mean_vector); cohort distance = mean over the cohort's artifacts. No network
 
 Run:
     uv run --with pyyaml --with numpy python \
-        research/brand-spectrometer/code/retest_reliability.py \
-        --atlas research/brand-spectrometer/atlases/ferrari_luce_fresh_2606 \
+        code/retest_reliability.py \
+        --atlas data/ferrari_luce_fresh_2606 \
         --grain host
 """
 

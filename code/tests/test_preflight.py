@@ -5,7 +5,7 @@
 """Tests for preflight.py — pre-flight concordance rule + pre-run version check.
 
 Run:
-    uv run python research/brand-spectrometer/code/tests/test_preflight.py
+    uv run python code/tests/test_preflight.py
 
 Plain assert-and-report runner, same convention as test_validate_atlas.py.
 Exercises the two subcommands end-to-end through their cmd_* entry points
