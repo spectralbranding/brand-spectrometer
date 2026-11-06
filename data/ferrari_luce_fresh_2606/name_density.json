@@ -1,0 +1,37 @@
+{
+  "statistic": "brand mentions per 1,000 words",
+  "seed": 20260830,
+  "permutations": 99999,
+  "by_cohort": {
+    "actual-owners": {
+      "n": 6,
+      "mean_per_1k": 23.18,
+      "median_per_1k": 25.26
+    },
+    "brand-debaters": {
+      "n": 7,
+      "mean_per_1k": 35.78,
+      "median_per_1k": 34.81
+    },
+    "chinese-cohort": {
+      "n": 8,
+      "mean_per_1k": 13.48,
+      "median_per_1k": 12.91
+    },
+    "italian-press": {
+      "n": 8,
+      "mean_per_1k": 17.0,
+      "median_per_1k": 19.26
+    },
+    "non-italian-press": {
+      "n": 7,
+      "mean_per_1k": 25.3,
+      "median_per_1k": 26.85
+    }
+  },
+  "resolved_pair": {
+    "pair": "actual-owners|non-italian-press",
+    "abs_mean_difference_per_1k": 2.12,
+    "permutation_p": 0.755
+  }
+}
