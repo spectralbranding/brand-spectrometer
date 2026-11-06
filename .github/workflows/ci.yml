@@ -1,0 +1,115 @@
+name: Fleet CI
+
+on:
+  push:
+    branches: [ "main", "master" ]
+  pull_request:
+    branches: [ "main", "master" ]
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+jobs:
+  quality:
+    name: Code Quality & Security
+    runs-on: ubuntu-latest
+    env:
+      # uv's own interpreters only, never the runner image's python3, so CI
+      # runs the same patch release as the Macs.
+      UV_PYTHON_PREFERENCE: only-managed
+    steps:
+      - name: Checkout
+        uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1 # v7.0.1
+
+      # Python tooling - only if pyproject.toml exists
+      - name: Install uv
+        if: hashFiles('pyproject.toml') != ''
+        uses: astral-sh/setup-uv@07a047e608db84b3d8c06cd9a7c7dcc9c355c18e # v10.3.2
+        with:
+          enable-cache: true
+          cache-dependency-glob: "uv.lock"
+          ignore-nothing-to-cache: true
+
+      - name: Set up Python
+        if: hashFiles('pyproject.toml') != ''
+        # No version: installs what .python-version names. Every Python repo
+        # carries the pin; without one, uv would take the newest release.
+        run: uv python install
+
+      - name: Install Dependencies
+        if: hashFiles('pyproject.toml') != ''
+        run: uv sync --all-extras --dev
+
+      - name: Lint (Black)
+        if: hashFiles('pyproject.toml') != ''
+        run: uv run black --check .
+
+      - name: Lint (Flake8)
+        if: hashFiles('pyproject.toml') != ''
+        run: uv run flake8 . --extend-exclude=.venv,venv,archive,ARCHIVE,node_modules --count --select=E9,F63,F7,F82 --show-source --statistics
+
+      - name: Type Check (MyPy)
+        if: hashFiles('pyproject.toml') != ''
+        run: |
+          # Check for Python files before running MyPy
+          if [ -d "src" ] && find src -name "*.py" -type f | grep -q .; then
+             uv run mypy src/ --ignore-missing-imports --exclude "archive|ARCHIVE"
+          elif find . -name "*.py" -type f -not -path "./.venv/*" -not -path "./venv/*" -not -path "./archive/*" -not -path "./ARCHIVE/*" -not -path "./node_modules/*" | grep -q .; then
+             uv run mypy . --ignore-missing-imports --exclude "tests|archive|ARCHIVE|.venv|venv|node_modules"
+          else
+             echo "No Python files found, skipping MyPy."
+          fi
+
+      - name: Test (Pytest)
+        if: hashFiles('pyproject.toml') != ''
+        run: |
+          # Skip if tests require local environment (marker file)
+          if [ -f ".ci-skip-tests" ]; then
+            echo "Tests skipped (.ci-skip-tests marker found)"
+          elif [ -d "tests" ] || [ -f "pytest.ini" ]; then
+            uv run pytest
+          else
+            echo "No tests found, skipping."
+          fi
+
+      # Trivy binary from its GitHub release, checked against the release's checksum
+      # file. setup-trivy (inside trivy-action) downloads the tarball from
+      # get.trivy.dev, which is NXDOMAIN since 2026-11-03 (aquasecurity/trivy#11537,
+      # aquasecurity/setup-trivy#42): curl exit 6. Installed outside the checkout so
+      # the scan of '.' does not see it.
+      - name: Install Trivy (GitHub release)
+        env:
+          TRIVY_VERSION: '0.70.0'
+        run: |
+          set -euo pipefail
+          base="https://github.com/aquasecurity/trivy/releases/download/v${TRIVY_VERSION}"
+          tgz="trivy_${TRIVY_VERSION}_Linux-64bit.tar.gz"
+          sums="trivy_${TRIVY_VERSION}_checksums.txt"
+          dir="$RUNNER_TEMP/trivy-bin"
+          mkdir -p "$dir"
+          cd "$RUNNER_TEMP"
+          curl -fsSL --retry 3 -o "$tgz" "$base/$tgz"
+          curl -fsSL --retry 3 -o "$sums" "$base/$sums"
+          grep " ${tgz}\$" "$sums" | sha256sum -c -
+          tar -xzf "$tgz" -C "$dir" trivy
+          rm -f "$tgz" "$sums"
+          echo "$dir" >> "$GITHUB_PATH"
+          "$dir/trivy" --version
+
+      # Security scan - runs for ALL project types
+      - name: Security (Trivy)
+        # Pinned by commit SHA (trivy-action tags were force-pushed in March 2026).
+        # skip-setup-trivy: the binary comes from the step above. cache: 'false'
+        # skips the trivy-DB cache step, where a setup-trivy change rejects the
+        # $HOME-containing default path and fails the step.
+        uses: aquasecurity/trivy-action@ed142fd0673e97e23eac54620cfb913e5ce36c25 # v0.36.0
+        with:
+          skip-setup-trivy: true
+          scan-type: 'fs'
+          scan-ref: '.'
+          exit-code: '1'
+          ignore-unfixed: true
+          vuln-type: 'os,library'
+          severity: 'CRITICAL,HIGH'
+          cache: 'false'

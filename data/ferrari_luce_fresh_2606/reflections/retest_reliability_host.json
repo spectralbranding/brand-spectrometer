@@ -22,8 +22,8 @@
     },
     "chinese-cohort": {
       "method": "bootstrap-sparse",
-      "test_retest_distance_p95": 0.00762,
-      "test_retest_distance_mean": 0.00359,
+      "test_retest_distance_p95": 0.00792,
+      "test_retest_distance_mean": 0.00366,
       "operator_floor": 0.0034,
       "n_artifacts_total": 6,
       "n_artifacts_multi_rep": 6,

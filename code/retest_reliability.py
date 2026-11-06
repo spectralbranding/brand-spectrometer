@@ -79,7 +79,7 @@ def main() -> None:
                 k = int(rep_dir.name.split("_")[1])
             except (IndexError, ValueError):
                 continue
-            for f in rep_dir.glob("*.yaml"):
+            for f in sorted(rep_dir.glob("*.yaml")):
                 reflection = yaml.safe_load(f.read_text())
                 rec = {
                     "vec": _vec(reflection),
