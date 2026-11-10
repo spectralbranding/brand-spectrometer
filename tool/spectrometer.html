@@ -4,11 +4,11 @@
 <meta charset="utf-8" />
 <meta name="viewport" content="width=device-width,initial-scale=1" />
 <title>The Brand Spectrometer</title>
-<meta name="description" content="A reproducible instrument that reads how different audiences perceive a brand — cohort by cohort, across eight dimensions. Load any standard atlas. Runs entirely in your browser." />
+<meta name="description" content="A reproducible instrument that reads how different audiences perceive a brand — cohort by cohort, across eight dimensions. Runs entirely in your browser." />
 <!-- Social share (Open Graph + Twitter) — rich preview drives shares. og.png generated at deploy. -->
 <meta property="og:type" content="website" />
 <meta property="og:title" content="The Brand Spectrometer" />
-<meta property="og:description" content="See how different audiences actually perceive a brand — cohort by cohort, across eight dimensions. Load your own data; it never leaves your browser." />
+<meta property="og:description" content="See how different audiences perceive a brand — cohort by cohort, from public material rather than a survey panel. Load your own data; it never leaves your browser." />
 <meta property="og:image" content="https://meter.spectralbranding.com/og.png" />
 <meta property="og:image:alt" content="The Brand Spectrometer — a spectrum strip reading eight perception dimensions across audience cohorts." />
 <meta property="og:image:width" content="1200" />
@@ -41,7 +41,7 @@
       "browserRequirements": "Requires JavaScript. Runs entirely client-side.",
       "offers": { "@type": "Offer", "price": "0", "priceCurrency": "USD" },
       "isAccessibleForFree": true,
-      "description": "A reproducible instrument that reads how different audiences perceive a brand — cohort by cohort, across eight dimensions (Semiotic, Narrative, Ideological, Experiential, Social, Economic, Cultural, Temporal). Load any standard atlas; it runs entirely in your browser and nothing you load is uploaded or stored.",
+      "description": "A reproducible instrument that reads how different audiences perceive a brand — cohort by cohort, across eight dimensions (Semiotic, Narrative, Ideological, Experiential, Social, Economic, Cultural, Temporal). The read is over publicly available discourse, not a sampled respondent cohort: a reading of an elite-luxury brand reports how it is described in the open record, never the perception of verified luxury customers. Load any standard atlas; it runs entirely in your browser and nothing you load is uploaded or stored.",
       "featureList": [
         "Eight-dimension perception reading per audience cohort",
         "Spectrum-strip visualization with a detail dial (headline to full cloud)",
@@ -197,9 +197,10 @@
   <section class="hero">
     <p class="eyebrow">Spectral Brand Theory · measurement layer</p>
     <h1>Read the <span class="grad">perception</span><br>you don't control</h1>
-    <p class="lead">The Brand Spectrometer reads how different audiences actually perceive a brand —
-      audience by audience, across eight dimensions, from public material — and tells you which
-      of those differences are real and which are just noise.</p>
+    <p class="lead">The Brand Spectrometer reads how different audiences perceive a brand —
+      audience by audience, across eight dimensions, from the public material each audience leaves
+      behind rather than from a recruited panel — and tells you which of those differences are real
+      and which are just noise.</p>
     <div class="nowreading">
       <span class="nr-label">Now reading</span>
       <span class="nr-brand" id="b-brand">—</span>
@@ -375,7 +376,9 @@
   <section style="border:0">
     <p class="sub" style="font-size:13px">Measurement instrument for how a brand is <b>perceived</b> —
       not a verdict on what it "is." Cohort metameric variance is the measurement; there is no presumed
-      ground truth. No brand assets reproduced (nominative use).</p>
+      ground truth. The read is over <b>publicly available discourse, not a sampled respondent
+      cohort</b>: a reading of an elite-luxury brand reports how it is described in the open record,
+      never the perception of verified luxury customers. No brand assets reproduced (nominative use).</p>
   </section>
 
 </div>
@@ -869,5 +872,6 @@ function readFile(f){
 window.addEventListener("resize",()=>{if(D){renderChart();drawHeat();}});
 boot();
 </script>
+<script src="/progress.js" defer></script>
 </body>
 </html>

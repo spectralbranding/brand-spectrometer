@@ -17,6 +17,10 @@ favicons, sitemap, build scripts, etc.) are intentionally excluded.
 | `spectrum_strip.js` | The shared spectrum-strip rendering module used by the page. |
 | `how-to-read.html` | Plain-language guide to reading a spectrum strip. |
 | `faq.html` | Frequently asked questions. |
+| `glossary.html` | Measurement glossary: what each term on the readout means. |
+| `spectrum_meta.js` | Shared settings: detail levels, legend text, and the canonical dimension order. |
+| `meter-base.css` | Shared stylesheet for all pages. |
+| `progress.js` | Scroll-progress line shown on every page. |
 | `data/ferrari_luce.json` | The default worked-example atlas loaded by the tool. |
 | `atlas.schema.json` | JSON Schema for the atlas data format the tool ingests. |
 | `atlas_template.json` | A filled example atlas you can adapt. |

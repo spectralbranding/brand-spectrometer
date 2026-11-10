@@ -1,7 +1,7 @@
 <!doctype html><html lang="en"><head><meta charset="utf-8"/>
 <meta name="viewport" content="width=device-width,initial-scale=1"/>
 <title>How to read the Brand Spectrometer</title>
-<meta name="description" content="A plain-language guide to the spectrum strip: from one number to eight dimensions, audiences, sentiment, and the noise floor — and why a brand, like a constellation, is completed in the observer." />
+<meta name="description" content="A plain-language guide to the spectrum strip: one number to eight dimensions, audiences, sentiment, and the noise floor — a brand completed in the observer." />
 <meta property="og:type" content="article" />
 <meta property="og:title" content="How to read the Brand Spectrometer" />
 <meta property="og:description" content="A plain-language guide to the spectrum strip: from one number to eight dimensions, audiences, sentiment, and the noise floor — and why a brand is completed in the observer." />
@@ -169,7 +169,10 @@ svg{display:block;width:100%;height:auto} svg text{font-family:inherit;fill:var(
   <p>No single "true" silhouette — there's no presumed ground truth, only a distribution across
   audiences. Anything below the noise floor is reported as <b>unresolved, not zero</b>: the
   instrument tells you when it can't tell two audiences apart, instead of inventing a difference.
-  It measures audiences, never individuals.</p>
+  It measures audiences, never individuals — and it reads the artifacts an
+  audience produces, never a recruited respondent. A reading of an elite-luxury brand therefore
+  reports how that brand is described in the open record, not the perception of its verified
+  customers.</p>
   <p>The same honesty runs across time: the AI models doing the reading are part of the instrument,
   so dated readings are also checked against a measured <b>version floor</b> — how much readings move
   when only the model version changes. <a href="/faq#updates">If the model vendor ships an update,
@@ -263,4 +266,5 @@ function initFromAtlas(d){
 fetch("/data/ferrari_luce.json").then(r=>r.json()).then(initFromAtlas)
   .catch(()=>{ const c=$("#chartcap"); if(c) c.textContent="(could not load the example atlas)"; });
 </script>
+<script src="/progress.js" defer></script>
 </body></html>

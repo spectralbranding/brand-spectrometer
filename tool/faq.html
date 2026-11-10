@@ -36,8 +36,9 @@
     { "@type": "Question", "name": "What do the colors mean?", "acceptedAnswer": { "@type": "Answer", "text": "By default the distance map shades each gap by size — the bigger the gap between two audiences, the deeper the blue. Flip the noise switch and it grades each gap against the margin of error instead: green means the two audiences clearly differ and you can act on it; yellow is a close call (probably a difference, but small); and anything too close to tell greys out rather than getting a colour, leaving only the differences worth trusting. The grade needs a measurement-grade reading taken by several AI operators; a single-AI atlas shows the size-of-gap map only." } },
     { "@type": "Question", "name": "How is this different from my brand tracker?", "acceptedAnswer": { "@type": "Answer", "text": "A normal tracker rolls everyone into one average that hides the most useful thing — that your investors, power users, and critics may be seeing almost different brands. The Brand Spectrometer keeps those audiences apart, shows the eight-part shape of each, and flags which gaps are real versus noise. And because it reads from public material with AI, you get a first look in minutes, not a fielded survey in weeks." } },
     { "@type": "Question", "name": "Is my data private?", "acceptedAnswer": { "@type": "Answer", "text": "Yes. Nothing you load leaves your browser. There is no server and no database on our end; your file is read and drawn right on your own device. We never see it, so there is nothing for us to store or leak." } },
-    { "@type": "Question", "name": "Does it tell me the real brand?", "acceptedAnswer": { "@type": "Answer", "text": "No — on purpose. There is not one single true version of a brand. Different people honestly see it differently, and that spread is the thing we measure. The tool shows how these audiences read it, never a final verdict." } },
-    { "@type": "Question", "name": "So where does a brand actually exist?", "acceptedAnswer": { "@type": "Answer", "text": "A brand is not in your logo, product, or ad, any more than color is in an object. Newton's point about light was that the rays carry no color; color is completed in the eye that sees them. A brand is the same: the company sends signals, and each audience completes them into a perception through its own filter. The Brand Spectrometer measures a brand where it actually lives — in the audiences, one cohort at a time." } },
+    { "@type": "Question", "name": "Does it tell me the real brand?", "acceptedAnswer": { "@type": "Answer", "text": "No — on purpose. There is not one single true version of a brand. Different people honestly see it differently, and that spread is the thing we measure. What the tool reads is the public record an audience leaves behind — its artifacts, not a recruited panel. The tool shows how these audiences read it, never a final verdict." } },
+    { "@type": "Question", "name": "So where does a brand actually exist?", "acceptedAnswer": { "@type": "Answer", "text": "A brand is not in your logo, product, or ad, any more than color is in an object. Newton's point about light was that the rays carry no color; color is completed in the eye that sees them. A brand is the same: the company sends signals, and each audience completes them into a perception through its own filter. The Brand Spectrometer measures a brand where it actually lives — in the audiences, one cohort at a time, read through the public material each audience produces rather than through a sampled set of respondents." } },
+    { "@type": "Question", "name": "Is this the same as asking a brand's actual customers?", "acceptedAnswer": { "@type": "Answer", "text": "No, and the difference matters. This reads publicly available discourse — what is written about a brand and by whom — not a sampled group of buyers. So a reading of an elite-luxury brand tells you how that brand is described in the open record. It is not the perception of verified luxury customers, and it should never be quoted as if it were. If your question is how a brand is spoken about in public, this is the right frame. If your question is what verified buyers think, go and ask them." } },
     { "@type": "Question", "name": "Is it open to everyone?", "acceptedAnswer": { "@type": "Answer", "text": "Yes. The tool is open and runs in your browser at no cost — no account, no API key, nothing to install. The method behind it is open too: the research is published and the code is open-source. One honest limit: a reading you build yourself in a couple of minutes is a useful shape, not yet a proven measurement — turning a shape into a measurement takes rigor (multiple independent runs and checked data)." } },
     { "@type": "Question", "name": "Can I trust the numbers?", "acceptedAnswer": { "@type": "Answer", "text": "A rigorous reading is built so it can be checked: feed it the same input and it gives the same answer; anyone can re-create the result from public data; and it only reports differences big enough to clear its own margin of error. A quick build-it-yourself reading is great for exploring but skips that checking — treat it as a sketch, not a verdict." } },
     { "@type": "Question", "name": "If the model vendor ships an update, do my readings change?", "acceptedAnswer": { "@type": "Answer", "text": "We measured exactly that. A frozen panel of brand artifacts is re-read across model versions, so the movement caused by versions alone becomes its own margin of error — the version floor. At the July 2026 measurement, no version pair — not even models released 18 months apart reading the same texts — moved brand readings beyond the ordinary margin between contemporaneous models. And the answer is checked forward: readings taken under the current protocol are epoch-stamped against the measured version floor, and the frozen panel is re-read whenever a vendor ships a new version. If an update ever does move readings, the stamp will say so — a reading never silently changes under you." } },
@@ -262,7 +263,8 @@
     <h2>Does it tell me the "real" brand?</h2>
     <p><b>No — on purpose.</b> There isn't one single "true" version of a brand. Different people
       honestly see it differently, and that spread <em>is</em> the thing we measure. So the tool shows
-      you "here's how these audiences read it," never "here's the final verdict."</p>
+      you "here's how these audiences read it," never "here's the final verdict." What it reads is
+      the public record an audience leaves behind — its artifacts, not a recruited panel.</p>
   </section>
 
   <section class="qa" id="where">
@@ -276,7 +278,24 @@
       users, and your critics — and why chasing one "true" version is chasing something that was never
       in the object to begin with. The Brand Spectrometer measures a brand where it actually lives:
       <b>in the audiences, one cohort at a time</b>. It isn't reading your brand off your assets —
-      it's reading the perception your audiences complete.</p>
+      it's reading the perception your audiences complete, through the public material each
+      audience produces rather than through a sampled set of respondents.</p>
+  </section>
+
+  <section class="qa" id="customers">
+    <h2>Is this the same as asking a brand's actual customers?</h2>
+    <p><b>No, and the difference matters.</b> This reads publicly available discourse — what is
+      written about a brand, and by whom. It does not recruit, screen, or survey a group of buyers.
+      An audience here is a set of public artifacts grouped by register, language, or relationship
+      to the brand; it is not a panel.</p>
+    <p>That boundary bites hardest in categories where membership is contested and the buyers who
+      count are hard to reach by ordinary sampling — luxury most of all. So when this tool reads an
+      elite-luxury brand, it is telling you how that brand is <em>described in the open record</em>.
+      It is not the perception of verified luxury customers, and it should never be quoted as if it
+      were.</p>
+    <p>Read the right way round, that is the point rather than the shortfall: if your question is how
+      a brand is spoken about in public, this is exactly the frame you want. If your question is what
+      verified buyers think, this is the wrong instrument — go and ask them.</p>
   </section>
 
   <section class="qa" id="price">
@@ -336,5 +355,6 @@
     <p>Runs entirely in your browser. Nothing you load is uploaded or stored.</p>
   </footer>
 </div>
+<script src="/progress.js" defer></script>
 </body>
 </html>
