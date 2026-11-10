@@ -1,6 +1,6 @@
 {
   "$schema": "http://json-schema.org/draft-07/schema#",
-  "$id": "https://spectralbranding.com/spectrometer/atlas.schema.json",
+  "$id": "https://meter.spectralbranding.com/atlas.schema.json",
   "title": "Brand Spectrometer Atlas",
   "description": "Standard structure ingested by the Brand Spectrometer web tool. One atlas = one brand read across eight perceptual dimensions for N>=2 cohorts. Cross-constraint (enforced by the tool, not expressible in JSON Schema): every cohorts[].vector and every distances row/column has length == dims.length, and distances is symmetric with a zero diagonal.",
   "type": "object",
