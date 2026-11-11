@@ -18,3 +18,14 @@ venv/
 # Build/deploy artifacts
 dist/
 node_modules/
+
+# Fleet internal (public repo — nothing tracked)
+.claude/
+.claude-decisions/
+skills/
+.clinerules
+.cursorrules
+.cursorignore
+.rooignore
+.mcp.json
+.flake8
